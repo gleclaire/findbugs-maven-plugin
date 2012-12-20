@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="1.2.1" sequence="0" timestamp="1192386210086" analysisTimestamp="1192386210086" release="">
+  <Project filename="&lt;&lt;unnamed project&gt;&gt;" projectName="FindbugsTest">
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\Super.class</Jar>
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\UseInitCause.class</Jar>
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\UselessAssignments.class</Jar>
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\UselessControlFlow.class</Jar>
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\UselessCurrentThread.class</Jar>
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\UselessFinalize.class</Jar>
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\UselessSCMethods.class</Jar>
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\UseOfNonHashableClassInHashDataStructure$UMap.class</Jar>
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\UseOfNonHashableClassInHashDataStructure.class</Jar>
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\UserAss3rtion.class</Jar>
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\UserMistakes.class</Jar>
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\VolatileUsage.class</Jar>
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\VolatileUsage2.class</Jar>
+    <Jar>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes\WMITest.class</Jar>
+    <AuxClasspathEntry>C:\svnWork\Google\findbugs\findbugsTestCases\target\classes</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Documents and Settings\Garvin\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Documents and Settings\Garvin\.m2\repository\net\sourceforge\findbugs\annotations\1.2.1\annotations-1.2.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Documents and Settings\Garvin\.m2\repository\net\sourceforge\findbugs\jsr305\1.2.1\jsr305-1.2.1.jar</AuxClasspathEntry>
+  </Project>
+  <BugInstance type="HE_EQUALS_USE_HASHCODE" priority="1" abbrev="HE" category="BAD_PRACTICE">
+    <Class classname="UseOfNonHashableClassInHashDataStructure">
+      <SourceLine classname="UseOfNonHashableClassInHashDataStructure" start="3" end="23" sourcefile="UseOfNonHashableClassInHashDataStructure.java" sourcepath="UseOfNonHashableClassInHashDataStructure.java"/>
+    </Class>
+    <Method classname="UseOfNonHashableClassInHashDataStructure" name="equals" signature="(Ljava/lang/Object;)Z" isStatic="false">
+      <SourceLine classname="UseOfNonHashableClassInHashDataStructure" start="14" end="14" startBytecode="0" endBytecode="40" sourcefile="UseOfNonHashableClassInHashDataStructure.java" sourcepath="UseOfNonHashableClassInHashDataStructure.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT" priority="2" abbrev="NP" category="BAD_PRACTICE">
+    <Class classname="UseOfNonHashableClassInHashDataStructure">
+      <SourceLine classname="UseOfNonHashableClassInHashDataStructure" start="3" end="23" sourcefile="UseOfNonHashableClassInHashDataStructure.java" sourcepath="UseOfNonHashableClassInHashDataStructure.java"/>
+    </Class>
+    <Method classname="UseOfNonHashableClassInHashDataStructure" name="equals" signature="(Ljava/lang/Object;)Z" isStatic="false">
+      <SourceLine classname="UseOfNonHashableClassInHashDataStructure" start="14" end="14" startBytecode="0" endBytecode="40" sourcefile="UseOfNonHashableClassInHashDataStructure.java" sourcepath="UseOfNonHashableClassInHashDataStructure.java"/>
+    </Method>
+    <LocalVariable name="?" register="1" pc="4" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="UseOfNonHashableClassInHashDataStructure" start="14" end="14" startBytecode="5" endBytecode="5" sourcefile="UseOfNonHashableClassInHashDataStructure.java" sourcepath="UseOfNonHashableClassInHashDataStructure.java" role="SOURCE_LINE_DEREF"/>
+  </BugInstance>
+  <BugInstance type="HE_USE_OF_UNHASHABLE_CLASS" priority="1" abbrev="HE" category="CORRECTNESS">
+    <Class classname="UseOfNonHashableClassInHashDataStructure$UMap">
+      <SourceLine classname="UseOfNonHashableClassInHashDataStructure$UMap" start="6" end="6" sourcefile="UseOfNonHashableClassInHashDataStructure.java" sourcepath="UseOfNonHashableClassInHashDataStructure.java"/>
+    </Class>
+    <Class classname="UseOfNonHashableClassInHashDataStructure$UMap">
+      <SourceLine classname="UseOfNonHashableClassInHashDataStructure$UMap" start="6" end="6" sourcefile="UseOfNonHashableClassInHashDataStructure.java" sourcepath="UseOfNonHashableClassInHashDataStructure.java"/>
+    </Class>
+    <Type descriptor="LUseOfNonHashableClassInHashDataStructure;" role="TYPE_UNHASHABLE"/>
+  </BugInstance>
+  <BugInstance type="SE_NO_SERIALVERSIONID" priority="3" abbrev="SnVI" category="BAD_PRACTICE">
+    <Class classname="UseOfNonHashableClassInHashDataStructure$UMap">
+      <SourceLine classname="UseOfNonHashableClassInHashDataStructure$UMap" start="6" end="6" sourcefile="UseOfNonHashableClassInHashDataStructure.java" sourcepath="UseOfNonHashableClassInHashDataStructure.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="1" abbrev="DLS" category="STYLE">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Method classname="UselessAssignments" name="&lt;init&gt;" signature="(II)V" isStatic="false">
+      <SourceLine classname="UselessAssignments" start="4" end="10" startBytecode="0" endBytecode="18" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Method>
+    <LocalVariable name="?" register="2" pc="14" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="UselessAssignments" start="7" end="7" startBytecode="13" endBytecode="13" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" abbrev="DLS" category="STYLE">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Method classname="UselessAssignments" name="&lt;init&gt;" signature="(II)V" isStatic="false">
+      <SourceLine classname="UselessAssignments" start="4" end="10" startBytecode="0" endBytecode="18" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Method>
+    <LocalVariable name="?" register="3" pc="28" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="UselessAssignments" start="9" end="9" startBytecode="27" endBytecode="27" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="3" abbrev="DLS" category="STYLE">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Method classname="UselessAssignments" name="&lt;init&gt;" signature="(II)V" isStatic="false">
+      <SourceLine classname="UselessAssignments" start="4" end="10" startBytecode="0" endBytecode="18" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Method>
+    <LocalVariable name="?" register="3" pc="27" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="UselessAssignments" start="9" end="9" startBytecode="26" endBytecode="26" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="DLS_OVERWRITTEN_INCREMENT" priority="1" abbrev="DLS" category="CORRECTNESS">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Method classname="UselessAssignments" name="oops" signature="()I" isStatic="false">
+      <SourceLine classname="UselessAssignments" start="18" end="23" startBytecode="0" endBytecode="88" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Method>
+    <SourceLine classname="UselessAssignments" start="20" end="20" startBytecode="12" endBytecode="12" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="SA_FIELD_DOUBLE_ASSIGNMENT" priority="2" abbrev="SA" category="CORRECTNESS">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Method classname="UselessAssignments" name="&lt;init&gt;" signature="(II)V" isStatic="false">
+      <SourceLine classname="UselessAssignments" start="4" end="10" startBytecode="0" endBytecode="72" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Method>
+    <Field classname="UselessAssignments" name="g1" signature="I" isStatic="false">
+      <SourceLine classname="UselessAssignments" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Field>
+    <SourceLine classname="UselessAssignments" start="8" end="8" startBytecode="21" endBytecode="21" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="SA_FIELD_DOUBLE_ASSIGNMENT" priority="2" abbrev="SA" category="CORRECTNESS">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Method classname="UselessAssignments" name="oops" signature="()I" isStatic="false">
+      <SourceLine classname="UselessAssignments" start="18" end="23" startBytecode="0" endBytecode="88" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Method>
+    <Field classname="UselessAssignments" name="foo" signature="I" isStatic="false">
+      <SourceLine classname="UselessAssignments" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Field>
+    <SourceLine classname="UselessAssignments" start="22" end="22" startBytecode="40" endBytecode="40" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="SA_FIELD_SELF_ASSIGNMENT" priority="1" abbrev="SA" category="CORRECTNESS">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Method classname="UselessAssignments" name="&lt;init&gt;" signature="(II)V" isStatic="false">
+      <SourceLine classname="UselessAssignments" start="4" end="10" startBytecode="0" endBytecode="72" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Method>
+    <Field classname="UselessAssignments" name="foo" signature="I" isStatic="false">
+      <SourceLine classname="UselessAssignments" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Field>
+    <SourceLine classname="UselessAssignments" start="6" end="6" startBytecode="9" endBytecode="9" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="SA_LOCAL_DOUBLE_ASSIGNMENT" priority="2" abbrev="SA" category="CORRECTNESS">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Method classname="UselessAssignments" name="&lt;init&gt;" signature="(II)V" isStatic="false">
+      <SourceLine classname="UselessAssignments" start="4" end="10" startBytecode="0" endBytecode="72" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Method>
+    <LocalVariable name="?" register="3" pc="27" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="UselessAssignments" start="9" end="9" startBytecode="27" endBytecode="27" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="SA_LOCAL_SELF_ASSIGNMENT" priority="1" abbrev="SA" category="STYLE">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Method classname="UselessAssignments" name="&lt;init&gt;" signature="(II)V" isStatic="false">
+      <SourceLine classname="UselessAssignments" start="4" end="10" startBytecode="0" endBytecode="72" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Method>
+    <LocalVariable name="?" register="2" pc="13" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="UselessAssignments" start="7" end="7" startBytecode="13" endBytecode="13" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="SA_LOCAL_SELF_ASSIGNMENT" priority="2" abbrev="SA" category="STYLE">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Method classname="UselessAssignments" name="oops" signature="()I" isStatic="false">
+      <SourceLine classname="UselessAssignments" start="18" end="23" startBytecode="0" endBytecode="88" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Method>
+    <LocalVariable name="?" register="1" pc="7" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="UselessAssignments" start="19" end="19" startBytecode="7" endBytecode="7" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="SA_LOCAL_SELF_ASSIGNMENT" priority="2" abbrev="SA" category="STYLE">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Method classname="UselessAssignments" name="oops" signature="()I" isStatic="false">
+      <SourceLine classname="UselessAssignments" start="18" end="23" startBytecode="0" endBytecode="88" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Method>
+    <LocalVariable name="?" register="1" pc="12" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="UselessAssignments" start="20" end="20" startBytecode="12" endBytecode="12" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" abbrev="UrF" category="PERFORMANCE">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Field classname="UselessAssignments" name="bar" signature="I" isStatic="false">
+      <SourceLine classname="UselessAssignments" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Field>
+    <SourceLine classname="UselessAssignments" start="14" end="14" startBytecode="15" endBytecode="15" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" abbrev="UrF" category="PERFORMANCE">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Field classname="UselessAssignments" name="g1" signature="I" isStatic="false">
+      <SourceLine classname="UselessAssignments" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Field>
+    <SourceLine classname="UselessAssignments" start="8" end="8" startBytecode="18" endBytecode="18" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="UR_UNINIT_READ" priority="2" abbrev="UR" category="CORRECTNESS">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Method classname="UselessAssignments" name="&lt;init&gt;" signature="(II)V" isStatic="false">
+      <SourceLine classname="UselessAssignments" start="4" end="10" startBytecode="0" endBytecode="72" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Method>
+    <Field classname="UselessAssignments" name="foo" signature="I" isStatic="false">
+      <SourceLine classname="UselessAssignments" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Field>
+    <SourceLine classname="UselessAssignments" start="6" end="6" startBytecode="6" endBytecode="6" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" abbrev="UuF" category="PERFORMANCE">
+    <Class classname="UselessAssignments">
+      <SourceLine classname="UselessAssignments" start="4" end="31" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Class>
+    <Field classname="UselessAssignments" name="g2" signature="I" isStatic="false">
+      <SourceLine classname="UselessAssignments" sourcefile="UselessAssignments.java" sourcepath="UselessAssignments.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UCF_USELESS_CONTROL_FLOW" priority="2" abbrev="UCF" category="STYLE">
+    <Class classname="UselessControlFlow">
+      <SourceLine classname="UselessControlFlow" start="2" end="40" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+    </Class>
+    <Method classname="UselessControlFlow" name="report2" signature="(Ljava/lang/Object;Ljava/lang/Object;)V" isStatic="false">
+      <SourceLine classname="UselessControlFlow" start="23" end="27" startBytecode="0" endBytecode="58" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+    </Method>
+    <SourceLine classname="UselessControlFlow" start="23" end="23" startBytecode="5" endBytecode="5" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+  </BugInstance>
+  <BugInstance type="UCF_USELESS_CONTROL_FLOW" priority="2" abbrev="UCF" category="STYLE">
+    <Class classname="UselessControlFlow">
+      <SourceLine classname="UselessControlFlow" start="2" end="40" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+    </Class>
+    <Method classname="UselessControlFlow" name="report4" signature="([Ljava/lang/Object;Ljava/lang/Object;)V" isStatic="false">
+      <SourceLine classname="UselessControlFlow" start="36" end="40" startBytecode="0" endBytecode="73" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+    </Method>
+    <SourceLine classname="UselessControlFlow" start="37" end="37" startBytecode="28" endBytecode="28" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+  </BugInstance>
+  <BugInstance type="UCF_USELESS_CONTROL_FLOW" priority="3" abbrev="UCF" category="STYLE">
+    <Class classname="UselessControlFlow">
+      <SourceLine classname="UselessControlFlow" start="2" end="40" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+    </Class>
+    <Method classname="UselessControlFlow" name="harmless1" signature="(Ljava/lang/Object;Ljava/lang/Object;)V" isStatic="false">
+      <SourceLine classname="UselessControlFlow" start="5" end="12" startBytecode="0" endBytecode="58" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+    </Method>
+    <SourceLine classname="UselessControlFlow" start="5" end="5" startBytecode="5" endBytecode="5" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+  </BugInstance>
+  <BugInstance type="UCF_USELESS_CONTROL_FLOW" priority="3" abbrev="UCF" category="STYLE">
+    <Class classname="UselessControlFlow">
+      <SourceLine classname="UselessControlFlow" start="2" end="40" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+    </Class>
+    <Method classname="UselessControlFlow" name="report3" signature="(Ljava/lang/Object;Ljava/lang/Object;)V" isStatic="false">
+      <SourceLine classname="UselessControlFlow" start="29" end="34" startBytecode="0" endBytecode="58" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+    </Method>
+    <SourceLine classname="UselessControlFlow" start="29" end="29" startBytecode="5" endBytecode="5" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+  </BugInstance>
+  <BugInstance type="UCF_USELESS_CONTROL_FLOW_NEXT_LINE" priority="1" abbrev="UCF" category="CORRECTNESS">
+    <Class classname="UselessControlFlow">
+      <SourceLine classname="UselessControlFlow" start="2" end="40" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+    </Class>
+    <Method classname="UselessControlFlow" name="report0" signature="(Ljava/lang/Object;Ljava/lang/Object;)V" isStatic="false">
+      <SourceLine classname="UselessControlFlow" start="14" end="16" startBytecode="0" endBytecode="54" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+    </Method>
+    <SourceLine classname="UselessControlFlow" start="14" end="14" startBytecode="5" endBytecode="5" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+  </BugInstance>
+  <BugInstance type="UCF_USELESS_CONTROL_FLOW_NEXT_LINE" priority="1" abbrev="UCF" category="CORRECTNESS">
+    <Class classname="UselessControlFlow">
+      <SourceLine classname="UselessControlFlow" start="2" end="40" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+    </Class>
+    <Method classname="UselessControlFlow" name="report1" signature="(Ljava/lang/Object;Ljava/lang/Object;)V" isStatic="false">
+      <SourceLine classname="UselessControlFlow" start="18" end="21" startBytecode="0" endBytecode="58" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+    </Method>
+    <SourceLine classname="UselessControlFlow" start="18" end="18" startBytecode="5" endBytecode="5" sourcefile="UselessControlFlow.java" sourcepath="UselessControlFlow.java"/>
+  </BugInstance>
+  <BugInstance type="STI_INTERRUPTED_ON_CURRENTTHREAD" priority="3" abbrev="STI" category="CORRECTNESS">
+    <Class classname="UselessCurrentThread">
+      <SourceLine classname="UselessCurrentThread" start="5" end="36" sourcefile="UselessCurrentThread.java" sourcepath="UselessCurrentThread.java"/>
+    </Class>
+    <Method classname="UselessCurrentThread" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="UselessCurrentThread" start="13" end="36" startBytecode="0" endBytecode="215" sourcefile="UselessCurrentThread.java" sourcepath="UselessCurrentThread.java"/>
+    </Method>
+    <SourceLine classname="UselessCurrentThread" start="18" end="18" startBytecode="27" endBytecode="27" sourcefile="UselessCurrentThread.java" sourcepath="UselessCurrentThread.java"/>
+  </BugInstance>
+  <BugInstance type="STI_INTERRUPTED_ON_CURRENTTHREAD" priority="3" abbrev="STI" category="CORRECTNESS">
+    <Class classname="UselessCurrentThread">
+      <SourceLine classname="UselessCurrentThread" start="5" end="36" sourcefile="UselessCurrentThread.java" sourcepath="UselessCurrentThread.java"/>
+    </Class>
+    <Method classname="UselessCurrentThread" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="UselessCurrentThread" start="13" end="36" startBytecode="0" endBytecode="215" sourcefile="UselessCurrentThread.java" sourcepath="UselessCurrentThread.java"/>
+    </Method>
+    <SourceLine classname="UselessCurrentThread" start="24" end="24" startBytecode="56" endBytecode="56" sourcefile="UselessCurrentThread.java" sourcepath="UselessCurrentThread.java"/>
+  </BugInstance>
+  <BugInstance type="STI_INTERRUPTED_ON_UNKNOWNTHREAD" priority="2" abbrev="STI" category="CORRECTNESS">
+    <Class classname="UselessCurrentThread">
+      <SourceLine classname="UselessCurrentThread" start="5" end="36" sourcefile="UselessCurrentThread.java" sourcepath="UselessCurrentThread.java"/>
+    </Class>
+    <Method classname="UselessCurrentThread" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="UselessCurrentThread" start="13" end="36" startBytecode="0" endBytecode="215" sourcefile="UselessCurrentThread.java" sourcepath="UselessCurrentThread.java"/>
+    </Method>
+    <SourceLine classname="UselessCurrentThread" start="29" end="29" startBytecode="84" endBytecode="84" sourcefile="UselessCurrentThread.java" sourcepath="UselessCurrentThread.java"/>
+  </BugInstance>
+  <BugInstance type="FI_USELESS" priority="2" abbrev="FI" category="BAD_PRACTICE">
+    <Class classname="UselessFinalize">
+      <SourceLine classname="UselessFinalize" start="1" end="5" sourcefile="UselessFinalize.java" sourcepath="UselessFinalize.java"/>
+    </Class>
+    <Method classname="UselessFinalize" name="finalize" signature="()V" isStatic="false">
+      <SourceLine classname="UselessFinalize" start="4" end="5" startBytecode="0" endBytecode="32" sourcefile="UselessFinalize.java" sourcepath="UselessFinalize.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" abbrev="DLS" category="STYLE">
+    <Class classname="UserMistakes">
+      <SourceLine classname="UserMistakes" start="9" end="44" sourcefile="UserMistakes.java" sourcepath="UserMistakes.java"/>
+    </Class>
+    <Method classname="UserMistakes" name="main" signature="([Ljava/lang/String;)V" isStatic="true">
+      <SourceLine classname="UserMistakes" start="11" end="44" startBytecode="0" endBytecode="64" sourcefile="UserMistakes.java" sourcepath="UserMistakes.java"/>
+    </Method>
+    <LocalVariable name="?" register="2" pc="76" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="UserMistakes" start="28" end="28" startBytecode="75" endBytecode="75" sourcefile="UserMistakes.java" sourcepath="UserMistakes.java"/>
+  </BugInstance>
+  <BugInstance type="RE_POSSIBLE_UNINTENDED_PATTERN" priority="2" abbrev="RE" category="CORRECTNESS">
+    <Class classname="UserMistakes">
+      <SourceLine classname="UserMistakes" start="9" end="44" sourcefile="UserMistakes.java" sourcepath="UserMistakes.java"/>
+    </Class>
+    <Method classname="UserMistakes" name="main" signature="([Ljava/lang/String;)V" isStatic="true">
+      <SourceLine classname="UserMistakes" start="11" end="44" startBytecode="0" endBytecode="262" sourcefile="UserMistakes.java" sourcepath="UserMistakes.java"/>
+    </Method>
+    <SourceLine classname="UserMistakes" start="12" end="12" startBytecode="8" endBytecode="8" sourcefile="UserMistakes.java" sourcepath="UserMistakes.java"/>
+  </BugInstance>
+  <BugInstance type="RV_CHECK_FOR_POSITIVE_INDEXOF" priority="3" abbrev="RV" category="STYLE">
+    <Class classname="UserMistakes">
+      <SourceLine classname="UserMistakes" start="9" end="44" sourcefile="UserMistakes.java" sourcepath="UserMistakes.java"/>
+    </Class>
+    <Method classname="UserMistakes" name="main" signature="([Ljava/lang/String;)V" isStatic="true">
+      <SourceLine classname="UserMistakes" start="11" end="44" startBytecode="0" endBytecode="262" sourcefile="UserMistakes.java" sourcepath="UserMistakes.java"/>
+    </Method>
+    <SourceLine classname="UserMistakes" start="17" end="17" startBytecode="25" endBytecode="25" sourcefile="UserMistakes.java" sourcepath="UserMistakes.java"/>
+  </BugInstance>
+  <BugInstance type="RV_DONT_JUST_NULL_CHECK_READLINE" priority="2" abbrev="RV" category="CORRECTNESS">
+    <Class classname="UserMistakes">
+      <SourceLine classname="UserMistakes" start="9" end="44" sourcefile="UserMistakes.java" sourcepath="UserMistakes.java"/>
+    </Class>
+    <Method classname="UserMistakes" name="main" signature="([Ljava/lang/String;)V" isStatic="true">
+      <SourceLine classname="UserMistakes" start="11" end="44" startBytecode="0" endBytecode="262" sourcefile="UserMistakes.java" sourcepath="UserMistakes.java"/>
+    </Method>
+    <SourceLine classname="UserMistakes" start="27" end="27" startBytecode="68" endBytecode="68" sourcefile="UserMistakes.java" sourcepath="UserMistakes.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" abbrev="UrF" category="PERFORMANCE">
+    <Class classname="VolatileUsage">
+      <SourceLine classname="VolatileUsage" start="14" end="22" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Class>
+    <Field classname="VolatileUsage" name="a" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Field>
+    <SourceLine classname="VolatileUsage" start="15" end="15" startBytecode="9" endBytecode="9" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" abbrev="UrF" category="PERFORMANCE">
+    <Class classname="VolatileUsage">
+      <SourceLine classname="VolatileUsage" start="14" end="22" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Class>
+    <Field classname="VolatileUsage" name="d" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Field>
+    <SourceLine classname="VolatileUsage" start="16" end="16" startBytecode="17" endBytecode="17" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" abbrev="UrF" category="PERFORMANCE">
+    <Class classname="VolatileUsage">
+      <SourceLine classname="VolatileUsage" start="14" end="22" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Class>
+    <Field classname="VolatileUsage" name="e" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Field>
+    <SourceLine classname="VolatileUsage" start="21" end="21" startBytecode="7" endBytecode="7" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" abbrev="UuF" category="PERFORMANCE">
+    <Class classname="VolatileUsage">
+      <SourceLine classname="VolatileUsage" start="14" end="22" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Class>
+    <Field classname="VolatileUsage" name="b" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" abbrev="UuF" category="PERFORMANCE">
+    <Class classname="VolatileUsage">
+      <SourceLine classname="VolatileUsage" start="14" end="22" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Class>
+    <Field classname="VolatileUsage" name="c" signature="I" isStatic="false">
+      <SourceLine classname="VolatileUsage" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" abbrev="UuF" category="PERFORMANCE">
+    <Class classname="VolatileUsage">
+      <SourceLine classname="VolatileUsage" start="14" end="22" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Class>
+    <Field classname="VolatileUsage" name="f" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="2" abbrev="VO" category="MT_CORRECTNESS">
+    <Class classname="VolatileUsage">
+      <SourceLine classname="VolatileUsage" start="14" end="22" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Class>
+    <Field classname="VolatileUsage" name="a" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="3" abbrev="VO" category="MT_CORRECTNESS">
+    <Class classname="VolatileUsage">
+      <SourceLine classname="VolatileUsage" start="14" end="22" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Class>
+    <Field classname="VolatileUsage" name="d" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="3" abbrev="VO" category="MT_CORRECTNESS">
+    <Class classname="VolatileUsage">
+      <SourceLine classname="VolatileUsage" start="14" end="22" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Class>
+    <Field classname="VolatileUsage" name="e" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="3" abbrev="VO" category="MT_CORRECTNESS">
+    <Class classname="VolatileUsage">
+      <SourceLine classname="VolatileUsage" start="14" end="22" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Class>
+    <Field classname="VolatileUsage" name="f" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage" sourcefile="VolatileUsage.java" sourcepath="VolatileUsage.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" abbrev="UuF" category="PERFORMANCE">
+    <Class classname="VolatileUsage2">
+      <SourceLine classname="VolatileUsage2" start="20" end="28" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Class>
+    <Field classname="VolatileUsage2" name="b" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage2" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" abbrev="UuF" category="PERFORMANCE">
+    <Class classname="VolatileUsage2">
+      <SourceLine classname="VolatileUsage2" start="20" end="28" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Class>
+    <Field classname="VolatileUsage2" name="c" signature="I" isStatic="false">
+      <SourceLine classname="VolatileUsage2" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" abbrev="UuF" category="PERFORMANCE">
+    <Class classname="VolatileUsage2">
+      <SourceLine classname="VolatileUsage2" start="20" end="28" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Class>
+    <Field classname="VolatileUsage2" name="f" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage2" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" abbrev="UuF" category="PERFORMANCE">
+    <Class classname="VolatileUsage2">
+      <SourceLine classname="VolatileUsage2" start="20" end="28" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Class>
+    <Field classname="VolatileUsage2" name="x" signature="I" isStatic="false">
+      <SourceLine classname="VolatileUsage2" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="2" abbrev="VO" category="MT_CORRECTNESS">
+    <Class classname="VolatileUsage2">
+      <SourceLine classname="VolatileUsage2" start="20" end="28" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Class>
+    <Field classname="VolatileUsage2" name="a" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage2" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="3" abbrev="VO" category="MT_CORRECTNESS">
+    <Class classname="VolatileUsage2">
+      <SourceLine classname="VolatileUsage2" start="20" end="28" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Class>
+    <Field classname="VolatileUsage2" name="d" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage2" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="3" abbrev="VO" category="MT_CORRECTNESS">
+    <Class classname="VolatileUsage2">
+      <SourceLine classname="VolatileUsage2" start="20" end="28" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Class>
+    <Field classname="VolatileUsage2" name="f" signature="[I" isStatic="false">
+      <SourceLine classname="VolatileUsage2" sourcefile="VolatileUsage2.java" sourcepath="VolatileUsage2.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="2" abbrev="WMI" category="PERFORMANCE">
+    <Class classname="WMITest">
+      <SourceLine classname="WMITest" start="5" end="41" sourcefile="WMITest.java" sourcepath="WMITest.java"/>
+    </Class>
+    <Method classname="WMITest" name="test" signature="(Ljava/util/Map;)V" isStatic="false">
+      <SourceLine classname="WMITest" start="7" end="13" startBytecode="0" endBytecode="124" sourcefile="WMITest.java" sourcepath="WMITest.java"/>
+    </Method>
+    <SourceLine classname="WMITest" start="10" end="10" startBytecode="33" endBytecode="33" sourcefile="WMITest.java" sourcepath="WMITest.java"/>
+  </BugInstance>
+  <BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="2" abbrev="WMI" category="PERFORMANCE">
+    <Class classname="WMITest">
+      <SourceLine classname="WMITest" start="5" end="41" sourcefile="WMITest.java" sourcepath="WMITest.java"/>
+    </Class>
+    <Method classname="WMITest" name="test2" signature="(IIIILjava/util/Map;)V" isStatic="false">
+      <SourceLine classname="WMITest" start="16" end="22" startBytecode="0" endBytecode="132" sourcefile="WMITest.java" sourcepath="WMITest.java"/>
+    </Method>
+    <SourceLine classname="WMITest" start="19" end="19" startBytecode="40" endBytecode="40" sourcefile="WMITest.java" sourcepath="WMITest.java"/>
+  </BugInstance>
+  <BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="2" abbrev="WMI" category="PERFORMANCE">
+    <Class classname="WMITest">
+      <SourceLine classname="WMITest" start="5" end="41" sourcefile="WMITest.java" sourcepath="WMITest.java"/>
+    </Class>
+    <Method classname="WMITest" name="test3" signature="(Ljava/util/Map;)V" isStatic="false">
+      <SourceLine classname="WMITest" start="25" end="32" startBytecode="0" endBytecode="133" sourcefile="WMITest.java" sourcepath="WMITest.java"/>
+    </Method>
+    <SourceLine classname="WMITest" start="29" end="29" startBytecode="37" endBytecode="37" sourcefile="WMITest.java" sourcepath="WMITest.java"/>
+  </BugInstance>
+  <BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="2" abbrev="WMI" category="PERFORMANCE">
+    <Class classname="WMITest">
+      <SourceLine classname="WMITest" start="5" end="41" sourcefile="WMITest.java" sourcepath="WMITest.java"/>
+    </Class>
+    <Method classname="WMITest" name="test4" signature="(Ljava/util/Map;)V" isStatic="false">
+      <SourceLine classname="WMITest" start="35" end="41" startBytecode="0" endBytecode="124" sourcefile="WMITest.java" sourcepath="WMITest.java"/>
+    </Method>
+    <SourceLine classname="WMITest" start="38" end="38" startBytecode="30" endBytecode="30" sourcefile="WMITest.java" sourcepath="WMITest.java"/>
+  </BugInstance>
+  <Errors></Errors>
+  <FindBugsSummary timestamp="Sun, 14 Oct 2007 14:23:30 -0400" total_classes="0" total_bugs="0" total_size="0" num_packages="0" cpu_seconds="11.80" clock_seconds="16.78" peak_mbytes="67.98" gc_seconds="1.36"></FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

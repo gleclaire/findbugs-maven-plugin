@@ -1,0 +1,39 @@
+<faqs xmlns="http://maven.apache.org/FML/1.0.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/FML/1.0.1 http://maven.apache.org/xsd/fml-1.0.1.xsd"
+  id="FAQ" title="Frequently Asked Questions">
+ <part id="General">
+   <faq id="Aggregate Reporting">
+     <question>Is there an easy way to generate the aggregate report ?</question>
+     <answer>
+       <p>
+       Unfortunately Maven's internal support for report aggregation
+       is rather poor and does have a number of limitations.
+      </p>
+      <p>
+      This may be addressed in the future by a module like
+      <a href="http://mojo.codehaus.org/dashboard-maven-plugin/">dashboard</a>
+      to get an aggregate report.
+      </p>
+     </answer>
+   </faq>
+   <faq id="How do I avoid OutOfMemory errors">
+     <question>How do I avoid OutOfMemory errors?</question>
+       <answer>
+         <p>
+         When running findbugs on a project, the default heap size might not be enough
+         to complete the build. For now there is no way to fork findbugs and run with
+         its own memory requirements, but the following system variable will allow you
+         to do so for Maven:
+         <p>
+         <code>export MAVEN_OPTS=-Xmx384M</code>
+         </p>
+         </p>
+         <p>
+         You can also use the <bold>fork</bold> option which will for a new JVM.  You then use the <bold>maxHeap</bold> option to control the heap size.    <p>
+         </p>
+         </p>
+       </answer>
+     </faq>
+  </part>
+</faqs>

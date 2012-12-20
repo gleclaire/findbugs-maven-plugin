@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<BugCollection version="1.2.1" threshold="Low" effort="Min" >
+
+<file classname="UselessAssignments" >
+
+<BugInstance type="SA_FIELD_SELF_ASSIGNMENT" priority="High" category="CORRECTNESS" message="SA: Self assignment of field foo in UselessAssignments.UselessAssignments(int, int)" lineNumber="6" />
+
+<BugInstance type="SA_LOCAL_DOUBLE_ASSIGNMENT" priority="Normal" category="CORRECTNESS" message="SA: Double assignment of $L3 in UselessAssignments.UselessAssignments(int, int)" lineNumber="9" />
+
+<BugInstance type="SA_FIELD_DOUBLE_ASSIGNMENT" priority="Normal" category="CORRECTNESS" message="SA: Double assignment of field g1 in UselessAssignments.UselessAssignments(int, int)" lineNumber="8" />
+
+<BugInstance type="SA_FIELD_DOUBLE_ASSIGNMENT" priority="Normal" category="CORRECTNESS" message="SA: Double assignment of field foo in UselessAssignments.oops()" lineNumber="22" />
+
+<BugInstance type="UR_UNINIT_READ" priority="Normal" category="CORRECTNESS" message="UR: Uninitialized read of foo in UselessAssignments.UselessAssignments(int, int)" lineNumber="6" />
+
+<BugInstance type="SA_LOCAL_SELF_ASSIGNMENT" priority="High" category="STYLE" message="SA: Self assignment of local variable in UselessAssignments.UselessAssignments(int, int)" lineNumber="7" />
+
+<BugInstance type="SA_LOCAL_SELF_ASSIGNMENT" priority="Normal" category="STYLE" message="SA: Self assignment of local variable in UselessAssignments.oops()" lineNumber="19" />
+
+<BugInstance type="SA_LOCAL_SELF_ASSIGNMENT" priority="Normal" category="STYLE" message="SA: Self assignment of local variable in UselessAssignments.oops()" lineNumber="20" />
+
+<BugInstance type="DLS_DEAD_LOCAL_STORE" priority="Normal" category="STYLE" message="DLS: Dead store to $L3 in UselessAssignments.UselessAssignments(int, int)" lineNumber="9" />
+
+<BugInstance type="DLS_DEAD_LOCAL_STORE" priority="High" category="STYLE" message="DLS: Dead store to $L2 in UselessAssignments.UselessAssignments(int, int)" lineNumber="7" />
+
+<BugInstance type="DLS_DEAD_LOCAL_STORE" priority="Low" category="STYLE" message="DLS: Dead store to $L3 in UselessAssignments.UselessAssignments(int, int)" lineNumber="9" />
+
+<BugInstance type="DLS_OVERWRITTEN_INCREMENT" priority="High" category="CORRECTNESS" message="DLS: Overwritten increment in UselessAssignments.oops()" lineNumber="20" />
+
+</file>
+
+<file classname="UselessControlFlow" >
+
+<BugInstance type="UCF_USELESS_CONTROL_FLOW" priority="Low" category="STYLE" message="UCF: Useless control flow in UselessControlFlow.harmless1(Object, Object)" lineNumber="5" />
+
+<BugInstance type="UCF_USELESS_CONTROL_FLOW_NEXT_LINE" priority="High" category="CORRECTNESS" message="UCF: Useless control flow to next line in UselessControlFlow.report0(Object, Object)" lineNumber="14" />
+
+<BugInstance type="UCF_USELESS_CONTROL_FLOW_NEXT_LINE" priority="High" category="CORRECTNESS" message="UCF: Useless control flow to next line in UselessControlFlow.report1(Object, Object)" lineNumber="18" />
+
+<BugInstance type="UCF_USELESS_CONTROL_FLOW" priority="Normal" category="STYLE" message="UCF: Useless control flow in UselessControlFlow.report2(Object, Object)" lineNumber="23" />
+
+<BugInstance type="UCF_USELESS_CONTROL_FLOW" priority="Low" category="STYLE" message="UCF: Useless control flow in UselessControlFlow.report3(Object, Object)" lineNumber="29" />
+
+<BugInstance type="UCF_USELESS_CONTROL_FLOW" priority="Normal" category="STYLE" message="UCF: Useless control flow in UselessControlFlow.report4(Object[], Object)" lineNumber="37" />
+
+</file>
+
+<file classname="UselessCurrentThread" >
+
+<BugInstance type="STI_INTERRUPTED_ON_CURRENTTHREAD" priority="Low" category="CORRECTNESS" message="STI: Method UselessCurrentThread.run() makes an unneeded call to currentThread() just to call interrupted()" lineNumber="18" />
+
+<BugInstance type="STI_INTERRUPTED_ON_CURRENTTHREAD" priority="Low" category="CORRECTNESS" message="STI: Method UselessCurrentThread.run() makes an unneeded call to currentThread() just to call interrupted()" lineNumber="24" />
+
+<BugInstance type="STI_INTERRUPTED_ON_UNKNOWNTHREAD" priority="Normal" category="CORRECTNESS" message="STI: UselessCurrentThread.run() invokes static Thread.interrupted() method on thread instance" lineNumber="29" />
+
+</file>
+
+<file classname="UselessFinalize" >
+
+<BugInstance type="FI_USELESS" priority="Normal" category="BAD_PRACTICE" message="FI: UselessFinalize.finalize() does nothing except call super.finalize(); delete it" lineNumber="4-5" />
+
+</file>
+
+<file classname="UseOfNonHashableClassInHashDataStructure" >
+
+<BugInstance type="NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT" priority="Normal" category="BAD_PRACTICE" message="NP: UseOfNonHashableClassInHashDataStructure.equals(Object) does not check for null argument" lineNumber="14" />
+
+<BugInstance type="HE_EQUALS_USE_HASHCODE" priority="High" category="BAD_PRACTICE" message="HE: UseOfNonHashableClassInHashDataStructure defines equals and uses Object.hashCode()" lineNumber="14" />
+
+</file>
+
+<file classname="UseOfNonHashableClassInHashDataStructure$UMap" >
+
+<BugInstance type="SE_NO_SERIALVERSIONID" priority="Low" category="BAD_PRACTICE" message="SnVI: UseOfNonHashableClassInHashDataStructure$UMap is Serializable; consider declaring a serialVersionUID" lineNumber="6" />
+
+</file>
+
+<file classname="UserMistakes" >
+
+<BugInstance type="DLS_DEAD_LOCAL_STORE" priority="Normal" category="STYLE" message="DLS: Dead store to $L2 in UserMistakes.main(String[])" lineNumber="28" />
+
+<BugInstance type="RV_CHECK_FOR_POSITIVE_INDEXOF" priority="Low" category="STYLE" message="RV: UserMistakes.main(String[]) checks to see if result of String.indexOf is positive" lineNumber="17" />
+
+<BugInstance type="RV_DONT_JUST_NULL_CHECK_READLINE" priority="Normal" category="CORRECTNESS" message="RV: UserMistakes.main(String[]) discards result of readLine after checking if it is nonnull" lineNumber="27" />
+
+<BugInstance type="RE_POSSIBLE_UNINTENDED_PATTERN" priority="Normal" category="CORRECTNESS" message="RE: &quot;.&quot; used for regular expression in UserMistakes.main(String[])" lineNumber="12" />
+
+</file>
+
+<file classname="WMITest" >
+
+<BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="Normal" category="PERFORMANCE" message="WMI: Method WMITest.test(Map) makes inefficient use of keySet iterator instead of entrySet iterator" lineNumber="10" />
+
+<BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="Normal" category="PERFORMANCE" message="WMI: Method WMITest.test2(int, int, int, int, Map) makes inefficient use of keySet iterator instead of entrySet iterator" lineNumber="19" />
+
+<BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="Normal" category="PERFORMANCE" message="WMI: Method WMITest.test3(Map) makes inefficient use of keySet iterator instead of entrySet iterator" lineNumber="29" />
+
+<BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="Normal" category="PERFORMANCE" message="WMI: Method WMITest.test4(Map) makes inefficient use of keySet iterator instead of entrySet iterator" lineNumber="38" />
+
+<BugInstance type="URF_UNREAD_FIELD" priority="Normal" category="PERFORMANCE" message="UrF: Unread field: UselessAssignments.bar" lineNumber="14" />
+
+<BugInstance type="URF_UNREAD_FIELD" priority="Normal" category="PERFORMANCE" message="UrF: Unread field: UselessAssignments.g1" lineNumber="8" />
+
+<BugInstance type="UUF_UNUSED_FIELD" priority="Normal" category="PERFORMANCE" message="UuF: Unused field: UselessAssignments.g2" lineNumber="Not available" />
+
+<BugInstance type="URF_UNREAD_FIELD" priority="Normal" category="PERFORMANCE" message="UrF: Unread field: VolatileUsage.a" lineNumber="15" />
+
+<BugInstance type="UUF_UNUSED_FIELD" priority="Normal" category="PERFORMANCE" message="UuF: Unused field: VolatileUsage.b" lineNumber="Not available" />
+
+<BugInstance type="UUF_UNUSED_FIELD" priority="Normal" category="PERFORMANCE" message="UuF: Unused field: VolatileUsage.c" lineNumber="Not available" />
+
+<BugInstance type="URF_UNREAD_FIELD" priority="Normal" category="PERFORMANCE" message="UrF: Unread field: VolatileUsage.d" lineNumber="16" />
+
+<BugInstance type="URF_UNREAD_FIELD" priority="Normal" category="PERFORMANCE" message="UrF: Unread field: VolatileUsage.e" lineNumber="21" />
+
+<BugInstance type="UUF_UNUSED_FIELD" priority="Normal" category="PERFORMANCE" message="UuF: Unused field: VolatileUsage.f" lineNumber="Not available" />
+
+<BugInstance type="UUF_UNUSED_FIELD" priority="Normal" category="PERFORMANCE" message="UuF: Unused field: VolatileUsage2.b" lineNumber="Not available" />
+
+<BugInstance type="UUF_UNUSED_FIELD" priority="Normal" category="PERFORMANCE" message="UuF: Unused field: VolatileUsage2.c" lineNumber="Not available" />
+
+<BugInstance type="UUF_UNUSED_FIELD" priority="Normal" category="PERFORMANCE" message="UuF: Unused field: VolatileUsage2.f" lineNumber="Not available" />
+
+<BugInstance type="UUF_UNUSED_FIELD" priority="Normal" category="PERFORMANCE" message="UuF: Unused field: VolatileUsage2.x" lineNumber="Not available" />
+
+<BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="Low" category="MT_CORRECTNESS" message="VO: VolatileUsage.e is a volatile reference to an array; the array elements are non-volatile" lineNumber="Not available" />
+
+<BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="Low" category="MT_CORRECTNESS" message="VO: VolatileUsage2.f is a volatile reference to an array; the array elements are non-volatile" lineNumber="Not available" />
+
+<BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="Low" category="MT_CORRECTNESS" message="VO: VolatileUsage.d is a volatile reference to an array; the array elements are non-volatile" lineNumber="Not available" />
+
+<BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="Low" category="MT_CORRECTNESS" message="VO: VolatileUsage2.d is a volatile reference to an array; the array elements are non-volatile" lineNumber="Not available" />
+
+<BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="Normal" category="MT_CORRECTNESS" message="VO: VolatileUsage2.a is a volatile reference to an array; the array elements are non-volatile" lineNumber="Not available" />
+
+<BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="Low" category="MT_CORRECTNESS" message="VO: VolatileUsage.f is a volatile reference to an array; the array elements are non-volatile" lineNumber="Not available" />
+
+<BugInstance type="VO_VOLATILE_REFERENCE_TO_ARRAY" priority="Normal" category="MT_CORRECTNESS" message="VO: VolatileUsage.a is a volatile reference to an array; the array elements are non-volatile" lineNumber="Not available" />
+
+<BugInstance type="HE_USE_OF_UNHASHABLE_CLASS" priority="High" category="CORRECTNESS" message="HE: UseOfNonHashableClassInHashDataStructure doesn't define a hashCode() method but is used in a hashed data structure" lineNumber="6" />
+
+</file>
+
+<Errors>
+
+</Errors>
+
+<Project>
+
+<SrcDir>C:\svnWork\Google\findbugs\findbugsTestCases\src\java</SrcDir>
+
+</Project>
+
+</BugCollection>
+
