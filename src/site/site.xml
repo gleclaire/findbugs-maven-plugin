@@ -5,6 +5,7 @@
     name="Maven FindBugs Plugin">
   <body>
     <menu name="Previous Versions">
+      <item name="Version 2.5.2" href="http://mojo.codehaus.org/findbugs-maven-plugin-2.5.2/"/>
       <item name="Version 2.5" href="http://mojo.codehaus.org/findbugs-maven-plugin-2.5/"/>
       <item name="Version 2.4.0" href="http://mojo.codehaus.org/findbugs-maven-plugin-2.4.0/"/>
       <item name="Version 2.3.3" href="http://mojo.codehaus.org/findbugs-maven-plugin-2.3.3/"/>
