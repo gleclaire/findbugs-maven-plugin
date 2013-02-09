@@ -122,6 +122,7 @@
     <projectVersion>${project.version}</projectVersion>
     <jxrPluginVersion>2.3</jxrPluginVersion>
     <findbugsVersion>2.0.1</findbugsVersion>
+    <findbugsVersion>2.0.3-SNAPSHOT</findbugsVersion>
     <findbugsTestDebug>false</findbugsTestDebug>
   </properties>
 

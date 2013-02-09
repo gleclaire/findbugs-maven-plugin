@@ -37,7 +37,7 @@
         <configuration>
           <findbugsXmlOutput>true</findbugsXmlOutput>
           <xmlOutput>true</xmlOutput>
-          <pluginList>http://sourceforge.net/projects/fb-contrib/files/repo/com/mebigfatguy/fb-contrib/4.6.1/fb-contrib-4.6.1.jar</pluginList>
+          <pluginList>http://repo1.maven.org/maven2/com/mebigfatguy/fb-contrib/fb-contrib/@fb-contribVersion@/fb-contrib-@fb-contribVersion@.jar</pluginList>
         </configuration>
       </plugin>
     </plugins>
