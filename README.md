@@ -9,6 +9,12 @@ The documentation for the **FindBugs Maven Plugin** is here: http://mojo.codehau
 Run all test
 mvn -Prun-its clean install
 
+Skip tests
+mvn -DskipTests=true clean install
+
+Run tests on findbugs test source code that is local instead of from FindBugs SVN repository
+mvn -o -DtestSrc=local -DlocalFindbugTestSrc=/opt/findBugs/findbugsTestCases/src clean install
+ 
 
 Run selected tests
 mvn -Prun-its -Dinvoker.test=build-*,basic-1,check clean install
