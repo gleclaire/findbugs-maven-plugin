@@ -109,10 +109,10 @@
     <fb-contribVersion>4.8.2</fb-contribVersion>
     <findbugsTestDebug>false</findbugsTestDebug>
     <integrationTestSrc>${project.build.directory}/it-src-findbugs</integrationTestSrc>
-    <localFindbugTestSrc>${user.dir}/FindBugs/findbugsTestCases/src</localFindbugTestSrc>
-    <remoteFindbugTestSrc>scm:svn:http://findbugs.googlecode.com/svn/branches/1.3.9/findbugsTestCases/src</remoteFindbugTestSrc>
-    <!-- <remoteFindbugTestSrc>scm:svn:http://findbugs.googlecode.com/svn/trunk/findbugsTestCases/src/java/</remoteFindbugTestSrc> -->
-    <includesFindbugTestSrcPattern>**/A*.java, **/Use*.java</includesFindbugTestSrcPattern>
+    <localTestSrc>${user.dir}/FindBugs/findbugsTestCases/src</localTestSrc>
+    <remoteTestSrc>scm:svn:http://findbugs.googlecode.com/svn/branches/1.3.9/findbugsTestCases/src</remoteTestSrc>
+    <!-- <remoteTestSrc>scm:svn:http://findbugs.googlecode.com/svn/trunk/findbugsTestCases/src/java/</remoteTestSrc> -->
+    <includesTestSrcPattern>**/A*.java, **/Use*.java</includesTestSrcPattern>
     <testSrc>remote</testSrc>
   </properties>
 
@@ -469,12 +469,12 @@
                   <goal>export</goal>
                 </goals>
                 <configuration>
-                  <connectionUrl>${remoteFindbugTestSrc}</connectionUrl>
+                  <connectionUrl>${remoteTestSrc}</connectionUrl>
                   <exportDirectory>${integrationTestSrc}</exportDirectory>
                   <providerImplementations>
                     <svn>javasvn</svn>
                   </providerImplementations>
-                  <includes>${includesFindbugTestSrcPattern}</includes>
+                  <includes>${includesTestSrcPattern}</includes>
                 </configuration>
               </execution>
             </executions>
@@ -520,8 +520,8 @@
                     <echo>Copying Source for Tests......</echo>
                     <mkdir dir="${integrationTestSrc}" />
                     <copy todir="${integrationTestSrc}">
-                      <fileset dir="${localFindbugTestSrc}"
-                        includes="${includesFindbugTestSrcPattern}" />
+                      <fileset dir="${localTestSrc}"
+                        includes="${includesTestSrcPattern}" />
                     </copy>
 
                   </target>
