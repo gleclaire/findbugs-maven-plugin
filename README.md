@@ -3,7 +3,7 @@ findbugs-maven-plugin
 
 Maven Mojo Plug-In to generate reports based on the FindBugs Analyzer
 
-The documentation for the **FindBugs Maven Plugin** is here: http://mojo.codehaus.org/findbugs-maven-plugin/
+The documentation and issue tracking for the **FindBugs Maven Plugin** is through: http://mojo.codehaus.org/findbugs-maven-plugin/
 
 
 Run all test
