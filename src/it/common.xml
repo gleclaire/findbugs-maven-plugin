@@ -33,11 +33,6 @@
       <version>@findbugsVersion@</version>
     </dependency>   
     <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>findbugs-annotations</artifactId>
-      <version>@findbugsVersion@</version>
-    </dependency>   
-    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.8.1</version>

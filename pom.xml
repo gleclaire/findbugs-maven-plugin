@@ -104,7 +104,7 @@
     <project.build.java.target>1.5</project.build.java.target>
     <projectVersion>${project.version}</projectVersion>
     <jxrPluginVersion>2.3</jxrPluginVersion>
-    <findbugsVersion>2.0.2</findbugsVersion>
+    <findbugsVersion>2.0.1</findbugsVersion>
     <!-- <findbugsVersion>2.0.3-SNAPSHOT</findbugsVersion> -->
     <fb-contribVersion>4.8.2</fb-contribVersion>
     <findbugsTestDebug>false</findbugsTestDebug>

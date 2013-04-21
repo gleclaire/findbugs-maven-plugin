@@ -239,7 +239,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Threshold of minimum bug severity to report. Valid values are High, Default, Low, Ignore, and Exp (for experimental).
      *
-     * @parameter default-value="Default"
+     * @parameter expression="${findbugs.threshold}" default-value="Default"
      */
     String threshold
 
@@ -278,7 +278,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * </p>
      * This is a comma-delimited list.
      *
-     * @parameter
+     * @parameter expression="${findbugs.includeFilterFile}" 
      * @since 1.0-beta-1
      */
     String includeFilterFile
@@ -300,7 +300,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * </p>
      * This is a comma-delimited list.
      *
-     * @parameter
+     * @parameter expression="${findbugs.excludeFilterFile}"
      * @since 1.0-beta-1
      */
     String excludeFilterFile
@@ -323,7 +323,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * This is a comma-delimited list.
      *
-     * @parameter
+     * @parameter expression="${findbugs.excludeBugsFile}"
      * @since 2.4.1
      */
     String excludeBugsFile
@@ -331,7 +331,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Effort of the bug finders. Valid values are Min, Default and Max.
      *
-     * @parameter default-value="Default"
+     * @parameter expression="${findbugs.effort}" default-value="Default"
      * @since 1.0-beta-1
      */
     String effort
@@ -355,7 +355,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * The visitor list to run. This is a comma-delimited list.
      *
-     * @parameter
+     * @parameter expression="${findbugs.visitors}" 
      * @since 1.0-beta-1
      */
     String visitors
@@ -363,7 +363,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * The visitor list to omit. This is a comma-delimited list.
      *
-     * @parameter
+     * @parameter expression="${findbugs.omitVisitors}" 
      * @since 1.0-beta-1
      */
     String omitVisitors
@@ -384,7 +384,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * directory before being passed to Findbugs as a plugin file.
      * </p>
      *
-     * @parameter
+     * @parameter expression="${findbugs.pluginList}"
      * @since 1.0-beta-1
      */
     String pluginList
@@ -404,7 +404,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Restrict analysis to the given comma-separated list of classes and packages.
      *
-     * @parameter
+     * @parameter expression="${findbugs.onlyAnalyze}"
      * @since 1.1
      */
     String onlyAnalyze
@@ -482,7 +482,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * Maximum Java heap size in megabytes  (default=512).
      * This only works if the <b>fork</b> parameter is set <b>true</b>.
      *
-     * @parameter default-value="512"
+     * @parameter expression="${findbugs.maxHeap}" default-value="512"
      * @since 2.2
      */
     int maxHeap
@@ -493,7 +493,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * The default is 600,000 milliseconds, which is ten minutes.
      * This only works if the <b>fork</b> parameter is set <b>true</b>.
      *
-     * @parameter default-value="600000"
+     * @parameter expression="${findbugs.timeout}" default-value="600000"
      * @since 2.2
      */
     int timeout
@@ -503,7 +503,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * the arguments to pass to the forked VM (ignored if fork is disabled).
      * </p>
      *
-     * @parameter
+     * @parameter expression="${findbugs.jvmArgs}" 
      * @since 2.4.1
      */
     String jvmArgs
