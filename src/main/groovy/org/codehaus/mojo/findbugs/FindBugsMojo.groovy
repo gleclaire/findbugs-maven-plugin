@@ -54,8 +54,6 @@ import org.sonatype.plexus.build.incremental.BuildContext
 
 class FindBugsMojo extends AbstractMavenReport {
 
-
-
     /**
      * Location where generated html will be created.
      *
@@ -176,7 +174,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
     /**
      * List of Remote Repositories used by the resolver
-     * 
+     *
      * @parameter expression="${project.remoteArtifactRepositories}"
      * @readonly
      * @required
@@ -254,7 +252,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
     /**
      * Used to look up Artifacts in the remote repository.
-     * 
+     *
      * @parameter expression="${component.org.apache.maven.artifact.factory.ArtifactFactory}"
      * @required
      * @readonly
@@ -435,7 +433,6 @@ class FindBugsMojo extends AbstractMavenReport {
      */
     int maxRank
 
-
     /**
      * Skip entire check.
      *
@@ -514,8 +511,6 @@ class FindBugsMojo extends AbstractMavenReport {
 
     ResourceBundle bundle
 
-
-
     /**
      * Checks whether prerequisites for generating this report are given.
      *
@@ -527,20 +522,20 @@ class FindBugsMojo extends AbstractMavenReport {
         def canGenerate = false
         log.debug("Inside canGenerateReport..... ${canGenerate} ")
 
-        if ( !skip && classFilesDirectory.exists() ) {
+        if (!skip && classFilesDirectory.exists()) {
 
             classFilesDirectory.eachFileRecurse {
-                if ( it.name.contains(FindBugsInfo.CLASS_SUFFIX) ) {
+                if (it.name.contains(FindBugsInfo.CLASS_SUFFIX)) {
                     canGenerate = true
                 }
             }
             log.debug("canGenerate Src is ${canGenerate}")
         }
 
-        if ( !skip && testClassFilesDirectory.exists() && includeTests ) {
+        if (!skip && testClassFilesDirectory.exists() && includeTests) {
 
             testClassFilesDirectory.eachFileRecurse {
-                if ( it.name.contains(FindBugsInfo.CLASS_SUFFIX) ) {
+                if (it.name.contains(FindBugsInfo.CLASS_SUFFIX)) {
                     canGenerate = true
                 }
             }
@@ -591,7 +586,6 @@ class FindBugsMojo extends AbstractMavenReport {
         return FindBugsInfo.PLUGIN_NAME
     }
 
-
     /**
      * Executes the generation of the report.
      *
@@ -603,7 +597,7 @@ class FindBugsMojo extends AbstractMavenReport {
      */
     void executeReport(Locale locale) {
 
-        if ( canGenerateReport() ) {
+        if (canGenerateReport()) {
 
             log.info("Locale is ${locale.getLanguage()}")
 
@@ -626,7 +620,7 @@ class FindBugsMojo extends AbstractMavenReport {
             log.debug("  Plugin Artifacts to be added ->" + pluginArtifacts.toString())
 
             if (!findbugsXmlOutputDirectory.exists()) {
-                if ( !findbugsXmlOutputDirectory.mkdirs() ) {
+                if (!findbugsXmlOutputDirectory.mkdirs()) {
                     fail("Cannot create xml output directory")
                 }
             }
@@ -636,11 +630,20 @@ class FindBugsMojo extends AbstractMavenReport {
             log.debug("XML outputFile is " + outputFile.getAbsolutePath())
             log.debug("XML output Directory is " + findbugsXmlOutputDirectory.getAbsolutePath())
 
+            ClassLoader tccl = Thread.currentThread().getContextClassLoader();
+            try {
+                // The SAX parser factory will fail with CCE if the TCCL is out of sync with our class loader
+                // This for Maven 2.2.1 only MFINDBUGS-178
+                Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
+                executeFindbugs(locale, outputFile)
+            } finally {
+                Thread.currentThread().setContextClassLoader(tccl);
+            }
 
-            executeFindbugs(locale, outputFile)
+//            executeFindbugs(locale, outputFile)
 
             if (!outputDirectory.exists()) {
-                if ( !outputDirectory.mkdirs() ) {
+                if (!outputDirectory.mkdirs()) {
                     fail("Cannot create html output directory")
                 }
             }
@@ -648,13 +651,13 @@ class FindBugsMojo extends AbstractMavenReport {
             if (outputFile.exists()) {
                 log.debug("Generating Findbugs HTML")
 
-                FindbugsReportGenerator generator = new FindbugsReportGenerator( getSink(), getBundle(locale), this.project.getBasedir(), siteTool)
+                FindbugsReportGenerator generator = new FindbugsReportGenerator(getSink(), getBundle(locale), this.project.getBasedir(), siteTool)
 
                 boolean isJxrPluginEnabled = isJxrPluginEnabled()
 
                 generator.setIsJXRReportEnabled(isJxrPluginEnabled)
 
-                if ( isJxrPluginEnabled ) {
+                if (isJxrPluginEnabled) {
                     generator.setCompileSourceRoots(this.compileSourceRoots)
                     generator.setTestSourceRoots(this.testSourceRoots)
                     generator.setXrefLocation(this.xrefLocation)
@@ -680,16 +683,16 @@ class FindBugsMojo extends AbstractMavenReport {
                 log.debug("xmlOutput is ${xmlOutput}")
 
 
-                if ( xmlOutput ) {
+                if (xmlOutput) {
                     log.debug("  Using the xdoc format")
 
-                    if ( !xmlOutputDirectory.exists() ) {
-                        if ( !xmlOutputDirectory.mkdirs() ) {
+                    if (!xmlOutputDirectory.exists()) {
+                        if (!xmlOutputDirectory.mkdirs()) {
                             fail("Cannot create xdoc output directory")
                         }
                     }
 
-                    XDocsReporter xDocsReporter = new XDocsReporter(getBundle(locale), log, threshold, effort, outputEncoding )
+                    XDocsReporter xDocsReporter = new XDocsReporter(getBundle(locale), log, threshold, effort, outputEncoding)
                     xDocsReporter.setOutputWriter(new OutputStreamWriter(new FileOutputStream(new File("${xmlOutputDirectory}/findbugs.xml")), outputEncoding))
                     xDocsReporter.setFindbugsResults(new XmlSlurper().parse(outputFile))
                     xDocsReporter.setCompileSourceRoots(this.compileSourceRoots)
@@ -698,8 +701,7 @@ class FindBugsMojo extends AbstractMavenReport {
                     xDocsReporter.generateReport()
                 }
             }
-        }
-        else {
+        } else {
             log.info("cannot generate report");
         }
     }
@@ -744,7 +746,7 @@ class FindBugsMojo extends AbstractMavenReport {
      */
     protected boolean isJxrPluginEnabled() {
         boolean isEnabled = false
-        
+
         if (xrefLocation.exists()) {
             isEnabled = true
             return isEnabled
@@ -753,15 +755,15 @@ class FindBugsMojo extends AbstractMavenReport {
 
         List reportPlugins = getProject().getReportPlugins()
 
-        reportPlugins.each() {reportPlugin ->
+        reportPlugins.each() { reportPlugin ->
 
             log.debug("report plugin -> ${reportPlugin.getArtifactId()}")
-            if ( "maven-jxr-plugin".equals(reportPlugin.getArtifactId()) || "jxr-maven-plugin".equals(reportPlugin.getArtifactId()) ) {
+            if ("maven-jxr-plugin".equals(reportPlugin.getArtifactId()) || "jxr-maven-plugin".equals(reportPlugin.getArtifactId())) {
                 isEnabled = true
             }
         }
 
-        log.debug("jxr report links are ${isEnabled?"enabled":"disabled"}")
+        log.debug("jxr report links are ${isEnabled ? "enabled" : "disabled"}")
         return isEnabled
     }
 
@@ -791,7 +793,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * Get the Findbugs command line arguments.
      *
      * @param Findbugs temp output file
-     *            
+     *
      * @return Findbugs command line arguments.
      *
      */
@@ -808,74 +810,74 @@ class FindBugsMojo extends AbstractMavenReport {
         args << getEffortParameter()
         args << getThresholdParameter()
 
-        if ( debug ) {
+        if (debug) {
             log.debug("progress on")
             args << "-progress"
         }
 
-        if ( pluginList || plugins ) {
+        if (pluginList || plugins) {
             args << "-pluginList"
             args << getFindbugsPlugins()
         }
 
 
-        if ( visitors ) {
+        if (visitors) {
             args << "-visitors"
             args << visitors
         }
 
-        if ( omitVisitors ) {
+        if (omitVisitors) {
             args << "-omitVisitors"
             args << omitVisitors
         }
 
-        if ( relaxed ) {
+        if (relaxed) {
             args << "-relaxed"
         }
 
-        if ( nested ) {
+        if (nested) {
             args << "-nested:true"
         } else {
             args << "-nested:false"
         }
 
-        if ( onlyAnalyze ) {
+        if (onlyAnalyze) {
             args << "-onlyAnalyze"
             args << onlyAnalyze
         }
 
 
-        if ( includeFilterFile ) {
+        if (includeFilterFile) {
             log.debug("  Adding Include Filter Files ")
             String[] includeFiles = includeFilterFile.split(FindBugsInfo.COMMA)
 
-            includeFiles.each() {includeFile ->
+            includeFiles.each() { includeFile ->
                 args << "-include"
                 args << getResourceFile(includeFile.trim())
             }
         }
 
-        if ( excludeFilterFile ) {
+        if (excludeFilterFile) {
             log.debug("  Adding Exclude Filter Files ")
             String[] excludeFiles = excludeFilterFile.split(FindBugsInfo.COMMA)
 
-            excludeFiles.each() {excludeFile ->
+            excludeFiles.each() { excludeFile ->
                 args << "-exclude"
                 args << getResourceFile(excludeFile.trim())
             }
         }
 
-        if ( excludeBugsFile ) {
+        if (excludeBugsFile) {
             log.debug("  Adding Exclude Bug Files (Baselines)")
             String[] excludeFiles = excludeBugsFile.split(FindBugsInfo.COMMA)
 
-            excludeFiles.each() {excludeFile ->
+            excludeFiles.each() { excludeFile ->
                 args << "-excludeBugs"
                 args << getResourceFile(excludeFile.trim())
             }
         }
 
-        if ( maxRank ) {
+        if (maxRank) {
             args << "-maxRank"
             args << maxRank
         }
@@ -884,12 +886,12 @@ class FindBugsMojo extends AbstractMavenReport {
         args << tempFile.getAbsolutePath()
 
 
-        if ( classFilesDirectory.exists() && classFilesDirectory.isDirectory() ) {
+        if (classFilesDirectory.exists() && classFilesDirectory.isDirectory()) {
             log.debug("  Adding to Source Directory ->" + classFilesDirectory.absolutePath)
             args << classFilesDirectory.absolutePath
         }
 
-        if ( testClassFilesDirectory.exists() && testClassFilesDirectory.isDirectory() && includeTests ) {
+        if (testClassFilesDirectory.exists() && testClassFilesDirectory.isDirectory() && includeTests) {
             log.debug("  Adding to Source Directory ->" + testClassFilesDirectory.absolutePath)
             args << testClassFilesDirectory.absolutePath
         }
@@ -904,18 +906,18 @@ class FindBugsMojo extends AbstractMavenReport {
     private String getFindbugsAuxClasspath() {
         def auxClasspathElements
 
-        if ( classFilesDirectory.exists() && classFilesDirectory.isDirectory() ) {
+        if (classFilesDirectory.exists() && classFilesDirectory.isDirectory()) {
             auxClasspathElements = project.compileClasspathElements
         }
 
-        if ( testClassFilesDirectory.exists() && testClassFilesDirectory.isDirectory() && includeTests ) {
+        if (testClassFilesDirectory.exists() && testClassFilesDirectory.isDirectory() && includeTests) {
             auxClasspathElements = project.testClasspathElements
         }
 
 
         def auxClasspath = ""
 
-        pluginArtifacts.each() {pluginArtifact ->
+        pluginArtifacts.each() { pluginArtifact ->
             log.debug("  Adding to AuxClasspath ->" + pluginArtifact.file.toString())
 
             auxClasspath += pluginArtifact.file.toString() + ((pluginArtifact == pluginArtifacts[pluginArtifacts.size() - 1]) ? "" : File.pathSeparator)
@@ -928,15 +930,15 @@ class FindBugsMojo extends AbstractMavenReport {
             log.debug("  AuxClasspath Elements ->" + auxClasspathElements)
 
 
-            def auxClasspathList = auxClasspathElements.findAll{project.build.outputDirectory != it.toString()}
+            def auxClasspathList = auxClasspathElements.findAll { project.build.outputDirectory != it.toString() }
 
             if (auxClasspathList.size() > 0) {
 
                 auxClasspath += File.pathSeparator
 
-                log.debug("  Last AuxClasspath is ->" + auxClasspathList[auxClasspathList.size() - 1] )
+                log.debug("  Last AuxClasspath is ->" + auxClasspathList[auxClasspathList.size() - 1])
 
-                auxClasspathList.each() {auxClasspathElement ->
+                auxClasspathList.each() { auxClasspathElement ->
 
                     log.debug("  Adding to AuxClasspath ->" + auxClasspathElement.toString())
 
@@ -949,7 +951,6 @@ class FindBugsMojo extends AbstractMavenReport {
 
         return auxClasspath
     }
-
 
     /**
      * Set up and run the Findbugs engine.
@@ -1003,34 +1004,34 @@ class FindBugsMojo extends AbstractMavenReport {
 
         ant.java(classname: "edu.umd.cs.findbugs.FindBugs2", inputstring: getFindbugsAuxClasspath(), fork: "${fork}", failonerror: "true", clonevm: "false", timeout: "${timeout}", maxmemory: "${maxHeap}m") {
 
-            def effectiveEncoding = System.getProperty( "file.encoding", "UTF-8" )
+            def effectiveEncoding = System.getProperty("file.encoding", "UTF-8")
 
-            if ( sourceEncoding ) {
+            if (sourceEncoding) {
                 effectiveEncoding = sourceEncoding
             }
 
             log.debug("File Encoding is " + effectiveEncoding)
 
-            sysproperty(key: "file.encoding" , value: effectiveEncoding)
+            sysproperty(key: "file.encoding", value: effectiveEncoding)
 
-            if ( jvmArgs && fork ) {
+            if (jvmArgs && fork) {
                 log.debug("Adding JVM Args => ${jvmArgs}")
 
                 String[] args = jvmArgs.split(FindBugsInfo.BLANK)
 
-                args.each() {jvmArg ->
+                args.each() { jvmArg ->
                     log.debug("Adding JVM Arg => ${jvmArg}")
                     jvmarg(value: jvmArg)
                 }
             }
 
-            if ( debug || trace ) {
-                sysproperty(key: "findbugs.debug" , value: true)
+            if (debug || trace) {
+                sysproperty(key: "findbugs.debug", value: true)
             }
 
             classpath() {
 
-                pluginArtifacts.each() {pluginArtifact ->
+                pluginArtifacts.each() { pluginArtifact ->
                     log.debug("  Adding to pluginArtifact ->" + pluginArtifact.file.toString())
 
                     pathelement(location: pluginArtifact.file)
@@ -1048,7 +1049,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
 
         if (log.isDebugEnabled()) {
-            duration = ( System.nanoTime() - startTime ) / 1000000000.00
+            duration = (System.nanoTime() - startTime) / 1000000000.00
             log.debug("FindBugs duration is ${duration}")
         }
 
@@ -1061,10 +1062,10 @@ class FindBugsMojo extends AbstractMavenReport {
 
                 def allNodes = path.depthFirst().collect { it }
 
-                bugCount = allNodes.findAll {it.name() == 'BugInstance'}.size()
+                bugCount = allNodes.findAll { it.name() == 'BugInstance' }.size()
                 log.debug("BugInstance size is ${bugCount}")
 
-                errorCount = allNodes.findAll {it.name() == 'Error'}.size()
+                errorCount = allNodes.findAll { it.name() == 'Error' }.size()
                 log.debug("Error size is ${errorCount}")
 
 
@@ -1075,7 +1076,7 @@ class FindBugsMojo extends AbstractMavenReport {
                     xmlProject.appendNode { SrcDir(compileSourceRoot) }
                 }
 
-                if ( testClassFilesDirectory.exists() && testClassFilesDirectory.isDirectory() && includeTests ) {
+                if (testClassFilesDirectory.exists() && testClassFilesDirectory.isDirectory() && includeTests) {
                     testSourceRoots.each() { testSourceRoot ->
                         xmlProject.appendNode { SrcDir(testSourceRoot) }
                     }
@@ -1098,7 +1099,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
                 outputFile.write "\n"
 
-                outputFile << xmlBuilder.bind{ mkp.yield path }
+                outputFile << xmlBuilder.bind { mkp.yield path }
             } else {
                 log.info("No bugs found")
             }
@@ -1114,16 +1115,16 @@ class FindBugsMojo extends AbstractMavenReport {
             log.debug("xmlOutput is ${xmlOutput}")
 
 
-            if ( xmlOutput ) {
+            if (xmlOutput) {
                 log.debug("  Using the xdoc format")
 
-                if ( !xmlOutputDirectory.exists() ) {
-                    if ( !xmlOutputDirectory.mkdirs() ) {
+                if (!xmlOutputDirectory.exists()) {
+                    if (!xmlOutputDirectory.mkdirs()) {
                         fail("Cannot create xdoc output directory")
                     }
                 }
 
-                XDocsReporter xDocsReporter = new XDocsReporter(getBundle(locale), log, threshold, effort, outputEncoding )
+                XDocsReporter xDocsReporter = new XDocsReporter(getBundle(locale), log, threshold, effort, outputEncoding)
                 xDocsReporter.setOutputWriter(new OutputStreamWriter(new FileOutputStream(new File("${xmlOutputDirectory}/findbugs.xml")), outputEncoding))
                 xDocsReporter.setFindbugsResults(new XmlSlurper().parse(outputFile))
                 xDocsReporter.setCompileSourceRoots(this.compileSourceRoots)
@@ -1147,21 +1148,21 @@ class FindBugsMojo extends AbstractMavenReport {
 
         String thresholdParameter
 
-        switch ( threshold ) {
+        switch (threshold) {
             case "High":
-                    thresholdParameter = "-high"; break
+                thresholdParameter = "-high"; break
 
             case "Exp":
-                    thresholdParameter = "-experimental"; break
+                thresholdParameter = "-experimental"; break
 
             case "Low":
-                    thresholdParameter = "-low"; break
+                thresholdParameter = "-low"; break
 
             case "high":
-                    thresholdParameter = "-high"; break
+                thresholdParameter = "-high"; break
 
             default:
-                    thresholdParameter = "-medium"; break
+                thresholdParameter = "-medium"; break
         }
         log.debug("thresholdParameter is ${thresholdParameter}")
 
@@ -1180,15 +1181,15 @@ class FindBugsMojo extends AbstractMavenReport {
 
         String effortParameter
 
-        switch ( effort ) {
+        switch (effort) {
             case "Max":
-                    effortParameter = "max"; break
+                effortParameter = "max"; break
 
             case "Min":
-                    effortParameter = "min"; break
+                effortParameter = "min"; break
 
             default:
-                    effortParameter = "default"; break
+                effortParameter = "default"; break
         }
 
         log.debug("effortParameter is ${effortParameter}")
@@ -1211,11 +1212,11 @@ class FindBugsMojo extends AbstractMavenReport {
         String location = null
         String artifact = resource
 
-        if ( resource.indexOf(FindBugsInfo.FORWARD_SLASH) != -1 ) {
+        if (resource.indexOf(FindBugsInfo.FORWARD_SLASH) != -1) {
             artifact = resource.substring(resource.lastIndexOf(FindBugsInfo.FORWARD_SLASH) + 1)
         }
 
-        if ( resource.indexOf(FindBugsInfo.FORWARD_SLASH) != -1 ) {
+        if (resource.indexOf(FindBugsInfo.FORWARD_SLASH) != -1) {
             location = resource.substring(0, resource.lastIndexOf(FindBugsInfo.FORWARD_SLASH))
         }
 
@@ -1245,14 +1246,14 @@ class FindBugsMojo extends AbstractMavenReport {
 
         def urlPlugins = ""
 
-        if ( pluginList ) {
+        if (pluginList) {
             log.debug("  Adding Plugins ")
             String[] pluginJars = pluginList.split(FindBugsInfo.COMMA)
 
-            pluginJars.each() {pluginJar ->
+            pluginJars.each() { pluginJar ->
                 def pluginFileName = pluginJar.trim()
 
-                if ( !pluginFileName.endsWith(".jar") ) {
+                if (!pluginFileName.endsWith(".jar")) {
                     throw new IllegalArgumentException("Plugin File is not a Jar file: " + pluginFileName)
                 }
 
@@ -1266,7 +1267,7 @@ class FindBugsMojo extends AbstractMavenReport {
             }
         }
 
-        if ( plugins ) {
+        if (plugins) {
             log.debug("  Adding Plugins from a repository")
 
             if (urlPlugins.size() > 0) {
@@ -1275,11 +1276,11 @@ class FindBugsMojo extends AbstractMavenReport {
 
             Artifact pomArtifact
 
-            plugins.each() {  plugin ->
+            plugins.each() { plugin ->
 
                 log.debug("  Processing Plugin: " + plugin.toString())
                 log.debug("groupId is ${plugin['groupId']} ****** artifactId is ${plugin['artifactId']} ****** version is ${plugin['version']} ****** type is ${plugin['type']}")
-                pomArtifact = this.factory.createArtifact( plugin['groupId'], plugin['artifactId'], plugin['version'],"", plugin['type'])
+                pomArtifact = this.factory.createArtifact(plugin['groupId'], plugin['artifactId'], plugin['version'], "", plugin['type'])
                 log.debug("pomArtifact is ${pomArtifact} ****** groupId is ${plugin['groupId']} ****** artifactId is ${plugin['artifactId']} ****** version is ${plugin['version']} ****** type is ${plugin['type']}")
 
                 artifactResolver.resolve(pomArtifact, this.remoteRepositories, this.localRepository)
@@ -1294,13 +1295,11 @@ class FindBugsMojo extends AbstractMavenReport {
         return urlPlugins
     }
 
-
     /**
      * @see org.apache.maven.reporting.AbstractMavenReport#setReportOutputDirectory(java.io.File)
      */
-    public void setReportOutputDirectory( File reportOutputDirectory )
-    {
-        super.setReportOutputDirectory( reportOutputDirectory )
+    public void setReportOutputDirectory(File reportOutputDirectory) {
+        super.setReportOutputDirectory(reportOutputDirectory)
         this.outputDirectory = reportOutputDirectory
     }
 
@@ -1310,60 +1309,59 @@ class FindBugsMojo extends AbstractMavenReport {
      * @return A list containing the java sources or an empty list if no java sources are found.
      *
      */
-    protected List getJavaSources( Locale locale )
-    {
+    protected List getJavaSources(Locale locale) {
         List sourceFiles = new ArrayList()
 
-        if ( classFilesDirectory.exists() && classFilesDirectory.isDirectory() ) {
-            List files = FileUtils.getFiles( classFilesDirectory, FindBugsInfo.JAVA_REGEX_PATTERN, null )
-            sourceFiles.addAll( files )
+        if (classFilesDirectory.exists() && classFilesDirectory.isDirectory()) {
+            List files = FileUtils.getFiles(classFilesDirectory, FindBugsInfo.JAVA_REGEX_PATTERN, null)
+            sourceFiles.addAll(files)
         }
 
-        if ( testClassFilesDirectory.exists() && testClassFilesDirectory.isDirectory() && includeTests ) {
-            List files = FileUtils.getFiles( testClassFilesDirectory, FindBugsInfo.JAVA_REGEX_PATTERN, null )
-            sourceFiles.addAll( files )
+        if (testClassFilesDirectory.exists() && testClassFilesDirectory.isDirectory() && includeTests) {
+            List files = FileUtils.getFiles(testClassFilesDirectory, FindBugsInfo.JAVA_REGEX_PATTERN, null)
+            sourceFiles.addAll(files)
         }
 
         return sourceFiles
     }
 
-    File getResourceAsFile( String name, String outputPath, File outputDirectory )
-    {
+    File getResourceAsFile(String name, String outputPath, File outputDirectory) {
         // Optimization for File to File fetches
-        File f = FileResourceLoader.getResourceAsFile( name, outputPath, outputDirectory )
+        File f = FileResourceLoader.getResourceAsFile(name, outputPath, outputDirectory)
 
-        if ( f != null ) { return f  }
+        if (f != null) {
+            return f
+        }
 
         // End optimization
 
-        InputStream is = new BufferedInputStream(resourceManager.getResourceAsInputStream( name ))
+        InputStream is = new BufferedInputStream(resourceManager.getResourceAsInputStream(name))
 
         File outputFile
 
-        if ( outputPath == null ) {
-            outputFile = FileUtils.createTempFile( "plexus-resources", "tmp", null )
+        if (outputPath == null) {
+            outputFile = FileUtils.createTempFile("plexus-resources", "tmp", null)
         } else {
-            if ( outputDirectory != null )
-            {
-                outputFile = new File( outputDirectory, outputPath )
+            if (outputDirectory != null) {
+                outputFile = new File(outputDirectory, outputPath)
             } else {
-                outputFile = new File( outputPath )
+                outputFile = new File(outputPath)
             }
         }
 
         try {
-            if ( !outputFile.getParentFile().exists() ) {
+            if (!outputFile.getParentFile().exists()) {
                 outputFile.getParentFile().mkdirs()
             }
 
-            def os= new FileOutputStream(outputFile)
+            def os = new FileOutputStream(outputFile)
 
 
             os << is
 
 
-        } catch ( IOException e ) {
-            throw new FileResourceCreationException( "Cannot create file-based resource.", e )
+        } catch (IOException e) {
+            throw new FileResourceCreationException("Cannot create file-based resource.", e)
         } finally {
             is.close()
         }
@@ -1373,8 +1371,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
 }
 
-class PluginArtifact
-{
+class PluginArtifact {
     String groupId, artifactId, version
 
     String type = "jar"

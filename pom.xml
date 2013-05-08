@@ -105,7 +105,7 @@
     <projectVersion>${project.version}</projectVersion>
     <jxrPluginVersion>2.3</jxrPluginVersion>
     <findbugsVersion>2.0.1</findbugsVersion>
-    <!-- <findbugsVersion>2.0.3-SNAPSHOT</findbugsVersion> -->
+    <!--<findbugsVersion>2.0.3-SNAPSHOT</findbugsVersion>-->
     <fb-contribVersion>4.8.2</fb-contribVersion>
     <findbugsTestDebug>false</findbugsTestDebug>
     <integrationTestSrc>${project.build.directory}/it-src-findbugs</integrationTestSrc>
