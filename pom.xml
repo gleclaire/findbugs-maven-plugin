@@ -382,12 +382,6 @@
   <profiles>
     <profile>
       <id>run-its</id>
-      <activation>
-        <property>
-          <name>skipTests</name>
-          <value>!true</value>
-        </property>
-      </activation>
       <properties>
         <findbug.debug>false</findbug.debug>
       </properties>
