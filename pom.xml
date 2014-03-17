@@ -102,7 +102,7 @@
     <sitePluginVersion>2.3</sitePluginVersion>
     <project.build.java.target>1.5</project.build.java.target>
     <projectVersion>${project.version}</projectVersion>
-    <jxrPluginVersion>2.3</jxrPluginVersion>
+    <jxrPluginVersion>2.4</jxrPluginVersion>
     <findbugsVersion>2.0.3</findbugsVersion>
     <fb-contribVersion>4.8.2</fb-contribVersion>
     <findbugsTestDebug>false</findbugsTestDebug>
@@ -384,6 +384,16 @@
           <maxPriority2Violations>0</maxPriority2Violations>
           <maxPriority3Violations>5</maxPriority3Violations>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>${project.artifactId}</artifactId>
+        <version>${project.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>${jxrPluginVersion}</version>
       </plugin>
     </plugins>
   </reporting>

@@ -520,10 +520,10 @@ class FindbugsReportGenerator implements FindBugsInfo {
 		def path = prefix + line.@classname.text().replaceAll("[.]", "/").replaceAll("[\$].*", "")
 		String lineNumber = valueForLine(line)
 
-		if ( line ) {
-			hyperlink = "<a href=\"" + path + ".html#" + line.@start.text() + "\">" + lineNumber + "</a>"
+		if ( lineNumber != bundle.getString(NOLINE_KEY) ) {
+			hyperlink = "<a href=\"" + path + ".html#L" + line.@start.text() + "\">" + lineNumber + "</a>"
 		} else {
-			hyperlink = "<a href=\"" + path + ".html\">" + lineNumber + "</a>"
+			hyperlink = lineNumber
 		}
 
 		return hyperlink
