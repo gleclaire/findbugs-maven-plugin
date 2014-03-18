@@ -68,22 +68,9 @@
           <version>@sitePluginVersion@</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>2.3.2</version>
-          <configuration>
-            <debug>false</debug>
-            <source>1.5</source>
-            <target>1.5</target>
-            <excludes>
-              <exclude>*fakeAnnotations/**</exclude>
-              <exclude>jsr305/**</exclude>
-              <exclude>*Ejb3Fields.java</exclude>
-              <exclude>*Sql*.java</exclude>
-              <exclude>*Volatile*.java</exclude>
-              <exclude>*sfBugs/Bug1578441.java</exclude>
-              <exclude>*sfBugs/Bug1718130.java</exclude>
-            </excludes>
-          </configuration>
+          <version>@compilerPluginVersion@</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -104,6 +91,26 @@
       </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <debug>false</debug>
+          <source>1.5</source>
+          <target>1.5</target>
+          <excludes>
+            <exclude>*fakeAnnotations/**</exclude>
+            <exclude>jsr305/**</exclude>
+            <exclude>*Ejb3Fields.java</exclude>
+            <exclude>*Sql*.java</exclude>
+            <exclude>*Volatile*.java</exclude>
+            <exclude>*sfBugs/Bug1578441.java</exclude>
+            <exclude>*sfBugs/Bug1718130.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 
 </project>

@@ -41,6 +41,7 @@
         <configuration>
           <findbugsXmlOutput>true</findbugsXmlOutput>
           <xmlOutput>true</xmlOutput>
+          <includeTests>true</includeTests>
         </configuration>
       </plugin>
     </plugins>
