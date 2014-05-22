@@ -2,12 +2,11 @@
 <project xmlns="http://maven.apache.org/DECORATION/1.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd"
-    name="Maven FindBugs Plugin">
+    name="FindBugs Maven Plugin">
   <body>
     <menu name="Previous Versions">
+      <item name="Version 2.5.4" href="http://mojo.codehaus.org/findbugs-maven-plugin-2.5.4/"/>
       <item name="Version 2.5.3" href="http://mojo.codehaus.org/findbugs-maven-plugin-2.5.3/"/>
-      <item name="Version 2.5.2" href="http://mojo.codehaus.org/findbugs-maven-plugin-2.5.2/"/>
-      <item name="Version 2.5" href="http://mojo.codehaus.org/findbugs-maven-plugin-2.5/"/>
       <item name="Back to Mojo" href="http://mojo.codehaus.org"/>
     </menu>
     <menu name="Overview">
