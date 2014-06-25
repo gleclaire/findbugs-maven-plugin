@@ -638,8 +638,6 @@ class FindBugsMojo extends AbstractMavenReport {
                 Thread.currentThread().setContextClassLoader(tccl);
             }
 
-//            executeFindbugs(locale, outputFile)
-
             if (!outputDirectory.exists()) {
                 if (!outputDirectory.mkdirs()) {
                     fail("Cannot create html output directory")
@@ -674,6 +672,8 @@ class FindBugsMojo extends AbstractMavenReport {
 
 
                 generator.setOutputDirectory(new File(outputDirectory.getAbsolutePath()))
+
+                generator.
 
                 generator.generateReport()
 
