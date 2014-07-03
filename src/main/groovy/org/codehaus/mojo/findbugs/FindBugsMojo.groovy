@@ -673,8 +673,6 @@ class FindBugsMojo extends AbstractMavenReport {
 
                 generator.setOutputDirectory(new File(outputDirectory.getAbsolutePath()))
 
-                generator.
-
                 generator.generateReport()
 
 
