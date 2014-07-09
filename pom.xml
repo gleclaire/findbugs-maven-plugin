@@ -9,7 +9,7 @@
   </parent>
 
   <artifactId>findbugs-maven-plugin</artifactId>
-  <version>2.5.5-SNAPSHOT</version>
+  <version>3.0.0-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
   <name>FindBugs Maven Plugin</name>
@@ -23,6 +23,14 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+
+  <repositories>
+    <repository>
+      <id>sonatype</id>
+      <name>SonaType Staging</name>
+      <url>https://oss.sonatype.org/content/repositories/staging/</url>
+    </repository>
+  </repositories>
 
   <developers>
     <developer>
@@ -82,7 +90,7 @@
   </contributors>
 
   <prerequisites>
-    <maven>2.2.1</maven>
+    <maven>3.0.1</maven>
   </prerequisites>
 
   <scm>
@@ -104,7 +112,7 @@
     <projectVersion>${project.version}</projectVersion>
     <compilerPluginVersion>2.3.2</compilerPluginVersion>
     <jxrPluginVersion>2.4</jxrPluginVersion>
-    <findbugsVersion>2.0.3</findbugsVersion>
+    <findbugsVersion>3.0.0</findbugsVersion>
     <fb-contribVersion>4.8.2</fb-contribVersion>
     <findbugsTestDebug>false</findbugsTestDebug>
     <integrationTestSrc>${project.build.directory}/it-src-findbugs</integrationTestSrc>
