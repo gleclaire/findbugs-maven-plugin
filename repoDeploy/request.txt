@@ -1,0 +1,41 @@
+
+
+Summary:
+Upload Findbugs 1.3.2
+
+------------------------------------------
+
+Bundle URL:
+http://gleclaire.home.insightbb.com/findbugs/findbugs-1.3.2-bundle.jar
+
+------------------------------------------
+
+Description:
+http://gleclaire.home.insightbb.com/findbugs/findbugsGUI-1.3.2-bundle.jar
+http://gleclaire.home.insightbb.com/findbugs/findbugs-ant-1.3.2-bundle.jar
+http://gleclaire.home.insightbb.com/findbugs/coreplugin-1.3.2-bundle.jar
+http://gleclaire.home.insightbb.com/findbugs/annotations-1.3.2-bundle.jar
+http://gleclaire.home.insightbb.com/findbugs/bcel-1.3.2-bundle.jar
+http://gleclaire.home.insightbb.com/findbugs/jsr305-1.3.2-bundle.jar
+
+
+http://mojo.codehaus.org/findbugs-maven-plugin/team-list.html
+http://findbugs.sourceforge.net/manual/acknowledgments.html
+
+
+Please upload the 1.3.2 version of Findbugs into the repository. I will need these for further updates to the Maven findBugs plugins of which I am developer.
+
+------------------------------------------
+
+Project URL:
+http://findbugs.sourceforge.net
+
+------------------------------------------
+
+Contributor URL:
+http://mojo.codehaus.org/findbugs-maven-plugin/team-list.html
+  
+
+
+
+
