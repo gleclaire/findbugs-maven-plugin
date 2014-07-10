@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 # ----------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -42,9 +42,9 @@ POM_FILE="bcel.pom"
 JAR_FILE="$FINDBUGS_HOME/lib/bcel-6.0-SNAPSHOT.jar"
 sendToRepo
 
-# POM_FILE="jsr305.pom"
-# JAR_FILE="$FINDBUGS_HOME/lib/jsr305.jar"
-# sendToRepo
+POM_FILE="jsr305.pom"
+JAR_FILE="$FINDBUGS_HOME/lib/jsr305.jar"
+sendToRepo
 
 POM_FILE="annotations.pom"
 JAR_FILE="$FINDBUGS_HOME/lib/annotations.jar"
