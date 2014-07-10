@@ -8,3 +8,4 @@
 target/*
 findbugs-maven-plugin.ipr
 findbugs-maven-plugin.iws
+*.asc
