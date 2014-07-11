@@ -34,4 +34,4 @@ FindBugs Maven Plugin
 
 *Please Note
  
- As of version 2.0, you will need to use JDK 5 or greater to run this plugin.  This is a requirement imposed by Findbugs.
+ As of version 3.0.0, you will need to use JDK 7 to run this plugin.  This is a requirement imposed by Findbugs.
