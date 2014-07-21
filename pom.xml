@@ -9,7 +9,7 @@
   </parent>
 
   <artifactId>findbugs-maven-plugin</artifactId>
-  <version>2.5.5-SNAPSHOT</version>
+  <version>2.5.5</version>
   <packaging>maven-plugin</packaging>
 
   <name>FindBugs Maven Plugin</name>
