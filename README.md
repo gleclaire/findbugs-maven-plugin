@@ -17,7 +17,7 @@ mvn -o -DtestSrc=local -DlocalTestSrc=/opt/findBugs/findbugsTestCases/src -Prun-
  
 
 Run selected tests
-mvn -Prun-its -Dinvoker.test=build-*,mbasic-1,check clean install
+mvn -Prun-its -Dinvoker.test=build-*,basic-1,check clean install
 
 
 Run tests in debugger
