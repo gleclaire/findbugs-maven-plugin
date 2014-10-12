@@ -26,6 +26,14 @@
   <artifactId>basic-1</artifactId>
   <name>basic-1</name>
   <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
   <reporting>
     <excludeDefaults>true</excludeDefaults>
     <plugins>
