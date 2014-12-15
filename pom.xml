@@ -205,11 +205,6 @@
       <version>${findbugsVersion}</version>
     </dependency>
     <dependency>
-      <groupId>jgoodies</groupId>
-      <artifactId>plastic</artifactId>
-      <version>1.2.0</version>
-    </dependency>
-    <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-resources</artifactId>
       <version>1.0-alpha-7</version>
