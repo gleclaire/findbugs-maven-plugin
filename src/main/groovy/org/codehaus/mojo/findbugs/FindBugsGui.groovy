@@ -66,7 +66,7 @@ class FindBugsGui extends GroovyMojo {
     /**
      * List of artifacts this plugin depends on. Used for resolving the Findbugs coreplugin.
      *
-     * @parameter expression="${plugin.artifacts}"
+     * @parameter property="plugin.artifacts"
      * @required
      * @readonly
      */
@@ -92,7 +92,7 @@ class FindBugsGui extends GroovyMojo {
     /**
      * Maven Project
      *
-     * @parameter expression="${project}"
+     * @parameter property="project"
      * @required
      * @readonly
      */
@@ -121,7 +121,7 @@ class FindBugsGui extends GroovyMojo {
      * is not set, the platform default encoding is used. <strong>Note:</strong> This parameter always overrides the
      * property <code>charset</code> from Checkstyle's <code>TreeWalker</code> module.
      *
-     * @parameter expression="${encoding}" default-value="${project.build.sourceEncoding}"
+     * @parameter property="encoding" default-value="${project.build.sourceEncoding}"
      * @since 2.2
      */
     String encoding

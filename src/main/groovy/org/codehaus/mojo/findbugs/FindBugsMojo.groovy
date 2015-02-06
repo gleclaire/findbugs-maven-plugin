@@ -66,7 +66,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Turn on and off xml output of the Findbugs report.
      *
-     * @parameter expression="${findbugs.xmlOutput}" default-value="false"
+     * @parameter property="findbugs.xmlOutput" default-value="false"
      * @since 1.0.0
      */
     boolean xmlOutput
@@ -139,7 +139,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * The directories containing the sources to be compiled.
      *
-     * @parameter expression="${project.compileSourceRoots}"
+     * @parameter property="project.compileSourceRoots"
      * @required
      * @readonly
      */
@@ -148,7 +148,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * The directories containing the test-sources to be compiled.
      *
-     * @parameter expression="${project.testCompileSourceRoots}"
+     * @parameter property="project.testCompileSourceRoots"
      * @required
      * @readonly
      * @since 2.0
@@ -158,7 +158,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Run Findbugs on the tests.
      *
-     * @parameter expression="${findbugs.includeTests}" default-value="false"
+     * @parameter property="findbugs.includeTests" default-value="false"
      * @since 2.0
      */
     boolean includeTests
@@ -166,7 +166,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * List of artifacts this plugin depends on. Used for resolving the Findbugs coreplugin.
      *
-     * @parameter expression="${plugin.artifacts}"
+     * @parameter property="plugin.artifacts"
      * @required
      * @readonly
      */
@@ -175,7 +175,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * List of Remote Repositories used by the resolver
      *
-     * @parameter expression="${project.remoteArtifactRepositories}"
+     * @parameter property="project.remoteArtifactRepositories"
      * @readonly
      * @required
      */
@@ -184,7 +184,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * The local repository, needed to download the coreplugin jar.
      *
-     * @parameter expression="${localRepository}"
+     * @parameter property="localRepository"
      * @required
      * @readonly
      */
@@ -193,7 +193,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Remote repositories which will be searched for the coreplugin jar.
      *
-     * @parameter expression="${project.remoteArtifactRepositories}"
+     * @parameter property="project.remoteArtifactRepositories"
      * @required
      * @readonly
      */
@@ -202,7 +202,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Maven Project
      *
-     * @parameter expression="${project}"
+     * @parameter property="project"
      * @required
      * @readonly
      */
@@ -220,7 +220,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * The file encoding to use when reading the source files. If the property <code>project.build.sourceEncoding</code>
      * is not set, the platform default encoding is used.
      *
-     * @parameter expression="${encoding}" default-value="${project.build.sourceEncoding}"
+     * @parameter property="encoding" default-value="${project.build.sourceEncoding}"
      * @since 2.2
      */
     String sourceEncoding
@@ -229,7 +229,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * The file encoding to use when creating the HTML reports. If the property <code>project.reporting.outputEncoding</code>
      * is not set, the platform default encoding is used.
      *
-     * @parameter expression="${outputEncoding}" default-value="${project.reporting.outputEncoding}"
+     * @parameter property="outputEncoding" default-value="${project.reporting.outputEncoding}"
      * @since 2.2
      */
     String outputEncoding
@@ -237,7 +237,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Threshold of minimum bug severity to report. Valid values are High, Default, Low, Ignore, and Exp (for experimental).
      *
-     * @parameter expression="${findbugs.threshold}" default-value="Default"
+     * @parameter property="findbugs.threshold" default-value="Default"
      */
     String threshold
 
@@ -253,7 +253,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Used to look up Artifacts in the remote repository.
      *
-     * @parameter expression="${component.org.apache.maven.artifact.factory.ArtifactFactory}"
+     * @parameter property="component.org.apache.maven.artifact.factory.ArtifactFactory"
      * @required
      * @readonly
      */
@@ -275,7 +275,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * directory before being passed to Findbugs as a filter file.
      * </p>
      *
-     * @parameter expression="${findbugs.includeFilterFile}" 
+     * @parameter property="findbugs.includeFilterFile"
      * @since 1.0-beta-1
      */
     String includeFilterFile
@@ -296,7 +296,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * directory before being passed to Findbugs as a filter file.
      * </p>
      *
-     * @parameter expression="${findbugs.excludeFilterFile}"
+     * @parameter property="findbugs.excludeFilterFile"
      * @since 1.0-beta-1
      */
     String excludeFilterFile
@@ -319,7 +319,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * This is a comma-delimited list.
      *
-     * @parameter expression="${findbugs.excludeBugsFile}"
+     * @parameter property="findbugs.excludeBugsFile"
      * @since 2.4.1
      */
     String excludeBugsFile
@@ -327,7 +327,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Effort of the bug finders. Valid values are Min, Default and Max.
      *
-     * @parameter expression="${findbugs.effort}" default-value="Default"
+     * @parameter property="findbugs.effort" default-value="Default"
      * @since 1.0-beta-1
      */
     String effort
@@ -335,7 +335,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * turn on Findbugs debugging
      *
-     * @parameter expression="${findbugs.debug}" default-value="false"
+     * @parameter property="findbugs.debug" default-value="false"
      */
     Boolean debug
 
@@ -343,7 +343,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * Relaxed reporting mode. For many detectors, this option suppresses the heuristics used to avoid reporting false
      * positives.
      *
-     * @parameter expression="${findbugs.relaxed}" default-value="false"
+     * @parameter property="findbugs.relaxed" default-value="false"
      * @since 1.1
      */
     Boolean relaxed
@@ -351,7 +351,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * The visitor list to run. This is a comma-delimited list.
      *
-     * @parameter expression="${findbugs.visitors}" 
+     * @parameter property="findbugs.visitors"
      * @since 1.0-beta-1
      */
     String visitors
@@ -359,7 +359,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * The visitor list to omit. This is a comma-delimited list.
      *
-     * @parameter expression="${findbugs.omitVisitors}" 
+     * @parameter property="findbugs.omitVisitors"
      * @since 1.0-beta-1
      */
     String omitVisitors
@@ -380,7 +380,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * directory before being passed to Findbugs as a plugin file.
      * </p>
      *
-     * @parameter expression="${findbugs.pluginList}"
+     * @parameter property="findbugs.pluginList"
      * @since 1.0-beta-1
      */
     String pluginList
@@ -400,7 +400,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Restrict analysis to the given comma-separated list of classes and packages.
      *
-     * @parameter expression="${findbugs.onlyAnalyze}"
+     * @parameter property="findbugs.onlyAnalyze"
      * @since 1.1
      */
     String onlyAnalyze
@@ -409,7 +409,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * This option enables or disables scanning of nested jar and zip files found
      *  in the list of files and directories to be analyzed.
      *
-     * @parameter expression="${findbugs.nested}" default-value="false"
+     * @parameter property="findbugs.nested" default-value="false"
      * @since 2.3.2
      */
     Boolean nested
@@ -418,7 +418,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * Prints a trace of detectors run and classes analyzed to standard output.
      * Useful for troubleshooting unexpected analysis failures.
      *
-     * @parameter expression="${findbugs.trace}" default-value="false"
+     * @parameter property="findbugs.trace" default-value="false"
      * @since 2.3.2
      */
     Boolean trace
@@ -426,7 +426,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Maximum bug ranking to record.
      *
-     * @parameter expression="${findbugs.maxRank}"
+     * @parameter property="findbugs.maxRank"
      * @since 2.4.1
      */
     int maxRank
@@ -434,7 +434,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Skip entire check.
      *
-     * @parameter expression="${findbugs.skip}" default-value="false"
+     * @parameter property="findbugs.skip" default-value="false"
      * @since 1.1
      */
     boolean skip
@@ -460,7 +460,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Fail the build on an error.
      *
-     * @parameter expression="${findbugs.failOnError}" default-value="true"
+     * @parameter property="findbugs.failOnError" default-value="true"
      * @since 2.0
      */
     boolean failOnError
@@ -468,7 +468,7 @@ class FindBugsMojo extends AbstractMavenReport {
     /**
      * Fork a VM for FindBugs analysis.  This will allow you to set timeouts and heap size
      *
-     * @parameter expression="${findbugs.fork}" default-value="true"
+     * @parameter property="findbugs.fork" default-value="true"
      * @since 2.3.2
      */
     boolean fork
@@ -477,7 +477,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * Maximum Java heap size in megabytes  (default=512).
      * This only works if the <b>fork</b> parameter is set <b>true</b>.
      *
-     * @parameter expression="${findbugs.maxHeap}" default-value="512"
+     * @parameter property="findbugs.maxHeap" default-value="512"
      * @since 2.2
      */
     int maxHeap
@@ -488,7 +488,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * The default is 600,000 milliseconds, which is ten minutes.
      * This only works if the <b>fork</b> parameter is set <b>true</b>.
      *
-     * @parameter expression="${findbugs.timeout}" default-value="600000"
+     * @parameter property="findbugs.timeout" default-value="600000"
      * @since 2.2
      */
     int timeout
@@ -498,7 +498,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * the arguments to pass to the forked VM (ignored if fork is disabled).
      * </p>
      *
-     * @parameter expression="${findbugs.jvmArgs}" 
+     * @parameter property="findbugs.jvmArgs"
      * @since 2.4.1
      */
     String jvmArgs

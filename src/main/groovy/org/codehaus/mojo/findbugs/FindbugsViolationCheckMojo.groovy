@@ -60,7 +60,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	/**
 	 * Turn on and off xml output of the Findbugs report.
 	 *
-	 * @parameter expression="${findbugs.xmlOutput}" default-value="false"
+	 * @parameter property="findbugs.xmlOutput" default-value="false"
 	 * @since 1.0.0
 	 */
 	boolean xmlOutput
@@ -132,7 +132,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	/**
 	 * The directories containing the sources to be compiled.
 	 *
-	 * @parameter expression="${project.compileSourceRoots}"
+	 * @parameter property="project.compileSourceRoots"
 	 * @required
 	 * @readonly
 	 */
@@ -141,7 +141,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	/**
 	 * The directories containing the test-sources to be compiled.
 	 *
-	 * @parameter expression="${project.testCompileSourceRoots}"
+	 * @parameter property="project.testCompileSourceRoots"
 	 * @required
 	 * @readonly
 	 * @since 2.0
@@ -151,7 +151,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	/**
 	 * Run Findbugs on the tests.
 	 *
-	 * @parameter expression="${findbugs.includeTests}" default-value="false"
+	 * @parameter property="findbugs.includeTests" default-value="false"
 	 * @since 2.0
 	 */
 	boolean includeTests
@@ -159,7 +159,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	/**
 	 * List of artifacts this plugin depends on. Used for resolving the Findbugs coreplugin.
 	 *
-	 * @parameter expression="${plugin.artifacts}"
+	 * @parameter property="plugin.artifacts"
 	 * @required
 	 * @readonly
 	 */
@@ -168,7 +168,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	/**
 	 * The local repository, needed to download the coreplugin jar.
 	 *
-	 * @parameter expression="${localRepository}"
+	 * @parameter property="localRepository"
 	 * @required
 	 * @readonly
 	 */
@@ -177,7 +177,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	/**
 	 * Remote repositories which will be searched for the coreplugin jar.
 	 *
-	 * @parameter expression="${project.remoteArtifactRepositories}"
+	 * @parameter property="project.remoteArtifactRepositories"
 	 * @required
 	 * @readonly
 	 */
@@ -186,7 +186,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	/**
 	 * Maven Project
 	 *
-	 * @parameter expression="${project}"
+	 * @parameter property="project"
 	 * @required
 	 * @readonly
 	 */
@@ -204,7 +204,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	 * The file encoding to use when reading the source files. If the property <code>project.build.sourceEncoding</code>
 	 * is not set, the platform default encoding is used.
 	 *
-	 * @parameter expression="${encoding}" default-value="${project.build.sourceEncoding}"
+	 * @parameter property="encoding" default-value="${project.build.sourceEncoding}"
 	 * @since 2.2
 	 */
 	String sourceEncoding
@@ -213,7 +213,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	 * The file encoding to use when creating the HTML reports. If the property <code>project.reporting.outputEncoding</code>
 	 * is not set, the platform default encoding is used.
 	 *
-	 * @parameter expression="${outputEncoding}" default-value="${project.reporting.outputEncoding}"
+	 * @parameter property="outputEncoding" default-value="${project.reporting.outputEncoding}"
 	 * @since 2.2
 	 */
 	String outputEncoding
@@ -310,7 +310,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	/**
 	 * turn on Findbugs debugging
 	 *
-	 * @parameter expression="${findbugs.debug}" default-value="false"
+	 * @parameter property="findbugs.debug" default-value="false"
 	 */
 	Boolean debug
 
@@ -318,7 +318,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	 * Relaxed reporting mode. For many detectors, this option suppresses the heuristics used to avoid reporting false
 	 * positives.
 	 *
-	 * @parameter expression="${findbugs.relaxed}" default-value="false"
+	 * @parameter property="findbugs.relaxed" default-value="false"
 	 * @since 1.1
 	 */
 	Boolean relaxed
@@ -372,7 +372,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	 * This option enables or disables scanning of nested jar and zip files found
 	 *  in the list of files and directories to be analyzed.
 	 *
-	 * @parameter expression="${findbugs.nested}" default-value="false"
+	 * @parameter property="findbugs.nested" default-value="false"
 	 * @since 2.3.2
 	 */
 	Boolean nested
@@ -381,7 +381,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	 * Prints a trace of detectors run and classes analyzed to standard output.
 	 * Useful for troubleshooting unexpected analysis failures.
 	 *
-	 * @parameter expression="${findbugs.trace}" default-value="false"
+	 * @parameter property="findbugs.trace" default-value="false"
 	 * @since 2.3.2
 	 */
 	Boolean trace
@@ -389,7 +389,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
     /**
      * Maximum bug ranking to record.
      *
-     * @parameter expression="${findbugs.maxRank}"
+     * @parameter property="findbugs.maxRank"
      * @since 2.5.5
      */
     int maxRank
@@ -397,7 +397,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
     /**
 	 * Skip entire check.
 	 *
-	 * @parameter expression="${findbugs.skip}" default-value="false"
+	 * @parameter property="findbugs.skip" default-value="false"
 	 * @since 1.1
 	 */
 	boolean skip
@@ -423,7 +423,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	/**
 	 * Fail the build on an error.
 	 *
-	 * @parameter expression="${findbugs.failOnError}" default-value="true"
+	 * @parameter property="findbugs.failOnError" default-value="true"
 	 * @since 2.0
 	 */
 	boolean failOnError
@@ -431,7 +431,7 @@ class FindbugsViolationCheckMojo extends GroovyMojo {
 	/**
 	 * Fork a VM for FindBugs analysis.  This will allow you to set timeouts and heap size
 	 *
-	 * @parameter expression="${findbugs.fork}" default-value="true"
+	 * @parameter property="findbugs.fork" default-value="true"
 	 * @since 2.3.2
 	 */
 	boolean fork
