@@ -19,7 +19,6 @@ package org.codehaus.mojo.findbugs
  * under the License.
  */
 
-
 import org.apache.maven.artifact.Artifact
 import org.apache.maven.artifact.factory.ArtifactFactory;
 import org.apache.maven.artifact.repository.ArtifactRepository
@@ -837,8 +836,8 @@ class FindBugsMojo extends AbstractMavenReport {
         if (excludeFilterFile) {
             log.debug("  Adding Exclude Filter File ")
 
-             args << "-exclude"
-             args << getResourceFile(excludeFilterFile.trim())
+            args << "-exclude"
+            args << getResourceFile(excludeFilterFile.trim())
         }
 
         if (excludeBugsFile) {
