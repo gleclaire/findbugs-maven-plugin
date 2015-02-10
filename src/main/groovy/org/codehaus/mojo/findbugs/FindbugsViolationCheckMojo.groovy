@@ -23,8 +23,14 @@ import org.apache.maven.artifact.repository.ArtifactRepository
 import org.apache.maven.artifact.resolver.ArtifactResolver
 import org.apache.maven.doxia.siterenderer.Renderer;
 import org.apache.maven.doxia.tools.SiteTool
+import org.apache.maven.plugin.AbstractMojo
+import org.apache.maven.plugins.annotations.Component
+import org.apache.maven.plugins.annotations.Execute
+import org.apache.maven.plugins.annotations.LifecyclePhase
+import org.apache.maven.plugins.annotations.Mojo
+import org.apache.maven.plugins.annotations.Parameter
+import org.apache.maven.plugins.annotations.ResolutionScope
 import org.apache.maven.project.MavenProject
-import org.codehaus.gmaven.mojo.GroovyMojo
 import org.codehaus.plexus.resource.ResourceManager
 import org.codehaus.plexus.util.FileUtils
 
@@ -35,436 +41,426 @@ import org.codehaus.plexus.util.FileUtils
 Manual.</a>.
  *
  * @since 2.0
- * @goal check
- * @phase verify
- * @execute goal="findbugs"
- * @requiresDependencyResolution compile
- * @requiresProject
- * @threadSafe
  *
  * @author <a href="mailto:gleclaire@codehaus.org">Garvin LeClaire</a>
  * @version $Id: FindbugsViolationCheckMojo.groovy gleclaire $
  */
 
-class FindbugsViolationCheckMojo extends GroovyMojo {
+@Mojo( name = "check", defaultPhase = LifecyclePhase.VERIFY, requiresDependencyResolution = ResolutionScope.COMPILE, requiresProject = true, threadSafe = true )
+@Execute( goal = "findbugs")
+class FindbugsViolationCheckMojo extends AbstractMojo {
 
-	/**
-	 * Location where generated html will be created.
-	 *
-	 * @parameter default-value="${project.reporting.outputDirectory}"
-	 * @required
-	 */
+    /**
+     * Location where generated html will be created.
+     *
+     */
 
-	File outputDirectory
+    @Parameter( defaultValue = '${project.reporting.outputDirectory}', required = true )
+    File outputDirectory
 
-	/**
-	 * Turn on and off xml output of the Findbugs report.
-	 *
-	 * @parameter property="findbugs.xmlOutput" default-value="false"
-	 * @since 1.0.0
-	 */
-	boolean xmlOutput
+    /**
+     * Turn on and off xml output of the Findbugs report.
+     *
+     * @since 1.0.0
+     */
+    @Parameter( defaultValue = "false", property="findbugs.xmlOutput", required = true )
+    boolean xmlOutput
 
-	/**
-	 * Specifies the directory where the xml output will be generated.
-	 *
-	 * @parameter default-value="${project.build.directory}"
-	 * @required
-	 * @since 1.0.0
-	 */
-	File xmlOutputDirectory
+    /**
+     * Specifies the directory where the xml output will be generated.
+     *
+     * @since 1.0.0
+     */
+    @Parameter( defaultValue = '${project.build.directory}', required = true )
+    File xmlOutputDirectory
 
-	/**
-	 * This has been deprecated and is on by default.
-	 *
-	 * @parameter default-value="true"
-	 * @since 1.2.0
-	 * @deprecated
-	 */
-	boolean findbugsXmlOutput
+    /**
+     * Location where generated html will be created.
+     *
+     */
 
-	/**
-	 * Specifies the directory where the findbugs native xml output will be generated.
-	 *
-	 * @parameter default-value="${project.build.directory}"
-	 * @required
-	 * @since 1.2.0
-	 */
-	File findbugsXmlOutputDirectory
+    /**
+     * This has been deprecated and is on by default.
+     *
+     * @since 1.2.0
+     *
+     */
+    @Deprecated
+    @Parameter( defaultValue = "true" )
+    boolean findbugsXmlOutput
 
-	/**
-	 * Doxia Site Renderer.
-	 *
-	 * @component
-	 */
-	Renderer siteRenderer
+    /**
+     * Specifies the directory where the findbugs native xml output will be generated.
+     *
+     * @since 1.2.0
+     */
+    @Parameter( defaultValue = '${project.build.directory}', required = true )
+    File findbugsXmlOutputDirectory
 
-	/**
-	 * Directory containing the class files for FindBugs to analyze.
-	 *
-	 * @parameter default-value="${project.build.outputDirectory}"
-	 * @required
-	 */
-	File classFilesDirectory
+    /**
+     * Doxia Site Renderer.
+     *
+     * @component
+     *
+     */
+    @Component( role = Renderer.class)
+    Renderer siteRenderer
 
-	/**
-	 * Directory containing the test class files for FindBugs to analyze.
-	 *
-	 * @parameter default-value="${project.build.testOutputDirectory}"
-	 * @required
-	 */
-	File testClassFilesDirectory
+    /**
+     * Directory containing the class files for FindBugs to analyze.
+     *
+     * @required
+     */
+    @Parameter( defaultValue = '${project.build.outputDirectory}', required = true )
+    File classFilesDirectory
 
-	/**
-	 * Location of the Xrefs to link to.
-	 *
-	 * @parameter default-value="${project.reporting.outputDirectory}/xref"
-	 */
-	File xrefLocation
+    /**
+     * Directory containing the test class files for FindBugs to analyze.
+     *
+     */
+    @Parameter( defaultValue = '${project.build.testOutputDirectory}', required = true )
+    File testClassFilesDirectory
 
-	/**
-	 * Location of the Test Xrefs to link to.
-	 *
-	 * @parameter default-value="${project.reporting.outputDirectory}/xref-test"
-	 */
-	File xrefTestLocation
+    /**
+     * Location of the Xrefs to link to.
+     *
+     */
+    @Parameter( defaultValue = '${project.reporting.outputDirectory}/xref' )
+    File xrefLocation
 
-	/**
-	 * The directories containing the sources to be compiled.
-	 *
-	 * @parameter property="project.compileSourceRoots"
-	 * @required
-	 * @readonly
-	 */
-	List compileSourceRoots
+    /**
+     * Location of the Test Xrefs to link to.
+     *
+     */
+    @Parameter( defaultValue = '${project.reporting.outputDirectory}/xref-test' )
+    File xrefTestLocation
 
-	/**
-	 * The directories containing the test-sources to be compiled.
-	 *
-	 * @parameter property="project.testCompileSourceRoots"
-	 * @required
-	 * @readonly
-	 * @since 2.0
-	 */
-	List testSourceRoots
+    /**
+     * The directories containing the sources to be compiled.
+     *
+     */
+    @Parameter( defaultValue = '${project.compileSourceRoots}', required = true, readonly = true )
+    List compileSourceRoots
 
-	/**
-	 * Run Findbugs on the tests.
-	 *
-	 * @parameter property="findbugs.includeTests" default-value="false"
-	 * @since 2.0
-	 */
-	boolean includeTests
+    /**
+     * The directories containing the test-sources to be compiled.
+     *
+     * @since 2.0
+     */
+    @Parameter( defaultValue = '${project.testCompileSourceRoots}', required = true, readonly = true )
+    List testSourceRoots
 
-	/**
-	 * List of artifacts this plugin depends on. Used for resolving the Findbugs coreplugin.
-	 *
-	 * @parameter property="plugin.artifacts"
-	 * @required
-	 * @readonly
-	 */
-	ArrayList pluginArtifacts
+    /**
+     * Run Findbugs on the tests.
+     *
+     * @since 2.0
+     */
+    @Parameter( defaultValue = "false", property="findbugs.includeTests" )
+    boolean includeTests
 
-	/**
-	 * The local repository, needed to download the coreplugin jar.
-	 *
-	 * @parameter property="localRepository"
-	 * @required
-	 * @readonly
-	 */
-	ArtifactRepository localRepository
+    /**
+     * List of artifacts this plugin depends on. Used for resolving the Findbugs coreplugin.
+     *
+     */
+    @Parameter( property="plugin.artifacts", required = true, readonly = true )
+    ArrayList pluginArtifacts
 
-	/**
-	 * Remote repositories which will be searched for the coreplugin jar.
-	 *
-	 * @parameter property="project.remoteArtifactRepositories"
-	 * @required
-	 * @readonly
-	 */
-	List remoteArtifactRepositories
+    /**
+     * The local repository, needed to download the coreplugin jar.
+     *
+     */
+    @Parameter( property="localRepository", required = true, readonly = true )
+    ArtifactRepository localRepository
 
-	/**
-	 * Maven Project
-	 *
-	 * @parameter property="project"
-	 * @required
-	 * @readonly
-	 */
-	MavenProject project
+    /**
+     * Remote repositories which will be searched for the coreplugin jar.
+     *
+     */
+    @Parameter( property="project.remoteArtifactRepositories", required = true, readonly = true )
+    List remoteArtifactRepositories
 
-	/**
-	 * Encoding used for xml files. Default value is UTF-8.
-	 *
-	 * @parameter default-value="UTF-8"
-	 * @readonly
-	 */
-	String xmlEncoding
+    /**
+     * Maven Project
+     *
+     */
+    @Parameter( property="project", required = true, readonly = true )
+    MavenProject project
 
-	/**
-	 * The file encoding to use when reading the source files. If the property <code>project.build.sourceEncoding</code>
-	 * is not set, the platform default encoding is used.
-	 *
-	 * @parameter property="encoding" default-value="${project.build.sourceEncoding}"
-	 * @since 2.2
-	 */
-	String sourceEncoding
+    /**
+     * Encoding used for xml files. Default value is UTF-8.
+     *
+     */
+    @Parameter( defaultValue = "UTF-8", readonly = true )
+    String xmlEncoding
 
-	/**
-	 * The file encoding to use when creating the HTML reports. If the property <code>project.reporting.outputEncoding</code>
-	 * is not set, the platform default encoding is used.
-	 *
-	 * @parameter property="outputEncoding" default-value="${project.reporting.outputEncoding}"
-	 * @since 2.2
-	 */
-	String outputEncoding
+    /**
+     * The file encoding to use when reading the source files. If the property <code>project.build.sourceEncoding</code>
+     * is not set, the platform default encoding is used.
+     *
+     * @since 2.2
+     */
+    @Parameter( defaultValue = '${project.build.sourceEncoding}', property="encoding" )
+    String sourceEncoding
 
-	/**
-	 * Threshold of minimum bug severity to report. Valid values are High, Default, Low, Ignore, and Exp (for experimental).
-	 *
-	 * @parameter default-value="Default"
-	 */
-	String threshold
+    /**
+     * The file encoding to use when creating the HTML reports. If the property <code>project.reporting.outputEncoding</code>
+     * is not set, the platform default encoding is used.
+     *
+     * @since 2.2
+     */
+    @Parameter( defaultValue = '${project.reporting.outputEncoding}', property="outputEncoding" )
+    String outputEncoding
 
-	/**
-	 * Artifact resolver, needed to download the coreplugin jar.
-	 *
-	 * @component role="org.apache.maven.artifact.resolver.ArtifactResolver"
-	 * @required
-	 * @readonly
-	 */
-	ArtifactResolver artifactResolver
+    /**
+     * Threshold of minimum bug severity to report. Valid values are High, Default, Low, Ignore, and Exp (for experimental).
+     *
+     */
+    @Parameter( defaultValue = "Default", property="findbugs.threshold" )
+    String threshold
 
-	/**
-	 * <p>
-	 * File name of the include filter. Only bugs in matching the filters are reported.
-	 * </p>
-	 *
-	 * <p>
-	 * Potential values are a filesystem path, a URL, or a classpath resource.
-	 * </p>
-	 *
-	 * <p>
-	 * This parameter is resolved as resource, URL, then file. If successfully
-	 * resolved, the contents of the configuration is copied into the
-	 * <code>${project.build.directory}</code>
-	 * directory before being passed to Findbugs as a filter file.
-	 * </p>
-	 *
-	 * @parameter
-	 * @since 1.0-beta-1
-	 */
-	String includeFilterFile
+    /**
+     * Artifact resolver, needed to download the coreplugin jar.
+     *
+     * @component role="org.apache.maven.artifact.resolver.ArtifactResolver"
+     * @required
+     * @readonly
+     */
+    @Component( role = org.apache.maven.artifact.resolver.ArtifactResolver.class )
+    ArtifactResolver artifactResolver
 
-	/**
-	 * <p>
-	 * File name of the exclude filter. Bugs matching the filters are not reported.
-	 * </p>
-	 *
-	 * <p>
-	 * Potential values are a filesystem path, a URL, or a classpath resource.
-	 * </p>
-	 *
-	 * <p>
-	 * This parameter is resolved as resource, URL, then file. If successfully
-	 * resolved, the contents of the configuration is copied into the
-	 * <code>${project.build.directory}</code>
-	 * directory before being passed to Findbugs as a filter file.
-	 * </p>
-	 *
-	 * @parameter
-	 * @since 1.0-beta-1
-	 */
-	String excludeFilterFile
+    /**
+     * <p>
+     * File name of the include filter. Only bugs in matching the filters are reported.
+     * </p>
+     *
+     * <p>
+     * Potential values are a filesystem path, a URL, or a classpath resource.
+     * </p>
+     *
+     * <p>
+     * This parameter is resolved as resource, URL, then file. If successfully
+     * resolved, the contents of the configuration is copied into the
+     * <code>${project.build.directory}</code>
+     * directory before being passed to Findbugs as a filter file.
+     * </p>
+     *
+     * @since 1.0-beta-1
+     */
+    @Parameter( property="findbugs.includeFilterFile" )
+    String includeFilterFile
 
-	/**
-	 * <p>
-	 * File names of the baseline files. Bugs found in the baseline files won't be reported.
-	 * </p>
-	 *
-	 * <p>
-	 * Potential values are a filesystem path, a URL, or a classpath resource.
-	 * </p>
-	 *
-	 * <p>
-	 * This parameter is resolved as resource, URL, then file. If successfully
-	 * resolved, the contents of the configuration is copied into the
-	 * <code>${project.build.directory}</code>
-	 * directory before being passed to Findbugs as a filter file.
-	 * </p>
-	 *
-	 * This is a comma-delimited list.
-	 *
-	 * @parameter
-	 * @since 2.4.1
-	 */
-	String excludeBugsFile
+    /**
+     * <p>
+     * File name of the exclude filter. Bugs matching the filters are not reported.
+     * </p>
+     *
+     * <p>
+     * Potential values are a filesystem path, a URL, or a classpath resource.
+     * </p>
+     *
+     * <p>
+     * This parameter is resolved as resource, URL, then file. If successfully
+     * resolved, the contents of the configuration is copied into the
+     * <code>${project.build.directory}</code>
+     * directory before being passed to Findbugs as a filter file.
+     * </p>
+     *
+     * @since 1.0-beta-1
+     */
+    @Parameter( property="findbugs.excludeFilterFile" )
+    String excludeFilterFile
 
-	/**
-	 * Effort of the bug finders. Valid values are Min, Default and Max.
-	 *
-	 * @parameter default-value="Default"
-	 * @since 1.0-beta-1
-	 */
-	String effort
+    /**
+     * <p>
+     * File names of the baseline files. Bugs found in the baseline files won't be reported.
+     * </p>
+     *
+     * <p>
+     * Potential values are a filesystem path, a URL, or a classpath resource.
+     * </p>
+     *
+     * <p>
+     * This parameter is resolved as resource, URL, then file. If successfully
+     * resolved, the contents of the configuration is copied into the
+     * <code>${project.build.directory}</code>
+     * directory before being passed to Findbugs as a filter file.
+     * </p>
+     *
+     * This is a comma-delimited list.
+     *
+     * @since 2.4.1
+     */
+    @Parameter( property="findbugs.excludeBugsFile" )
+    String excludeBugsFile
 
-	/**
-	 * turn on Findbugs debugging
-	 *
-	 * @parameter property="findbugs.debug" default-value="false"
-	 */
-	Boolean debug
+    /**
+     * Effort of the bug finders. Valid values are Min, Default and Max.
+     *
+     * @since 1.0-beta-1
+     */
+    @Parameter( defaultValue = "Default", property="findbugs.effort" )
+    String effort
 
-	/**
-	 * Relaxed reporting mode. For many detectors, this option suppresses the heuristics used to avoid reporting false
-	 * positives.
-	 *
-	 * @parameter property="findbugs.relaxed" default-value="false"
-	 * @since 1.1
-	 */
-	Boolean relaxed
+    /**
+     * turn on Findbugs debugging
+     *
+     */
+    @Parameter( defaultValue = "false", property="findbugs.debug" )
+    Boolean debug
 
-	/**
-	 * The visitor list to run. This is a comma-delimited list.
-	 *
-	 * @parameter
-	 * @since 1.0-beta-1
-	 */
-	String visitors
+    /**
+     * Relaxed reporting mode. For many detectors, this option suppresses the heuristics used to avoid reporting false
+     * positives.
+     *
+     * @since 1.1
+     */
+    @Parameter( defaultValue = "false", property="findbugs.relaxed" )
+    Boolean relaxed
 
-	/**
-	 * The visitor list to omit. This is a comma-delimited list.
-	 *
-	 * @parameter
-	 * @since 1.0-beta-1
-	 */
-	String omitVisitors
+    /**
+     * The visitor list to run. This is a comma-delimited list.
+     *
+     * @since 1.0-beta-1
+     */
+    @Parameter( property="findbugs.visitors" )
+    String visitors
 
-	/**
-	 * <p>
-	 * The plugin list to include in the report. This is a comma-delimited list.
-	 * </p>
-	 *
-	 * <p>
-	 * Potential values are a filesystem path, a URL, or a classpath resource.
-	 * </p>
-	 *
-	 * <p>
-	 * This parameter is resolved as resource, URL, then file. If successfully
-	 * resolved, the contents of the configuration is copied into the
-	 * <code>${project.build.directory}</code>
-	 * directory before being passed to Findbugs as a plugin file.
-	 * </p>
-	 *
-	 * @parameter
-	 * @since 1.0-beta-1
-	 */
-	String pluginList
+    /**
+     * The visitor list to omit. This is a comma-delimited list.
+     *
+     * @since 1.0-beta-1
+     */
+    @Parameter( property="findbugs.omitVisitors" )
+    String omitVisitors
 
-	/**
-	 * Restrict analysis to the given comma-separated list of classes and packages.
-	 *
-	 * @parameter
-	 * @since 1.1
-	 */
-	String onlyAnalyze
+    /**
+     * <p>
+     * The plugin list to include in the report. This is a comma-delimited list.
+     * </p>
+     *
+     * <p>
+     * Potential values are a filesystem path, a URL, or a classpath resource.
+     * </p>
+     *
+     * <p>
+     * This parameter is resolved as resource, URL, then file. If successfully
+     * resolved, the contents of the configuration is copied into the
+     * <code>${project.build.directory}</code>
+     * directory before being passed to Findbugs as a plugin file.
+     * </p>
+     *
+     * @since 1.0-beta-1
+     */
+    @Parameter( property="findbugs.pluginList" )
+    String pluginList
 
-	/**
-	 * This option enables or disables scanning of nested jar and zip files found
-	 *  in the list of files and directories to be analyzed.
-	 *
-	 * @parameter property="findbugs.nested" default-value="false"
-	 * @since 2.3.2
-	 */
-	Boolean nested
+    /**
+     * Restrict analysis to the given comma-separated list of classes and packages.
+     *
+     * @since 1.1
+     */
+    @Parameter( property="findbugs.onlyAnalyze" )
+    String onlyAnalyze
 
-	/**
-	 * Prints a trace of detectors run and classes analyzed to standard output.
-	 * Useful for troubleshooting unexpected analysis failures.
-	 *
-	 * @parameter property="findbugs.trace" default-value="false"
-	 * @since 2.3.2
-	 */
-	Boolean trace
+    /**
+     * This option enables or disables scanning of nested jar and zip files found
+     *  in the list of files and directories to be analyzed.
+     *
+     * @since 2.3.2
+     */
+    @Parameter( property="findbugs.nested", defaultValue = "false" )
+    Boolean nested
+
+    /**
+     * Prints a trace of detectors run and classes analyzed to standard output.
+     * Useful for troubleshooting unexpected analysis failures.
+     *
+     * @since 2.3.2
+     */
+    @Parameter( property="findbugs.trace", defaultValue = "false" )
+    Boolean trace
 
     /**
      * Maximum bug ranking to record.
      *
-     * @parameter property="findbugs.maxRank"
-     * @since 2.5.5
+     * @since 2.4.1
      */
+    @Parameter( property="findbugs.maxRank" )
     int maxRank
 
     /**
-	 * Skip entire check.
-	 *
-	 * @parameter property="findbugs.skip" default-value="false"
-	 * @since 1.1
-	 */
-	boolean skip
+     * Skip entire check.
+     *
+     * @since 1.1
+     */
+    @Parameter( property="findbugs.skip", defaultValue = "false" )
+    boolean skip
 
-	/**
-	 * @component
-	 * @required
-	 * @readonly
-	 * @since 2.0
-	 */
-	ResourceManager resourceManager
+    /**
+     * @component
+     * @required
+     * @readonly
+     * @since 2.0
+     */
+    @Component( role = ResourceManager.class)
+    ResourceManager resourceManager
 
-	/**
-	 * SiteTool.
-	 *
-	 * @since 2.1-SNAPSHOT
-	 * @component role="org.apache.maven.doxia.tools.SiteTool"
-	 * @required
-	 * @readonly
-	 */
-	protected SiteTool siteTool
+    /**
+     * SiteTool.
+     *
+     * @since 2.1-SNAPSHOT
+     * @component role="org.apache.maven.doxia.tools.SiteTool"
+     * @required
+     * @readonly
+     */
+    @Component( role = org.apache.maven.doxia.tools.SiteTool.class)
+    SiteTool siteTool
 
-	/**
-	 * Fail the build on an error.
-	 *
-	 * @parameter property="findbugs.failOnError" default-value="true"
-	 * @since 2.0
-	 */
-	boolean failOnError
+    /**
+     * Fail the build on an error.
+     *
+     * @since 2.0
+     */
+    @Parameter( property="findbugs.failOnError", defaultValue = "true" )
+    boolean failOnError
 
-	/**
-	 * Fork a VM for FindBugs analysis.  This will allow you to set timeouts and heap size
-	 *
-	 * @parameter property="findbugs.fork" default-value="true"
-	 * @since 2.3.2
-	 */
-	boolean fork
+    /**
+     * Fork a VM for FindBugs analysis.  This will allow you to set timeouts and heap size
+     *
+     * @since 2.3.2
+     */
+    @Parameter( property="findbugs.fork", defaultValue = "true" )
+    boolean fork
 
-	/**
-	 * Maximum Java heap size in megabytes  (default=512).
-	 * This only works if the <b>fork</b> parameter is set <b>true</b>.
-	 *
-	 * @parameter default-value="512"
-	 * @since 2.2
-	 */
-	int maxHeap
+    /**
+     * Maximum Java heap size in megabytes  (default=512).
+     * This only works if the <b>fork</b> parameter is set <b>true</b>.
+     *
+     * @since 2.2
+     */
+    @Parameter( property="findbugs.maxHeap", defaultValue = "512" )
+    int maxHeap
 
-	/**
-	 * Specifies the amount of time, in milliseconds, that FindBugs may run before
-	 *  it is assumed to be hung and is terminated.
-	 * The default is 600,000 milliseconds, which is ten minutes.
-	 * This only works if the <b>fork</b> parameter is set <b>true</b>.
-	 *
-	 * @parameter default-value="600000"
-	 * @since 2.2
-	 */
-	int timeout
+    /**
+     * Specifies the amount of time, in milliseconds, that FindBugs may run before
+     *  it is assumed to be hung and is terminated.
+     * The default is 600,000 milliseconds, which is ten minutes.
+     * This only works if the <b>fork</b> parameter is set <b>true</b>.
+     *
+     * @since 2.2
+     */
+    @Parameter( property="findbugs.timeout", defaultValue = "600000" )
+    int timeout
 
-	/**
-	* <p>
-	* the arguments to pass to the forked VM (ignored if fork is disabled).
-	* </p>
-	*
-	* @parameter
-	* @since 2.4.1
-	*/
-   String jvmArgs
+    /**
+     * <p>
+     * the arguments to pass to the forked VM (ignored if fork is disabled).
+     * </p>
+     *
+     * @since 2.4.1
+     */
+    @Parameter( property="findbugs.jvmArgs" )
+    String jvmArgs
 
 
 	int bugCount

@@ -20,25 +20,27 @@ package org.codehaus.mojo.findbugs
  */
 
 import org.apache.maven.project.MavenProject
-import org.codehaus.gmaven.mojo.GroovyMojo
+import org.apache.maven.plugin.AbstractMojo
+
+import org.apache.maven.plugins.annotations.Mojo
+import org.apache.maven.plugins.annotations.Parameter
+import org.apache.maven.plugins.annotations.ResolutionScope
+
 
 /**
  * Launch the Findbugs GUI.
  * It will use all the parameters in the POM fle.
  *
  * @since 2.0
- * @goal gui
- *
  *
  * @description Launch the Findbugs GUI using the parameters in the POM fle.
- * @requiresDependencyResolution compile
- * @requiresProject
  *
  * @author <a href="mailto:gleclaire@codehaus.org">Garvin LeClaire</a>
  * @version $Id: FindBugsGui.groovy gleclaire $
  */
 
-class FindBugsGui extends GroovyMojo {
+@Mojo( name = "gui", requiresDependencyResolution = ResolutionScope.COMPILE, requiresProject = true )
+class FindBugsGui extends AbstractMojo {
 
 
     /**
@@ -51,69 +53,59 @@ class FindBugsGui extends GroovyMojo {
     /**
      * Directory containing the class files for FindBugs to analyze.
      *
-     * @parameter default-value="${project.build.outputDirectory}"
      * @required
      */
+    @Parameter( defaultValue = '${project.build.outputDirectory}', required = true )
     File classFilesDirectory
 
     /**
      * turn on Findbugs debugging
      *
-     * @parameter default-value="false"
      */
+    @Parameter( defaultValue = "false", property="findbugs.debug" )
     Boolean debug
 
     /**
      * List of artifacts this plugin depends on. Used for resolving the Findbugs coreplugin.
      *
-     * @parameter property="plugin.artifacts"
-     * @required
-     * @readonly
      */
+    @Parameter( property="plugin.artifacts", required = true, readonly = true )
     ArrayList pluginArtifacts
 
     /**
      * Effort of the bug finders. Valid values are Min, Default and Max.
      *
-     * @parameter default-value="Default"
-     *
      */
+    @Parameter( defaultValue = "Default", property="findbugs.effort" )
     String effort
 
 
     /**
      * The plugin list to include in the report. This is a FindBugsInfo.COMMA-delimited list.
      *
-     * @parameter
-     *
      */
+    @Parameter( property="findbugs.pluginList" )
     String pluginList
 
     /**
      * Maven Project
      *
-     * @parameter property="project"
-     * @required
-     * @readonly
      */
+    @Parameter( property="project", required = true, readonly = true )
     MavenProject project
 
     /**
      * Resource bundle for a specific locale.
      *
-     * @parameter
-     * @readonly
-     *
      */
+    @Parameter( readonly = true )
     ResourceBundle bundle
 
     /**
      * Specifies the directory where the findbugs native xml output will be generated.
      *
-     * @parameter default-value="${project.build.directory}"
-     * @required
-     *
      */
+    @Parameter( defaultValue = '${project.build.directory}', required = true )
     File findbugsXmlOutputDirectory
 
     /**
@@ -121,20 +113,22 @@ class FindBugsGui extends GroovyMojo {
      * is not set, the platform default encoding is used. <strong>Note:</strong> This parameter always overrides the
      * property <code>charset</code> from Checkstyle's <code>TreeWalker</code> module.
      *
-     * @parameter property="encoding" default-value="${project.build.sourceEncoding}"
      * @since 2.2
      */
+    @Parameter( property="encoding", defaultValue = '${project.build.sourceEncoding}' )
     String encoding
 
     /**
      * Maximum Java heap size in megabytes  (default=512).
      *
-     * @parameter default-value="512"
      * @since 2.2
      */
+    @Parameter( property="findbugs.maxHeap", defaultValue = "512" )
     int maxHeap
 
     void execute() {
+
+        def ant = new AntBuilder()
 
         def auxClasspathElements = project.compileClasspathElements
 

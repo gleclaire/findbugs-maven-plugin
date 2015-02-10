@@ -26,6 +26,13 @@ import org.apache.maven.artifact.repository.ArtifactRepository
 import org.apache.maven.artifact.resolver.ArtifactResolver
 import org.apache.maven.doxia.siterenderer.Renderer
 import org.apache.maven.doxia.tools.SiteTool
+
+import org.apache.maven.plugins.annotations.Component;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.plugins.annotations.ResolutionScope;
+
 import org.apache.maven.project.MavenProject
 import org.apache.maven.reporting.AbstractMavenReport
 import org.codehaus.plexus.resource.ResourceManager
@@ -42,60 +49,54 @@ import org.sonatype.plexus.build.incremental.BuildContext
  * Generates a FindBugs Report when the site plugin is run.
  * The HTML report is generated for site commands only.
  *
- * @goal findbugs
- * @phase compile
- * @requiresDependencyResolution compile
- * @requiresProject
- * @threadSafe
  *
  * @author <a href="mailto:gleclaire@codehaus.org">Garvin LeClaire</a>
  * @version $Id: FindBugsMojo.groovy 16932 2012-06-21 01:13:14Z gleclaire $
  */
 
+@Mojo( name = "findbugs", defaultPhase = LifecyclePhase.COMPILE, requiresDependencyResolution = ResolutionScope.COMPILE, requiresProject = true, threadSafe = true )
 class FindBugsMojo extends AbstractMavenReport {
 
     /**
      * Location where generated html will be created.
      *
-     * @parameter default-value="${project.reporting.outputDirectory}"
-     * @required
      */
 
+    @Parameter( defaultValue = '${project.reporting.outputDirectory}', required = true )
     File outputDirectory
 
     /**
      * Turn on and off xml output of the Findbugs report.
      *
-     * @parameter property="findbugs.xmlOutput" default-value="false"
      * @since 1.0.0
      */
+    @Parameter( defaultValue = "false", property="findbugs.xmlOutput", required = true )
     boolean xmlOutput
 
     /**
      * Specifies the directory where the xml output will be generated.
      *
-     * @parameter default-value="${project.build.directory}"
-     * @required
      * @since 1.0.0
      */
+    @Parameter( defaultValue = '${project.build.directory}', required = true )
     File xmlOutputDirectory
 
     /**
      * This has been deprecated and is on by default.
      *
-     * @parameter default-value="true"
      * @since 1.2.0
-     * @deprecated
+     *
      */
+    @Deprecated
+    @Parameter( defaultValue = "true" )
     boolean findbugsXmlOutput
 
     /**
      * Specifies the directory where the findbugs native xml output will be generated.
      *
-     * @parameter default-value="${project.build.directory}"
-     * @required
      * @since 1.2.0
      */
+    @Parameter( defaultValue = '${project.build.directory}', required = true )
     File findbugsXmlOutputDirectory
 
     /**
@@ -104,159 +105,142 @@ class FindBugsMojo extends AbstractMavenReport {
      * @component
      *
      */
+    @Component( role = Renderer.class)
     Renderer siteRenderer
 
     /**
      * Directory containing the class files for FindBugs to analyze.
      *
-     * @parameter default-value="${project.build.outputDirectory}"
      * @required
      */
+    @Parameter( defaultValue = '${project.build.outputDirectory}', required = true )
     File classFilesDirectory
 
     /**
      * Directory containing the test class files for FindBugs to analyze.
      *
-     * @parameter default-value="${project.build.testOutputDirectory}"
-     * @required
      */
+    @Parameter( defaultValue = '${project.build.testOutputDirectory}', required = true )
     File testClassFilesDirectory
 
     /**
      * Location of the Xrefs to link to.
      *
-     * @parameter default-value="${project.reporting.outputDirectory}/xref"
      */
+    @Parameter( defaultValue = '${project.reporting.outputDirectory}/xref' )
     File xrefLocation
 
     /**
      * Location of the Test Xrefs to link to.
      *
-     * @parameter default-value="${project.reporting.outputDirectory}/xref-test"
      */
+    @Parameter( defaultValue = '${project.reporting.outputDirectory}/xref-test' )
     File xrefTestLocation
 
     /**
      * The directories containing the sources to be compiled.
      *
-     * @parameter property="project.compileSourceRoots"
-     * @required
-     * @readonly
      */
+    @Parameter( defaultValue = '${project.compileSourceRoots}', required = true, readonly = true )
     List compileSourceRoots
 
     /**
      * The directories containing the test-sources to be compiled.
      *
-     * @parameter property="project.testCompileSourceRoots"
-     * @required
-     * @readonly
      * @since 2.0
      */
+    @Parameter( defaultValue = '${project.testCompileSourceRoots}', required = true, readonly = true )
     List testSourceRoots
 
     /**
      * Run Findbugs on the tests.
      *
-     * @parameter property="findbugs.includeTests" default-value="false"
      * @since 2.0
      */
+    @Parameter( defaultValue = "false", property="findbugs.includeTests" )
     boolean includeTests
 
     /**
      * List of artifacts this plugin depends on. Used for resolving the Findbugs coreplugin.
      *
-     * @parameter property="plugin.artifacts"
-     * @required
-     * @readonly
      */
+    @Parameter( property="plugin.artifacts", required = true, readonly = true )
     ArrayList pluginArtifacts
 
     /**
      * List of Remote Repositories used by the resolver
      *
-     * @parameter property="project.remoteArtifactRepositories"
-     * @readonly
-     * @required
      */
+    @Parameter( property="project.remoteArtifactRepositories", required = true, readonly = true )
     List remoteRepositories
 
     /**
      * The local repository, needed to download the coreplugin jar.
      *
-     * @parameter property="localRepository"
-     * @required
-     * @readonly
      */
+    @Parameter( property="localRepository", required = true, readonly = true )
     ArtifactRepository localRepository
 
     /**
      * Remote repositories which will be searched for the coreplugin jar.
      *
-     * @parameter property="project.remoteArtifactRepositories"
-     * @required
-     * @readonly
      */
+    @Parameter( property="project.remoteArtifactRepositories", required = true, readonly = true )
     List remoteArtifactRepositories
 
     /**
      * Maven Project
      *
-     * @parameter property="project"
-     * @required
-     * @readonly
      */
+    @Parameter( property="project", required = true, readonly = true )
     MavenProject project
 
     /**
      * Encoding used for xml files. Default value is UTF-8.
      *
-     * @parameter default-value="UTF-8"
-     * @readonly
      */
+    @Parameter( defaultValue = "UTF-8", readonly = true )
     String xmlEncoding
 
     /**
      * The file encoding to use when reading the source files. If the property <code>project.build.sourceEncoding</code>
      * is not set, the platform default encoding is used.
      *
-     * @parameter property="encoding" default-value="${project.build.sourceEncoding}"
      * @since 2.2
      */
+    @Parameter( defaultValue = '${project.build.sourceEncoding}', property="encoding" )
     String sourceEncoding
 
     /**
      * The file encoding to use when creating the HTML reports. If the property <code>project.reporting.outputEncoding</code>
      * is not set, the platform default encoding is used.
      *
-     * @parameter property="outputEncoding" default-value="${project.reporting.outputEncoding}"
      * @since 2.2
      */
+    @Parameter( defaultValue = '${project.reporting.outputEncoding}', property="outputEncoding" )
     String outputEncoding
 
     /**
      * Threshold of minimum bug severity to report. Valid values are High, Default, Low, Ignore, and Exp (for experimental).
      *
-     * @parameter property="findbugs.threshold" default-value="Default"
      */
+    @Parameter( defaultValue = "Default", property="findbugs.threshold" )
     String threshold
 
     /**
      * Artifact resolver, needed to download the coreplugin jar.
      *
-     * @component role="org.apache.maven.artifact.resolver.ArtifactResolver"
      * @required
      * @readonly
      */
+    @Component( role = org.apache.maven.artifact.resolver.ArtifactResolver.class )
     ArtifactResolver artifactResolver
 
     /**
      * Used to look up Artifacts in the remote repository.
      *
-     * @parameter property="component.org.apache.maven.artifact.factory.ArtifactFactory"
-     * @required
-     * @readonly
      */
+    @Parameter( property="component.org.apache.maven.artifact.factory.ArtifactFactory", required = true, readonly = true )
     ArtifactFactory factory
 
     /**
@@ -275,9 +259,9 @@ class FindBugsMojo extends AbstractMavenReport {
      * directory before being passed to Findbugs as a filter file.
      * </p>
      *
-     * @parameter property="findbugs.includeFilterFile"
      * @since 1.0-beta-1
      */
+    @Parameter( property="findbugs.includeFilterFile" )
     String includeFilterFile
 
     /**
@@ -296,9 +280,9 @@ class FindBugsMojo extends AbstractMavenReport {
      * directory before being passed to Findbugs as a filter file.
      * </p>
      *
-     * @parameter property="findbugs.excludeFilterFile"
      * @since 1.0-beta-1
      */
+    @Parameter( property="findbugs.excludeFilterFile" )
     String excludeFilterFile
 
     /**
@@ -319,49 +303,49 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * This is a comma-delimited list.
      *
-     * @parameter property="findbugs.excludeBugsFile"
      * @since 2.4.1
      */
+    @Parameter( property="findbugs.excludeBugsFile" )
     String excludeBugsFile
 
     /**
      * Effort of the bug finders. Valid values are Min, Default and Max.
      *
-     * @parameter property="findbugs.effort" default-value="Default"
      * @since 1.0-beta-1
      */
+    @Parameter( defaultValue = "Default", property="findbugs.effort" )
     String effort
 
     /**
      * turn on Findbugs debugging
      *
-     * @parameter property="findbugs.debug" default-value="false"
      */
+    @Parameter( defaultValue = "false", property="findbugs.debug" )
     Boolean debug
 
     /**
      * Relaxed reporting mode. For many detectors, this option suppresses the heuristics used to avoid reporting false
      * positives.
      *
-     * @parameter property="findbugs.relaxed" default-value="false"
      * @since 1.1
      */
+    @Parameter( defaultValue = "false", property="findbugs.relaxed" )
     Boolean relaxed
 
     /**
      * The visitor list to run. This is a comma-delimited list.
      *
-     * @parameter property="findbugs.visitors"
      * @since 1.0-beta-1
      */
+    @Parameter( property="findbugs.visitors" )
     String visitors
 
     /**
      * The visitor list to omit. This is a comma-delimited list.
      *
-     * @parameter property="findbugs.omitVisitors"
      * @since 1.0-beta-1
      */
+    @Parameter( property="findbugs.omitVisitors" )
     String omitVisitors
 
     /**
@@ -380,9 +364,9 @@ class FindBugsMojo extends AbstractMavenReport {
      * directory before being passed to Findbugs as a plugin file.
      * </p>
      *
-     * @parameter property="findbugs.pluginList"
      * @since 1.0-beta-1
      */
+    @Parameter( property="findbugs.pluginList" )
     String pluginList
 
     /**
@@ -392,94 +376,94 @@ class FindBugsMojo extends AbstractMavenReport {
      * </p>
      *
      *
-     * @parameter
      * @since 2.4.1
      */
+    @Parameter
     PluginArtifact[] plugins;
 
     /**
      * Restrict analysis to the given comma-separated list of classes and packages.
      *
-     * @parameter property="findbugs.onlyAnalyze"
      * @since 1.1
      */
+    @Parameter( property="findbugs.onlyAnalyze" )
     String onlyAnalyze
 
     /**
      * This option enables or disables scanning of nested jar and zip files found
      *  in the list of files and directories to be analyzed.
      *
-     * @parameter property="findbugs.nested" default-value="false"
      * @since 2.3.2
      */
+    @Parameter( property="findbugs.nested", defaultValue = "false" )
     Boolean nested
 
     /**
      * Prints a trace of detectors run and classes analyzed to standard output.
      * Useful for troubleshooting unexpected analysis failures.
      *
-     * @parameter property="findbugs.trace" default-value="false"
      * @since 2.3.2
      */
+    @Parameter( property="findbugs.trace", defaultValue = "false" )
     Boolean trace
 
     /**
      * Maximum bug ranking to record.
      *
-     * @parameter property="findbugs.maxRank"
      * @since 2.4.1
      */
+    @Parameter( property="findbugs.maxRank" )
     int maxRank
 
     /**
      * Skip entire check.
      *
-     * @parameter property="findbugs.skip" default-value="false"
      * @since 1.1
      */
+    @Parameter( property="findbugs.skip", defaultValue = "false" )
     boolean skip
 
     /**
-     * @component
      * @required
      * @readonly
      * @since 2.0
      */
+    @Component( role = ResourceManager.class)
     ResourceManager resourceManager
 
     /**
      * SiteTool.
      *
      * @since 2.1-SNAPSHOT
-     * @component role="org.apache.maven.doxia.tools.SiteTool"
      * @required
      * @readonly
      */
-    protected SiteTool siteTool
+    @Component( role = org.apache.maven.doxia.tools.SiteTool.class)
+    SiteTool siteTool
 
     /**
      * Fail the build on an error.
      *
-     * @parameter property="findbugs.failOnError" default-value="true"
      * @since 2.0
      */
+    @Parameter( property="findbugs.failOnError", defaultValue = "true" )
     boolean failOnError
 
     /**
      * Fork a VM for FindBugs analysis.  This will allow you to set timeouts and heap size
      *
-     * @parameter property="findbugs.fork" default-value="true"
      * @since 2.3.2
      */
+    @Parameter( property="findbugs.fork", defaultValue = "true" )
     boolean fork
 
     /**
      * Maximum Java heap size in megabytes  (default=512).
      * This only works if the <b>fork</b> parameter is set <b>true</b>.
      *
-     * @parameter property="findbugs.maxHeap" default-value="512"
      * @since 2.2
      */
+    @Parameter( property="findbugs.maxHeap", defaultValue = "512" )
     int maxHeap
 
     /**
@@ -488,9 +472,9 @@ class FindBugsMojo extends AbstractMavenReport {
      * The default is 600,000 milliseconds, which is ten minutes.
      * This only works if the <b>fork</b> parameter is set <b>true</b>.
      *
-     * @parameter property="findbugs.timeout" default-value="600000"
      * @since 2.2
      */
+    @Parameter( property="findbugs.timeout", defaultValue = "600000" )
     int timeout
 
     /**
@@ -498,9 +482,9 @@ class FindBugsMojo extends AbstractMavenReport {
      * the arguments to pass to the forked VM (ignored if fork is disabled).
      * </p>
      *
-     * @parameter property="findbugs.jvmArgs"
      * @since 2.4.1
      */
+    @Parameter( property="findbugs.jvmArgs" )
     String jvmArgs
 
 
