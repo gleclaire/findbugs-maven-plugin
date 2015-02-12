@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+File findbugsHtml =  new File(basedir, 'target/site/findbugs.html')
+assert !findbugsHtml.exists()
 
 File findbugXdoc = new File(basedir, 'target/findbugs.xml')
 assert findbugXdoc.exists()

@@ -27,10 +27,12 @@ import org.apache.maven.doxia.siterenderer.Renderer
 import org.apache.maven.doxia.tools.SiteTool
 
 import org.apache.maven.plugins.annotations.Component;
-import org.apache.maven.plugins.annotations.LifecyclePhase;
-import org.apache.maven.plugins.annotations.Mojo;
-import org.apache.maven.plugins.annotations.Parameter;
-import org.apache.maven.plugins.annotations.ResolutionScope;
+import org.apache.maven.plugins.annotations.LifecyclePhase
+import org.apache.maven.plugins.annotations.Mojo
+import org.apache.maven.plugins.annotations.Parameter
+import org.apache.maven.plugins.annotations.ResolutionScope
+
+import org.apache.maven.plugin.MojoExecutionException
 
 import org.apache.maven.project.MavenProject
 import org.apache.maven.reporting.AbstractMavenReport
@@ -53,7 +55,7 @@ import org.sonatype.plexus.build.incremental.BuildContext
  * @version $Id: FindBugsMojo.groovy 16932 2012-06-21 01:13:14Z gleclaire $
  */
 
-@Mojo( name = "findbugs", defaultPhase = LifecyclePhase.COMPILE, requiresDependencyResolution = ResolutionScope.COMPILE, requiresProject = true, threadSafe = true )
+@Mojo(name = "findbugs", defaultPhase = LifecyclePhase.COMPILE, requiresDependencyResolution = ResolutionScope.COMPILE, requiresProject = true, threadSafe = true)
 class FindBugsMojo extends AbstractMavenReport {
 
     /**
@@ -61,7 +63,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      */
 
-    @Parameter( defaultValue = '${project.reporting.outputDirectory}', required = true )
+    @Parameter(defaultValue = '${project.reporting.outputDirectory}', required = true)
     File outputDirectory
 
     /**
@@ -69,7 +71,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 1.0.0
      */
-    @Parameter( defaultValue = "false", property="findbugs.xmlOutput", required = true )
+    @Parameter(defaultValue = "false", property = "findbugs.xmlOutput", required = true)
     boolean xmlOutput
 
     /**
@@ -77,7 +79,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 1.0.0
      */
-    @Parameter( defaultValue = '${project.build.directory}', required = true )
+    @Parameter(defaultValue = '${project.build.directory}', required = true)
     File xmlOutputDirectory
 
     /**
@@ -87,7 +89,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      */
     @Deprecated
-    @Parameter( defaultValue = "true" )
+    @Parameter(defaultValue = "true")
     boolean findbugsXmlOutput
 
     /**
@@ -95,7 +97,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 1.2.0
      */
-    @Parameter( defaultValue = '${project.build.directory}', required = true )
+    @Parameter(defaultValue = '${project.build.directory}', required = true)
     File findbugsXmlOutputDirectory
 
     /**
@@ -104,7 +106,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * @component
      *
      */
-    @Component( role = Renderer.class)
+    @Component(role = Renderer.class)
     Renderer siteRenderer
 
     /**
@@ -112,35 +114,35 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @required
      */
-    @Parameter( defaultValue = '${project.build.outputDirectory}', required = true )
+    @Parameter(defaultValue = '${project.build.outputDirectory}', required = true)
     File classFilesDirectory
 
     /**
      * Directory containing the test class files for FindBugs to analyze.
      *
      */
-    @Parameter( defaultValue = '${project.build.testOutputDirectory}', required = true )
+    @Parameter(defaultValue = '${project.build.testOutputDirectory}', required = true)
     File testClassFilesDirectory
 
     /**
      * Location of the Xrefs to link to.
      *
      */
-    @Parameter( defaultValue = '${project.reporting.outputDirectory}/xref' )
+    @Parameter(defaultValue = '${project.reporting.outputDirectory}/xref')
     File xrefLocation
 
     /**
      * Location of the Test Xrefs to link to.
      *
      */
-    @Parameter( defaultValue = '${project.reporting.outputDirectory}/xref-test' )
+    @Parameter(defaultValue = '${project.reporting.outputDirectory}/xref-test')
     File xrefTestLocation
 
     /**
      * The directories containing the sources to be compiled.
      *
      */
-    @Parameter( defaultValue = '${project.compileSourceRoots}', required = true, readonly = true )
+    @Parameter(defaultValue = '${project.compileSourceRoots}', required = true, readonly = true)
     List compileSourceRoots
 
     /**
@@ -148,7 +150,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 2.0
      */
-    @Parameter( defaultValue = '${project.testCompileSourceRoots}', required = true, readonly = true )
+    @Parameter(defaultValue = '${project.testCompileSourceRoots}', required = true, readonly = true)
     List testSourceRoots
 
     /**
@@ -156,49 +158,49 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 2.0
      */
-    @Parameter( defaultValue = "false", property="findbugs.includeTests" )
+    @Parameter(defaultValue = "false", property = "findbugs.includeTests")
     boolean includeTests
 
     /**
      * List of artifacts this plugin depends on. Used for resolving the Findbugs coreplugin.
      *
      */
-    @Parameter( property="plugin.artifacts", required = true, readonly = true )
+    @Parameter(property = "plugin.artifacts", required = true, readonly = true)
     ArrayList pluginArtifacts
 
     /**
      * List of Remote Repositories used by the resolver
      *
      */
-    @Parameter( property="project.remoteArtifactRepositories", required = true, readonly = true )
+    @Parameter(property = "project.remoteArtifactRepositories", required = true, readonly = true)
     List remoteRepositories
 
     /**
      * The local repository, needed to download the coreplugin jar.
      *
      */
-    @Parameter( property="localRepository", required = true, readonly = true )
+    @Parameter(property = "localRepository", required = true, readonly = true)
     ArtifactRepository localRepository
 
     /**
      * Remote repositories which will be searched for the coreplugin jar.
      *
      */
-    @Parameter( property="project.remoteArtifactRepositories", required = true, readonly = true )
+    @Parameter(property = "project.remoteArtifactRepositories", required = true, readonly = true)
     List remoteArtifactRepositories
 
     /**
      * Maven Project
      *
      */
-    @Parameter( property="project", required = true, readonly = true )
+    @Parameter(property = "project", required = true, readonly = true)
     MavenProject project
 
     /**
      * Encoding used for xml files. Default value is UTF-8.
      *
      */
-    @Parameter( defaultValue = "UTF-8", readonly = true )
+    @Parameter(defaultValue = "UTF-8", readonly = true)
     String xmlEncoding
 
     /**
@@ -207,7 +209,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 2.2
      */
-    @Parameter( defaultValue = '${project.build.sourceEncoding}', property="encoding" )
+    @Parameter(defaultValue = '${project.build.sourceEncoding}', property = "encoding")
     String sourceEncoding
 
     /**
@@ -216,14 +218,14 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 2.2
      */
-    @Parameter( defaultValue = '${project.reporting.outputEncoding}', property="outputEncoding" )
+    @Parameter(defaultValue = '${project.reporting.outputEncoding}', property = "outputEncoding")
     String outputEncoding
 
     /**
      * Threshold of minimum bug severity to report. Valid values are High, Default, Low, Ignore, and Exp (for experimental).
      *
      */
-    @Parameter( defaultValue = "Default", property="findbugs.threshold" )
+    @Parameter(defaultValue = "Default", property = "findbugs.threshold")
     String threshold
 
     /**
@@ -232,14 +234,14 @@ class FindBugsMojo extends AbstractMavenReport {
      * @required
      * @readonly
      */
-    @Component( role = org.apache.maven.artifact.resolver.ArtifactResolver.class )
+    @Component(role = org.apache.maven.artifact.resolver.ArtifactResolver.class)
     ArtifactResolver artifactResolver
 
     /**
      * Used to look up Artifacts in the remote repository.
      *
      */
-    @Parameter( property="component.org.apache.maven.artifact.factory.ArtifactFactory", required = true, readonly = true )
+    @Parameter(property = "component.org.apache.maven.artifact.factory.ArtifactFactory", required = true, readonly = true)
     ArtifactFactory factory
 
     /**
@@ -260,7 +262,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 1.0-beta-1
      */
-    @Parameter( property="findbugs.includeFilterFile" )
+    @Parameter(property = "findbugs.includeFilterFile")
     String includeFilterFile
 
     /**
@@ -281,7 +283,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 1.0-beta-1
      */
-    @Parameter( property="findbugs.excludeFilterFile" )
+    @Parameter(property = "findbugs.excludeFilterFile")
     String excludeFilterFile
 
     /**
@@ -304,7 +306,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 2.4.1
      */
-    @Parameter( property="findbugs.excludeBugsFile" )
+    @Parameter(property = "findbugs.excludeBugsFile")
     String excludeBugsFile
 
     /**
@@ -312,14 +314,14 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 1.0-beta-1
      */
-    @Parameter( defaultValue = "Default", property="findbugs.effort" )
+    @Parameter(defaultValue = "Default", property = "findbugs.effort")
     String effort
 
     /**
      * turn on Findbugs debugging
      *
      */
-    @Parameter( defaultValue = "false", property="findbugs.debug" )
+    @Parameter(defaultValue = "false", property = "findbugs.debug")
     Boolean debug
 
     /**
@@ -328,7 +330,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 1.1
      */
-    @Parameter( defaultValue = "false", property="findbugs.relaxed" )
+    @Parameter(defaultValue = "false", property = "findbugs.relaxed")
     Boolean relaxed
 
     /**
@@ -336,7 +338,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 1.0-beta-1
      */
-    @Parameter( property="findbugs.visitors" )
+    @Parameter(property = "findbugs.visitors")
     String visitors
 
     /**
@@ -344,7 +346,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 1.0-beta-1
      */
-    @Parameter( property="findbugs.omitVisitors" )
+    @Parameter(property = "findbugs.omitVisitors")
     String omitVisitors
 
     /**
@@ -365,7 +367,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 1.0-beta-1
      */
-    @Parameter( property="findbugs.pluginList" )
+    @Parameter(property = "findbugs.pluginList")
     String pluginList
 
     /**
@@ -385,7 +387,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 1.1
      */
-    @Parameter( property="findbugs.onlyAnalyze" )
+    @Parameter(property = "findbugs.onlyAnalyze")
     String onlyAnalyze
 
     /**
@@ -394,7 +396,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 2.3.2
      */
-    @Parameter( property="findbugs.nested", defaultValue = "false" )
+    @Parameter(property = "findbugs.nested", defaultValue = "false")
     Boolean nested
 
     /**
@@ -403,7 +405,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 2.3.2
      */
-    @Parameter( property="findbugs.trace", defaultValue = "false" )
+    @Parameter(property = "findbugs.trace", defaultValue = "false")
     Boolean trace
 
     /**
@@ -411,7 +413,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 2.4.1
      */
-    @Parameter( property="findbugs.maxRank" )
+    @Parameter(property = "findbugs.maxRank")
     int maxRank
 
     /**
@@ -419,7 +421,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 1.1
      */
-    @Parameter( property="findbugs.skip", defaultValue = "false" )
+    @Parameter(property = "findbugs.skip", defaultValue = "false")
     boolean skip
 
     /**
@@ -427,7 +429,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * @readonly
      * @since 2.0
      */
-    @Component( role = ResourceManager.class)
+    @Component(role = ResourceManager.class)
     ResourceManager resourceManager
 
     /**
@@ -437,7 +439,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * @required
      * @readonly
      */
-    @Component( role = org.apache.maven.doxia.tools.SiteTool.class)
+    @Component(role = org.apache.maven.doxia.tools.SiteTool.class)
     SiteTool siteTool
 
     /**
@@ -445,7 +447,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 2.0
      */
-    @Parameter( property="findbugs.failOnError", defaultValue = "true" )
+    @Parameter(property = "findbugs.failOnError", defaultValue = "true")
     boolean failOnError
 
     /**
@@ -453,7 +455,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 2.3.2
      */
-    @Parameter( property="findbugs.fork", defaultValue = "true" )
+    @Parameter(property = "findbugs.fork", defaultValue = "true")
     boolean fork
 
     /**
@@ -462,7 +464,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 2.2
      */
-    @Parameter( property="findbugs.maxHeap", defaultValue = "512" )
+    @Parameter(property = "findbugs.maxHeap", defaultValue = "512")
     int maxHeap
 
     /**
@@ -473,7 +475,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 2.2
      */
-    @Parameter( property="findbugs.timeout", defaultValue = "600000" )
+    @Parameter(property = "findbugs.timeout", defaultValue = "600000")
     int timeout
 
     /**
@@ -483,14 +485,25 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      * @since 2.4.1
      */
-    @Parameter( property="findbugs.jvmArgs" )
+    @Parameter(property = "findbugs.jvmArgs")
     String jvmArgs
+
+    /**
+     * Skip the FindBugs HTML report generation if there are no violations found. Defaults to
+     * <code>false</code>.
+     *
+     * @since 3.0.1
+     */
+    @Parameter(property = "findbugs.skipEmptyReport", defaultValue = "false")
+    boolean skipEmptyReport
 
 
     int bugCount
     int errorCount
 
     ResourceBundle bundle
+
+    File outputFindbugsFile
 
     /**
      * Checks whether prerequisites for generating this report are given.
@@ -501,7 +514,7 @@ class FindBugsMojo extends AbstractMavenReport {
     boolean canGenerateReport() {
 
         def canGenerate = false
-        log.debug("Inside canGenerateReport..... ${canGenerate} ")
+        log.info("****** FindBugsMojo canGenerateReport *******")
 
         if (!skip && classFilesDirectory.exists()) {
 
@@ -523,8 +536,25 @@ class FindBugsMojo extends AbstractMavenReport {
             log.debug("canGenerate Test Src is ${canGenerate}")
         }
 
+        if ( canGenerate && outputFindbugsFile == null ) {
+            outputFindbugsFile = new File("${findbugsXmlOutputDirectory}/findbugsXml.xml")
 
-        log.debug("canGenerate is ${canGenerate}")
+            ClassLoader tccl = Thread.currentThread().getContextClassLoader();
+            try {
+                // The SAX parser factory will fail with CCE if the TCCL is out of sync with our class loader
+                // This for Maven 2.2.1 only MFINDBUGS-178
+                Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
+                executeFindbugs(outputFindbugsFile)
+            } finally {
+                Thread.currentThread().setContextClassLoader(tccl);
+            }
+
+            if (skipEmptyReport && bugCount == 0) {
+                canGenerate = false
+            }
+        }
+
+        log.info("canGenerate is ${canGenerate}")
 
         return canGenerate
     }
@@ -578,110 +608,124 @@ class FindBugsMojo extends AbstractMavenReport {
      */
     void executeReport(Locale locale) {
 
-        if (canGenerateReport()) {
+        log.info("****** FindBugsMojo executeReport *******")
+        executeCheck(locale)
+
+        if (!skip && canGenerateReport()) {
 
             log.info("Locale is ${locale.getLanguage()}")
 
             log.debug("****** FindBugsMojo executeReport *******")
 
-
-            resourceManager.addSearchPath(FileResourceLoader.ID, this.project.getFile().getParentFile().getAbsolutePath())
-            resourceManager.addSearchPath(FindBugsInfo.URL, "")
-
-            resourceManager.setOutputDirectory(new File(this.project.getBuild().getDirectory()))
-
-
             log.debug("report Output Directory is " + getReportOutputDirectory())
             log.debug("Output Directory is " + outputDirectory)
             log.debug("Classes Directory is " + classFilesDirectory)
 
-            log.debug("resourceManager outputDirectory is " + resourceManager.outputDirectory)
-
-
             log.debug("  Plugin Artifacts to be added ->" + pluginArtifacts.toString())
 
-            if (!findbugsXmlOutputDirectory.exists()) {
-                if (!findbugsXmlOutputDirectory.mkdirs()) {
-                    fail("Cannot create xml output directory")
-                }
-            }
-
-            File outputFile = new File("${findbugsXmlOutputDirectory}/findbugsXml.xml")
-
-            log.debug("XML outputFile is " + outputFile.getAbsolutePath())
-            log.debug("XML output Directory is " + findbugsXmlOutputDirectory.getAbsolutePath())
-
-            ClassLoader tccl = Thread.currentThread().getContextClassLoader();
-            try {
-                // The SAX parser factory will fail with CCE if the TCCL is out of sync with our class loader
-                // This for Maven 2.2.1 only MFINDBUGS-178
-                Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
-                executeFindbugs(locale, outputFile)
-            } finally {
-                Thread.currentThread().setContextClassLoader(tccl);
-            }
+            generateXDoc( locale )
 
             if (!outputDirectory.exists()) {
                 if (!outputDirectory.mkdirs()) {
-                    fail("Cannot create html output directory")
+                    throw new MojoExecutionException("Cannot create html output directory")
                 }
             }
 
-            if (outputFile.exists()) {
-                log.debug("Generating Findbugs HTML")
 
-                FindbugsReportGenerator generator = new FindbugsReportGenerator(getSink(), getBundle(locale), this.project.getBasedir(), siteTool)
+            if (outputFindbugsFile != null && outputFindbugsFile.exists()) {
 
-                boolean isJxrPluginEnabled = isJxrPluginEnabled()
+                if (skipEmptyReport && bugCount == 0) {
+                    log.info("Skipping Generation Findbugs HTML since there are not any bugs")
+                } else {
+                    log.debug("Generating Findbugs HTML")
 
-                generator.setIsJXRReportEnabled(isJxrPluginEnabled)
+                    FindbugsReportGenerator generator = new FindbugsReportGenerator(getSink(), getBundle(locale), this.project.getBasedir(), siteTool)
 
-                if (isJxrPluginEnabled) {
-                    generator.setCompileSourceRoots(this.compileSourceRoots)
-                    generator.setTestSourceRoots(this.testSourceRoots)
-                    generator.setXrefLocation(this.xrefLocation)
-                    generator.setXrefTestLocation(this.xrefTestLocation)
-                    generator.setIncludeTests(this.includeTests)
-                }
+                    boolean isJxrPluginEnabled = isJxrPluginEnabled()
 
+                    generator.setIsJXRReportEnabled(isJxrPluginEnabled)
 
-                generator.setLog(log)
-
-                generator.threshold = threshold
-
-                generator.effort = effort
-
-                generator.setFindbugsResults(new XmlSlurper().parse(outputFile))
-
-
-                generator.setOutputDirectory(new File(outputDirectory.getAbsolutePath()))
-
-                generator.generateReport()
-
-
-                log.debug("xmlOutput is ${xmlOutput}")
-
-
-                if (xmlOutput) {
-                    log.debug("  Using the xdoc format")
-
-                    if (!xmlOutputDirectory.exists()) {
-                        if (!xmlOutputDirectory.mkdirs()) {
-                            fail("Cannot create xdoc output directory")
-                        }
+                    if (isJxrPluginEnabled) {
+                        generator.setCompileSourceRoots(this.compileSourceRoots)
+                        generator.setTestSourceRoots(this.testSourceRoots)
+                        generator.setXrefLocation(this.xrefLocation)
+                        generator.setXrefTestLocation(this.xrefTestLocation)
+                        generator.setIncludeTests(this.includeTests)
                     }
 
-                    XDocsReporter xDocsReporter = new XDocsReporter(getBundle(locale), log, threshold, effort, outputEncoding)
-                    xDocsReporter.setOutputWriter(new OutputStreamWriter(new FileOutputStream(new File("${xmlOutputDirectory}/findbugs.xml")), outputEncoding))
-                    xDocsReporter.setFindbugsResults(new XmlSlurper().parse(outputFile))
-                    xDocsReporter.setCompileSourceRoots(this.compileSourceRoots)
-                    xDocsReporter.setTestSourceRoots(this.testSourceRoots)
 
-                    xDocsReporter.generateReport()
+                    generator.setLog(log)
+
+                    generator.threshold = threshold
+
+                    generator.effort = effort
+
+                    generator.setFindbugsResults(new XmlSlurper().parse(outputFindbugsFile))
+
+
+                    generator.setOutputDirectory(new File(outputDirectory.getAbsolutePath()))
+
+                    generator.generateReport()
+
+
+                    log.debug("xmlOutput is ${xmlOutput}")
+
                 }
             }
         } else {
             log.info("cannot generate report");
+        }
+    }
+
+    public void execute() {
+        log.info("****** FindBugsMojo execute *******")
+
+        Locale locale = new Locale("pt", "BR")
+        if (!skip) {
+            executeCheck(locale)
+            if (canGenerateReport()) {
+                generateXDoc( locale )
+            }
+        }
+    }
+
+    private void executeCheck(Locale locale) {
+        log.info("****** FindBugsMojo executeCheck *******")
+
+        log.debug("Generating Findbugs XML")
+
+        if (!findbugsXmlOutputDirectory.exists()) {
+            if (!findbugsXmlOutputDirectory.mkdirs()) {
+                throw new MojoExecutionException("Cannot create xml output directory")
+            }
+        }
+    }
+
+    private void generateXDoc(Locale locale) {
+        log.info("****** FindBugsMojo generateXDoc *******")
+
+        if (outputFindbugsFile != null && outputFindbugsFile.exists()) {
+
+            log.info("xmlOutput is ${xmlOutput}")
+
+
+            if (xmlOutput) {
+                log.info("  Using the xdoc format")
+
+                if (!xmlOutputDirectory.exists()) {
+                    if (!xmlOutputDirectory.mkdirs()) {
+                        throw new MojoExecutionException("Cannot create xdoc output directory")
+                    }
+                }
+
+                XDocsReporter xDocsReporter = new XDocsReporter(getBundle(locale), log, threshold, effort, outputEncoding)
+                xDocsReporter.setOutputWriter(new OutputStreamWriter(new FileOutputStream(new File("${xmlOutputDirectory}/findbugs.xml")), outputEncoding))
+                xDocsReporter.setFindbugsResults(new XmlSlurper().parse(outputFindbugsFile))
+                xDocsReporter.setCompileSourceRoots(this.compileSourceRoots)
+                xDocsReporter.setTestSourceRoots(this.testSourceRoots)
+
+                xDocsReporter.generateReport()
+            }
         }
     }
 
@@ -754,18 +798,6 @@ class FindBugsMojo extends AbstractMavenReport {
         log.debug("Mojo Locale is " + this.bundle.getLocale().getLanguage())
 
         return bundle
-    }
-
-    public void execute() {
-        log.debug("****** FindBugsMojo execute *******")
-        File outputFile = new File("${findbugsXmlOutputDirectory}/findbugsXml.xml")
-
-        log.debug("XML outputFile is " + outputFile.getAbsolutePath())
-
-        log.debug("Generating Findbugs XML")
-        if (canGenerateReport()) {
-            executeFindbugs(new Locale("pt", "BR"), outputFile)
-        }
     }
 
     /**
@@ -932,9 +964,9 @@ class FindBugsMojo extends AbstractMavenReport {
      *            the locale the report should be generated for
      *
      */
-    public void executeFindbugs(Locale locale, File outputFile) {
+    private void executeFindbugs(File outputFile) {
 
-        log.debug("****** FindBugsMojo executeFindbugs *******")
+        log.info("****** FindBugsMojo executeFindbugs *******")
         long startTime, duration
 
         File tempFile = new File("${project.build.directory}/findbugsTemp.xml")
@@ -955,7 +987,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
         resourceManager.setOutputDirectory(new File(project.getBuild().getDirectory()))
 
-        log.debug("resourceManager outputDirectory is " + resourceManager.outputDirectory)
+        log.debug("resourceManager outputDirectory is ${resourceManager.outputDirectory}")
 
 
         log.debug("  Plugin Artifacts to be added -> ${pluginArtifacts.toString()}")
@@ -1083,30 +1115,6 @@ class FindBugsMojo extends AbstractMavenReport {
 
         }
 
-        if (outputFile.exists()) {
-
-            log.debug("xmlOutput is ${xmlOutput}")
-
-
-            if (xmlOutput) {
-                log.debug("  Using the xdoc format")
-
-                if (!xmlOutputDirectory.exists()) {
-                    if (!xmlOutputDirectory.mkdirs()) {
-                        fail("Cannot create xdoc output directory")
-                    }
-                }
-
-                XDocsReporter xDocsReporter = new XDocsReporter(getBundle(locale), log, threshold, effort, outputEncoding)
-                xDocsReporter.setOutputWriter(new OutputStreamWriter(new FileOutputStream(new File("${xmlOutputDirectory}/findbugs.xml")), outputEncoding))
-                xDocsReporter.setFindbugsResults(new XmlSlurper().parse(outputFile))
-                xDocsReporter.setCompileSourceRoots(this.compileSourceRoots)
-                xDocsReporter.setTestSourceRoots(this.testSourceRoots)
-
-                xDocsReporter.generateReport()
-            }
-        }
-
     }
 
     /**
@@ -1201,7 +1209,6 @@ class FindBugsMojo extends AbstractMavenReport {
         log.debug("location is " + location)
         log.debug("artifact is " + artifact)
 
-        //		File resourceFile = resourceManager.getResourceAsFile(resource, artifact)
         File resourceFile = getResourceAsFile(resource, artifact, findbugsXmlOutputDirectory)
 
         log.debug("location of resourceFile file is " + resourceFile.absolutePath)
@@ -1235,7 +1242,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
                     urlPlugins += getResourceFile(pluginFileName.toString()).absolutePath + ((pluginJar == pluginJars[pluginJars.size() - 1]) ? "" : File.pathSeparator)
                 } catch (MalformedURLException exception) {
-                    fail("The addin plugin has an invalid URL", exception)
+                    throw new MojoExecutionException("The addin plugin has an invalid URL")
                 }
             }
         }
@@ -1310,24 +1317,24 @@ class FindBugsMojo extends AbstractMavenReport {
 
         InputStream is = new BufferedInputStream(resourceManager.getResourceAsInputStream(name))
 
-        File outputFile
+        File outputResourceFile
 
         if (outputPath == null) {
-            outputFile = FileUtils.createTempFile("plexus-resources", "tmp", null)
+            outputResourceFile = FileUtils.createTempFile("plexus-resources", "tmp", null)
         } else {
             if (outputDirectory != null) {
-                outputFile = new File(outputDirectory, outputPath)
+                outputResourceFile = new File(outputDirectory, outputPath)
             } else {
-                outputFile = new File(outputPath)
+                outputResourceFile = new File(outputPath)
             }
         }
 
         try {
-            if (!outputFile.getParentFile().exists()) {
-                outputFile.getParentFile().mkdirs()
+            if (!outputResourceFile.getParentFile().exists()) {
+                outputResourceFile.getParentFile().mkdirs()
             }
 
-            def os = new FileOutputStream(outputFile)
+            def os = new FileOutputStream(outputResourceFile)
 
 
             os << is
@@ -1339,7 +1346,7 @@ class FindBugsMojo extends AbstractMavenReport {
             is.close()
         }
 
-        return outputFile
+        return outputResourceFile
     }
 
 }
