@@ -514,7 +514,7 @@ class FindBugsMojo extends AbstractMavenReport {
     boolean canGenerateReport() {
 
         def canGenerate = false
-        log.info("****** FindBugsMojo canGenerateReport *******")
+        log.debug("****** FindBugsMojo canGenerateReport *******")
 
         if (!skip && classFilesDirectory.exists()) {
 
@@ -554,7 +554,7 @@ class FindBugsMojo extends AbstractMavenReport {
             }
         }
 
-        log.info("canGenerate is ${canGenerate}")
+        log.debug("canGenerate is ${canGenerate}")
 
         return canGenerate
     }
@@ -608,12 +608,12 @@ class FindBugsMojo extends AbstractMavenReport {
      */
     void executeReport(Locale locale) {
 
-        log.info("****** FindBugsMojo executeReport *******")
+        log.debug("****** FindBugsMojo executeReport *******")
         executeCheck(locale)
 
         if (!skip && canGenerateReport()) {
 
-            log.info("Locale is ${locale.getLanguage()}")
+            log.debug("Locale is ${locale.getLanguage()}")
 
             log.debug("****** FindBugsMojo executeReport *******")
 
@@ -678,7 +678,7 @@ class FindBugsMojo extends AbstractMavenReport {
     }
 
     public void execute() {
-        log.info("****** FindBugsMojo execute *******")
+        log.debug("****** FindBugsMojo execute *******")
 
         Locale locale = new Locale("pt", "BR")
         if (!skip) {
@@ -690,7 +690,7 @@ class FindBugsMojo extends AbstractMavenReport {
     }
 
     private void executeCheck(Locale locale) {
-        log.info("****** FindBugsMojo executeCheck *******")
+        log.debug("****** FindBugsMojo executeCheck *******")
 
         log.debug("Generating Findbugs XML")
 
@@ -702,15 +702,15 @@ class FindBugsMojo extends AbstractMavenReport {
     }
 
     private void generateXDoc(Locale locale) {
-        log.info("****** FindBugsMojo generateXDoc *******")
+        log.debug("****** FindBugsMojo generateXDoc *******")
 
         if (outputFindbugsFile != null && outputFindbugsFile.exists()) {
 
-            log.info("xmlOutput is ${xmlOutput}")
+            log.debug("xmlOutput is ${xmlOutput}")
 
 
             if (xmlOutput) {
-                log.info("  Using the xdoc format")
+                log.debug("  Using the xdoc format")
 
                 if (!xmlOutputDirectory.exists()) {
                     if (!xmlOutputDirectory.mkdirs()) {
@@ -752,7 +752,7 @@ class FindBugsMojo extends AbstractMavenReport {
     }
 
     /**
-     * Return the Sire Renderer.
+     * Return the Site Renderer.
      *
      */
     protected Renderer getSiteRenderer() {
@@ -966,7 +966,7 @@ class FindBugsMojo extends AbstractMavenReport {
      */
     private void executeFindbugs(File outputFile) {
 
-        log.info("****** FindBugsMojo executeFindbugs *******")
+        log.debug("****** FindBugsMojo executeFindbugs *******")
         long startTime, duration
 
         File tempFile = new File("${project.build.directory}/findbugsTemp.xml")
