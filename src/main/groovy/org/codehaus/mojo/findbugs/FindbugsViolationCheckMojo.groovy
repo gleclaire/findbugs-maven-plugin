@@ -24,6 +24,7 @@ import org.apache.maven.artifact.resolver.ArtifactResolver
 import org.apache.maven.doxia.siterenderer.Renderer;
 import org.apache.maven.doxia.tools.SiteTool
 import org.apache.maven.plugin.AbstractMojo
+import org.apache.maven.plugin.MojoExecutionException
 import org.apache.maven.plugins.annotations.Component
 import org.apache.maven.plugins.annotations.Execute
 import org.apache.maven.plugins.annotations.LifecyclePhase
@@ -486,7 +487,7 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
 
 			if (!findbugsXmlOutputDirectory.exists()) {
 				if ( !findbugsXmlOutputDirectory.mkdirs() ) {
-					fail("Cannot create xml output directory")
+                    throw new MojoExecutionException("Cannot create xml output directory")
 				}
 			}
 
@@ -505,26 +506,30 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
 				errorCount = allNodes.findAll {it.name() == 'Error'}.size()
 				log.info("Error size is ${errorCount}")
 
-        def xml = new XmlParser().parse(outputFile)
-        def bugs = xml.BugInstance
-        def total = bugs.size()
-        
-        if (total <= 0) {
-          log.info('No errors/warnings found')
-          return
-        }
-        
-        log.info('Total bugs: ' + total)
-        for (i in 0..total-1) {
-          def bug = bugs[i]
-          log.info( bug.LongMessage.text() + FindBugsInfo.BLANK + bug.Class.'@classname' + FindBugsInfo.BLANK + bug.Class.SourceLine.Message.text() )
-        }
+                def xml = new XmlParser().parse(outputFile)
+                def bugs = xml.BugInstance
+                def total = bugs.size()
+
+                if (total <= 0) {
+                    log.info('No errors/warnings found')
+                    return
+                }
+
+                log.info('Total bugs: ' + total)
+                for (i in 0..total-1) {
+                    def bug = bugs[i]
+//                    log.info( bug.LongMessage.text() + FindBugsInfo.BLANK + bug.Class.'@classname' + FindBugsInfo.BLANK + bug.Class.SourceLine.Message.text() )
+                    log.info( bug.LongMessage.text() + FindBugsInfo.BLANK + bug.SourceLine.'@classname' + FindBugsInfo.BLANK + bug.SourceLine.Message.text() )
+                }
 
 
-				if ( (bugCount || errorCount) && failOnError ) {
-					fail("failed with ${bugCount} bugs and ${errorCount} errors ")
-				}
-			}
+                log.info('\n\n\nTo see bug detail using the Findbugs GUI, use the following command "mvn findbugs:gui"\n\n\n')
+
+
+                if ( (bugCount || errorCount) && failOnError ) {
+                    throw new MojoExecutionException("failed with ${bugCount} bugs and ${errorCount} errors ")
+                }
+            }
 		}
 		else {
 			log.debug("Nothing for FindBugs to do here.")
