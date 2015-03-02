@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+<html>
+  <head>
+    <title>Maven FindBugs Plugin - FindBugs Bug Detector Report</title>
+    <style type="text/css" media="all">
+      @import url("../css/maven-base.css");
+      @import url("../css/maven-theme.css");
+      @import url("../css/site.css");
+    </style>
+    <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="../" id="bannerLeft">
+    
+                                    <img src="http://mojo.codehaus.org/images/mojo_logo.png" alt="" />
+    
+            </a>
+                        <a href="http://www.codehaus.org" id="bannerRight">
+    
+                                    <img src="http://mojo.codehaus.org/images/codehaus-small.png" alt="" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+            <div class="xleft">
+        Last Published: 11/04/2006
+                      </div>
+            <div class="xright">      <a href="../">Mojo</a>
+          |
+          <a href="http://maven.apache.org/">Maven</a>
+          
+  
+
+  
+    
+  
+  
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+                   <h5>Overview</h5>
+        <ul>
+              
+    <li class="none">
+              <a href="../index.html">Introduction</a>
+        </li>
+              
+    <li class="none">
+              <a href="../plugin-info.html">Goals</a>
+        </li>
+              
+    <li class="none">
+              <a href="../usage.html">Usage</a>
+        </li>
+              
+    <li class="none">
+              <a href="../faq.html">FAQ</a>
+        </li>
+            <a href="http://maven.apache.org/" title="Built by Maven" id="poweredBy">
+            <img alt="Built by Maven" src="../images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+  
+  
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>FindBugs Bug Detector Report</h2><p>The following document contains the results of <a href="http://findbugs.sourceforge.net">FindBugs Report</a></p><p>FindBugs Version is <i>1.1.1</i></p><p>Threshold is <i>Low</i></p><p>Effort is <i>Default</i></p></div><h2>Summary</h2><table class="bodyTable"><tr class="a"><th>Classes</th><th>Bugs</th><th>Errors</th><th>Missing Classes</th></tr><tr class="b"><td>156</td><td>26</td><td>19</td><td>18</td></tr></table></p></div><h2>Files</h2><table class="bodyTable"><tr class="a"><th>Class</th><th>Bugs</th></tr><tr class="b"><td><a href="#org.codehaus.mojo.findbugs.EffortParameter">org.codehaus.mojo.findbugs.EffortParameter</a></td><td>1</td></tr><tr class="a"><td><a href="#org.codehaus.mojo.findbugs.FindBugsMojo">org.codehaus.mojo.findbugs.FindBugsMojo</a></td><td>25</td></tr></table><a name="org.codehaus.mojo.findbugs.EffortParameter"></a><div class="section"><h3>org.codehaus.mojo.findbugs.EffortParameter</h3><table class="bodyTable"><tr class="b"><th>Bug</th><th>Category</th><th>Details</th><th>Line</th></tr><tr class="a"><td>org.codehaus.mojo.findbugs.EffortParameter.getValue() may expose internal representation by returning org.codehaus.mojo.findbugs.EffortParameter.value</td><td>MALICIOUS_CODE</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td><td><a href=xref/org/codehaus/mojo/findbugs/EffortParameter.html#105>105</a></td></tr></table></div><a name="org.codehaus.mojo.findbugs.FindBugsMojo"></a><div class="section"><h3>org.codehaus.mojo.findbugs.FindBugsMojo</h3><table class="bodyTable"><tr class="b"><th>Bug</th><th>Category</th><th>Details</th><th>Line</th></tr><tr class="a"><td>Read of unwritten field classFilesDirectory in org.codehaus.mojo.findbugs.FindBugsMojo.canGenerateReport()</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#NP_UNWRITTEN_FIELD">NP_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#305>305</a></td></tr><tr class="b"><td>Read of unwritten field artifactResolver in org.codehaus.mojo.findbugs.FindBugsMojo.getCorePluginPath(java.util.Locale)</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#NP_UNWRITTEN_FIELD">NP_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#697>697</a></td></tr><tr class="a"><td>Read of unwritten field pluginArtifacts in org.codehaus.mojo.findbugs.FindBugsMojo.getCorePluginPath(java.util.Locale)</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#NP_UNWRITTEN_FIELD">NP_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#692>692</a></td></tr><tr class="b"><td>Read of unwritten field reportFormat in org.codehaus.mojo.findbugs.FindBugsMojo.initialiseFindBugs(java.util.Locale,java.util.List)</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#NP_UNWRITTEN_FIELD">NP_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#889>889</a></td></tr><tr class="a"><td>Read of unwritten field debug in org.codehaus.mojo.findbugs.FindBugsMojo.setFindBugsDebug(edu.umd.cs.findbugs.FindBugs)</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#NP_UNWRITTEN_FIELD">NP_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#987>987</a></td></tr><tr class="b"><td>Read of unwritten field debug in org.codehaus.mojo.findbugs.FindBugsMojo.setFindBugsDebug(edu.umd.cs.findbugs.FindBugs)</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#NP_UNWRITTEN_FIELD">NP_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#988>988</a></td></tr><tr class="a"><td>Read of unwritten field debug in org.codehaus.mojo.findbugs.FindBugsMojo.setFindBugsDebug(edu.umd.cs.findbugs.FindBugs)</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#NP_UNWRITTEN_FIELD">NP_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#990>990</a></td></tr><tr class="b"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.artifactResolver</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="a"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.classFilesDirectory</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="b"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.debug</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="a"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.effort</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="b"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.excludeFilterFile</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="a"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.includeFilterFile</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="b"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.localRepository</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="a"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.omitVisitors</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="b"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.outputDirectory</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="a"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.pluginArtifacts</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="b"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.pluginList</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="a"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.project</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="b"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.remoteArtifactRepositories</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="a"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.reportFormat</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="b"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.siteRenderer</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="a"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.tempOutputDirectory</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="b"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.threshold</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr><tr class="a"><td>Unwritten field: org.codehaus.mojo.findbugs.FindBugsMojo.visitors</td><td>CORRECTNESS</td><td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td><td><a href=xref/org/codehaus/mojo/findbugs/FindBugsMojo.html#-1>Not available</a></td></tr></table></div></div>
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2005-2006
+    
+          CodeHaus
+          
+  
+
+  
+    
+  
+  
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>
