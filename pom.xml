@@ -23,8 +23,7 @@
 
   <name>FindBugs Maven Plugin</name>
   <description>This Plug-In generates reports based on the FindBugs Library</description>
-  <url>http://mojo.codehaus.org/findbugs-maven-plugin</url>
-  <!--<url>http://gleclaire.github.io/findbugs-maven-plugin/</url>-->
+  <url>http://gleclaire.github.io/findbugs-maven-plugin/</url>
   <inceptionYear>2005</inceptionYear>
   <licenses>
     <license>
@@ -111,12 +110,8 @@
     <url>https://github.com/gleclaire/findbugs-maven-plugin</url>
   </scm>
   <issueManagement>
-    <system>JIRA</system>
-    <url>http://jira.codehaus.org/browse/MFINDBUGS</url>
-<!--
     <system>GitHub Issues</system>
     <url>http://github.com/gleclaire/findbugs-maven-plugin/issues</url>
--->
   </issueManagement>
   <distributionManagement>
     <site>
@@ -134,7 +129,6 @@
     <projectVersion>${project.version}</projectVersion>
     <compilerPluginVersion>2.3.2</compilerPluginVersion>
     <pluginPluginVersion>3.4</pluginPluginVersion>
-    <jxrPluginVersion>2.5</jxrPluginVersion>
     <findbugsVersion>3.0.0</findbugsVersion>
     <fb-contribVersion>4.8.2</fb-contribVersion>
     <findbugsTestDebug>false</findbugsTestDebug>
@@ -287,25 +281,7 @@
   </dependencies>
 
   <build>
-<!--
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-scm</artifactId>
-        <version>2.8</version>
-      </extension>
-      <extension>
-        <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-manager-plexus</artifactId>
-        <version>1.9.2</version>
-      </extension>
-      <extension>
-        <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-provider-gitexe</artifactId>
-        <version>1.9.2</version>
-      </extension>
-    </extensions>
--->
+    <defaultGoal>install</defaultGoal>
 
     <extensions>
       <extension>
@@ -325,8 +301,6 @@
         <version>0.3.1</version>
       </extension>
     </extensions>
-
-    <defaultGoal>install</defaultGoal>
 
     <pluginManagement>
       <plugins>
@@ -442,6 +416,13 @@
   <reporting>
     <plugins>
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.7</version>
@@ -488,11 +469,6 @@
         <groupId>${project.groupId}</groupId>
         <artifactId>${project.artifactId}</artifactId>
         <version>${project.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jxr-plugin</artifactId>
-        <version>${jxrPluginVersion}</version>
       </plugin>
       <plugin>
         <artifactId>maven-project-info-reports-plugin</artifactId>
