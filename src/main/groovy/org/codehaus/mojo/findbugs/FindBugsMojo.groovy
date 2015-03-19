@@ -536,7 +536,7 @@ class FindBugsMojo extends AbstractMavenReport {
             log.debug("canGenerate Test Src is ${canGenerate}")
         }
 
-        if ( canGenerate && outputFindbugsFile == null ) {
+        if (canGenerate && outputFindbugsFile == null) {
             outputFindbugsFile = new File("${findbugsXmlOutputDirectory}/findbugsXml.xml")
 
             ClassLoader tccl = Thread.currentThread().getContextClassLoader();
@@ -623,7 +623,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
             log.debug("  Plugin Artifacts to be added ->" + pluginArtifacts.toString())
 
-            generateXDoc( locale )
+            generateXDoc(locale)
 
             if (!outputDirectory.exists()) {
                 if (!outputDirectory.mkdirs()) {
@@ -684,7 +684,7 @@ class FindBugsMojo extends AbstractMavenReport {
         if (!skip) {
             executeCheck(locale)
             if (canGenerateReport()) {
-                generateXDoc( locale )
+                generateXDoc(locale)
             }
         }
     }

@@ -13,7 +13,7 @@ Skip tests
 mvn -DskipTests=true clean install
 
 Run tests on findbugs test source code that is local instead of from FindBugs SVN repository
-mvn -o -DtestSrc=local -DlocalTestSrc=/opt/findBugs/findbugsTestCases/src -Prun-its clean install
+mvn -DtestSrc=local -DlocalTestSrc=/opt/findBugs/findbugsTestCases/src -Prun-its clean install
  
 
 Run selected tests

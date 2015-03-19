@@ -122,7 +122,7 @@
     <projectVersion>${project.version}</projectVersion>
     <compilerPluginVersion>2.3.2</compilerPluginVersion>
     <pluginPluginVersion>3.4</pluginPluginVersion>
-    <findbugsVersion>3.0.0</findbugsVersion>
+    <findbugsVersion>3.0.1</findbugsVersion>
     <jxrPluginVersion>2.5</jxrPluginVersion>
     <fb-contribVersion>4.8.2</fb-contribVersion>
     <findbugsTestDebug>false</findbugsTestDebug>
