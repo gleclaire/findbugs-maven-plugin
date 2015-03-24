@@ -45,8 +45,8 @@
     </fluidoSkin>
   </custom>
 
-  <publishDate format="yyyy-MM-dd" position="right"/>
-  <version position="right"/>
+  <publishDate format="yyyy-MM-dd" position="left"/>
+  <version position="left"/>
 
   <body>
     <links>
