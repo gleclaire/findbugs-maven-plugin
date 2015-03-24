@@ -12,6 +12,12 @@
     <href>/index.html</href>
   </bannerLeft>
 -->
+  <bannerLeft>
+    <name>FindBugs Maven Plugin</name>
+  </bannerLeft>
+  <bannerRight>
+    <name></name>
+  </bannerRight>
 
   <skin>
     <groupId>org.apache.maven.skins</groupId>
@@ -23,6 +29,7 @@
     <fluidoSkin>
       <topBarEnabled>false</topBarEnabled>
       <sideBarEnabled>true</sideBarEnabled>
+      <breadcrumbDivider>»</breadcrumbDivider>
       <gitHub>
         <projectId>gleclaire/findbugs-maven-plugin</projectId>
         <ribbonOrientation>right</ribbonOrientation>
@@ -38,7 +45,17 @@
     </fluidoSkin>
   </custom>
 
+  <publishDate format="yyyy-MM-dd" position="right"/>
+  <version position="right"/>
+
   <body>
+    <links>
+      <item name="FindBugs" href="http://findbugs.sourceforge.net/"/>
+    </links>
+    <breadcrumbs>
+      <item name="FindBugs Maven Plugin" href="index.html"/>
+    </breadcrumbs>
+
     <menu name="Overview">
       <item name="Introduction" href="index.html"/>
       <item name="Goals" href="plugin-info.html"/>
