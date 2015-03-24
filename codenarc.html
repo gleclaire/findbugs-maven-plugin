@@ -56,7 +56,7 @@
                   <li id="publishDate">Last Published: 2015-03-24
                       <span class="divider">|</span>
                    </li>
-                  <li id="projectVersion">Version: 3.0.1-SNAPSHOT
+                  <li id="projectVersion">Version: 3.0.1
                           <span class="divider">|</span>
                       </li>
                                       <li class="">
@@ -296,18 +296,20 @@
             <div class="section">
 <h2><a name="CodeNarc_Report"></a>CodeNarc Report</h2>
 <p>The following document contains the results of <a class="externalLink" href="http://codenarc.sourceforge.net">CodeNarc Report</a></p>
-<p>CodeNarc Version: <i>0.17</i></p>
-<p>Report Time: <i>Mar 24, 2015 2:59:26 PM</i></p></div>
+<p>CodeNarc Version: <i>0.22</i></p>
+<p>Report Time: <i>Mar 24, 2015 4:31:29 PM</i></p></div>
 <div class="section">
 <h2><a name="Summary"></a>Summary</h2>
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Total Files</th>
+<th>Bug Files</th>
 <th>Bugs</th>
 <th>Priority1 Bugs</th>
 <th>Priority2 Bugs</th>
 <th>Priority3 Bugs</th></tr>
 <tr class="b">
+<td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
@@ -319,6 +321,7 @@
 <tr class="a">
 <th>Package</th>
 <th>Total Files</th>
+<th>Bug Files</th>
 <th>Bugs</th>
 <th>Priority1 Bugs</th>
 <th>Priority2 Bugs</th>
@@ -418,112 +421,127 @@
 <tr class="a"><a name="EmptyCatchBlock"></a>
 <td>EmptyCatchBlock</td>
 <td>In most cases, exceptions should not be caught and ignored (swallowed).</td></tr>
-<tr class="b"><a name="EmptyElseBlock"></a>
+<tr class="b"><a name="EmptyClass"></a>
+<td>EmptyClass</td>
+<td>Reports classes without methods, fields or properties. Why would you need a class like this?</td></tr>
+<tr class="a"><a name="EmptyElseBlock"></a>
 <td>EmptyElseBlock</td>
 <td>Empty else blocks are confusing and serve no purpose.</td></tr>
-<tr class="a"><a name="EmptyFinallyBlock"></a>
+<tr class="b"><a name="EmptyFinallyBlock"></a>
 <td>EmptyFinallyBlock</td>
 <td>Empty finally blocks are confusing and serve no purpose.</td></tr>
-<tr class="b"><a name="EmptyForStatement"></a>
+<tr class="a"><a name="EmptyForStatement"></a>
 <td>EmptyForStatement</td>
 <td>Empty for statements are confusing and serve no purpose.</td></tr>
-<tr class="a"><a name="EmptyIfStatement"></a>
+<tr class="b"><a name="EmptyIfStatement"></a>
 <td>EmptyIfStatement</td>
 <td>Empty if statements are confusing and serve no purpose.</td></tr>
-<tr class="b"><a name="EmptyInstanceInitializer"></a>
+<tr class="a"><a name="EmptyInstanceInitializer"></a>
 <td>EmptyInstanceInitializer</td>
 <td>An empty class instance initializer was found. It is safe to remove it.</td></tr>
-<tr class="a"><a name="EmptyMethod"></a>
+<tr class="b"><a name="EmptyMethod"></a>
 <td>EmptyMethod</td>
 <td>A method was found without an implementation. If the method is overriding or implementing a parent method, then mark it with the @Override annotation.</td></tr>
-<tr class="b"><a name="EmptyStaticInitializer"></a>
+<tr class="a"><a name="EmptyStaticInitializer"></a>
 <td>EmptyStaticInitializer</td>
 <td>An empty static initializer was found. It is safe to remove it.</td></tr>
-<tr class="a"><a name="EmptySwitchStatement"></a>
+<tr class="b"><a name="EmptySwitchStatement"></a>
 <td>EmptySwitchStatement</td>
 <td>Empty switch statements are confusing and serve no purpose.</td></tr>
-<tr class="b"><a name="EmptySynchronizedStatement"></a>
+<tr class="a"><a name="EmptySynchronizedStatement"></a>
 <td>EmptySynchronizedStatement</td>
 <td>Empty synchronized statements are confusing and serve no purpose.</td></tr>
-<tr class="a"><a name="EmptyTryBlock"></a>
+<tr class="b"><a name="EmptyTryBlock"></a>
 <td>EmptyTryBlock</td>
 <td>Empty try blocks are confusing and serve no purpose.</td></tr>
-<tr class="b"><a name="EmptyWhileStatement"></a>
+<tr class="a"><a name="EmptyWhileStatement"></a>
 <td>EmptyWhileStatement</td>
 <td>Empty while statements are confusing and serve no purpose.</td></tr>
-<tr class="a"><a name="EqualsAndHashCode"></a>
+<tr class="b"><a name="EqualsAndHashCode"></a>
 <td>EqualsAndHashCode</td>
 <td>If either the equals(Object) or the hashCode() methods are overridden within a class, then both must be overridden.</td></tr>
-<tr class="b"><a name="EqualsOverloaded"></a>
+<tr class="a"><a name="EqualsOverloaded"></a>
 <td>EqualsOverloaded</td>
 <td>The class has an equals method, but the parameter of the method is not of type Object. It is not overriding equals but instead overloading it.</td></tr>
-<tr class="a"><a name="ExceptionExtendsError"></a>
+<tr class="b"><a name="ExceptionExtendsError"></a>
 <td>ExceptionExtendsError</td>
 <td>Errors are system exceptions. Do not extend them.</td></tr>
-<tr class="b"><a name="ExplicitGarbageCollection"></a>
+<tr class="a"><a name="ExceptionExtendsThrowable"></a>
+<td>ExceptionExtendsThrowable</td>
+<td>Checks for classes that extend Throwable. Custom exception classes should subclass Exception or one of its descendants.</td></tr>
+<tr class="b"><a name="ExceptionNotThrown"></a>
+<td>ExceptionNotThrown</td>
+<td>Checks for an exception constructor call without a throw as the last statement within a catch block.</td></tr>
+<tr class="a"><a name="ExplicitGarbageCollection"></a>
 <td>ExplicitGarbageCollection</td>
 <td>Calls to System.gc(), Runtime.getRuntime().gc(), and System.runFinalization() are not advised. Code should have the same behavior whether the garbage collection is disabled using the option -Xdisableexplicitgc or not. Moreover, &quot;modern&quot; jvms do a very good job handling garbage collections. If memory usage issues unrelated to memory leaks develop within an application, it should be dealt with JVM options rather than within the code itself.</td></tr>
-<tr class="a"><a name="ForLoopShouldBeWhileLoop"></a>
+<tr class="b"><a name="ForLoopShouldBeWhileLoop"></a>
 <td>ForLoopShouldBeWhileLoop</td>
 <td>A for loop without an init and update statement can be simplified to a while loop.</td></tr>
-<tr class="b"><a name="HardCodedWindowsFileSeparator"></a>
+<tr class="a"><a name="HardCodedWindowsFileSeparator"></a>
 <td>HardCodedWindowsFileSeparator</td>
 <td>This rule finds usages of a Windows file separator within the constructor call of a File object. It is better to use the Unix file separator or use the File.separator constant.</td></tr>
-<tr class="a"><a name="HardCodedWindowsRootDirectory"></a>
+<tr class="b"><a name="HardCodedWindowsRootDirectory"></a>
 <td>HardCodedWindowsRootDirectory</td>
 <td>This rule find cases where a File object is constructed with a windows-based path. This is not portable, and using the File.listRoots() method is a better alternative.</td></tr>
-<tr class="b"><a name="ImportFromSamePackage"></a>
+<tr class="a"><a name="ImportFromSamePackage"></a>
 <td>ImportFromSamePackage</td>
 <td>An import of a class that is within the same package is unnecessary.</td></tr>
-<tr class="a"><a name="ImportFromSunPackages"></a>
+<tr class="b"><a name="ImportFromSunPackages"></a>
 <td>ImportFromSunPackages</td>
 <td>Avoid importing anything from the 'sun.*' packages. These packages are not portable and are likely to change.</td></tr>
-<tr class="b"><a name="IntegerGetInteger"></a>
+<tr class="a"><a name="IntegerGetInteger"></a>
 <td>IntegerGetInteger</td>
 <td>This rule catches usages of java.lang.Integer.getInteger(String, ...) which reads an Integer from the System properties. It is often mistakenly used to attempt to read user input or parse a String into an Integer. It is a poor piece of API to use; replace it with System.properties['prop'].</td></tr>
-<tr class="a"><a name="MisorderedStaticImports"></a>
+<tr class="b"><a name="MisorderedStaticImports"></a>
 <td>MisorderedStaticImports</td>
 <td>Static imports should never be declared after nonstatic imports.</td></tr>
-<tr class="b"><a name="MissingNewInThrowStatement"></a>
+<tr class="a"><a name="MissingNewInThrowStatement"></a>
 <td>MissingNewInThrowStatement</td>
 <td>A common Groovy mistake when throwing exceptions is to forget the new keyword. For instance, &quot;throw RuntimeException()&quot; instead of &quot;throw new RuntimeException()&quot;. If the error path is not unit tested then the production system will throw a Method Missing exception and hide the root cause. This rule finds constructs like &quot;throw RuntimeException()&quot; that look like a new keyword was meant to be used but forgotten.</td></tr>
-<tr class="a"><a name="RandomDoubleCoercedToZero"></a>
+<tr class="b"><a name="MultipleUnaryOperators"></a>
+<td>MultipleUnaryOperators</td>
+<td>Checks for multiple consecutive unary operators. These are confusing, and are likely typos and bugs.</td></tr>
+<tr class="a"><a name="NoWildcardImports"></a>
+<td>NoWildcardImports</td>
+<td>Wildcard imports, static or otherwise, should not be used.</td></tr>
+<tr class="b"><a name="RandomDoubleCoercedToZero"></a>
 <td>RandomDoubleCoercedToZero</td>
 <td>The Math.random() method returns a double result greater than or equal to 0.0 and less than 1.0. If you coerce this result into an Integer or int, then it is coerced to zero. Casting the result to int, or assigning it to an int field is probably a bug.</td></tr>
-<tr class="b"><a name="RemoveAllOnSelf"></a>
+<tr class="a"><a name="RemoveAllOnSelf"></a>
 <td>RemoveAllOnSelf</td>
 <td>Don't use removeAll to clear a collection. If you want to remove all elements from a collection c, use c.clear, not c.removeAll(c). Calling c.removeAll(c) to clear a collection is less clear, susceptible to errors from typos, less efficient and for some collections, might throw a ConcurrentModificationException.</td></tr>
-<tr class="a"><a name="ReturnFromFinallyBlock"></a>
+<tr class="b"><a name="ReturnFromFinallyBlock"></a>
 <td>ReturnFromFinallyBlock</td>
 <td>Returning from a finally block is confusing and can hide the original exception.</td></tr>
-<tr class="b"><a name="ReturnNullFromCatchBlock"></a>
+<tr class="a"><a name="ReturnNullFromCatchBlock"></a>
 <td>ReturnNullFromCatchBlock</td>
 <td>Returning null from a catch block often masks errors and requires the client to handle error codes. In some coding styles this is discouraged.</td></tr>
-<tr class="a"><a name="SwallowThreadDeath"></a>
+<tr class="b"><a name="SwallowThreadDeath"></a>
 <td>SwallowThreadDeath</td>
 <td>Checks for code that catches ThreadDeath without re-throwing it.</td></tr>
-<tr class="b"><a name="ThrowError"></a>
+<tr class="a"><a name="ThrowError"></a>
 <td>ThrowError</td>
 <td>Checks for throwing an instance of java.lang.Error.</td></tr>
-<tr class="a"><a name="ThrowException"></a>
+<tr class="b"><a name="ThrowException"></a>
 <td>ThrowException</td>
 <td>Checks for throwing an instance of java.lang.Exception.</td></tr>
-<tr class="b"><a name="ThrowExceptionFromFinallyBlock"></a>
+<tr class="a"><a name="ThrowExceptionFromFinallyBlock"></a>
 <td>ThrowExceptionFromFinallyBlock</td>
 <td>Throwing an exception from a finally block is confusing and can hide the original exception.</td></tr>
-<tr class="a"><a name="ThrowNullPointerException"></a>
+<tr class="b"><a name="ThrowNullPointerException"></a>
 <td>ThrowNullPointerException</td>
 <td>Checks for throwing an instance of java.lang.NullPointerException.</td></tr>
-<tr class="b"><a name="ThrowRuntimeException"></a>
+<tr class="a"><a name="ThrowRuntimeException"></a>
 <td>ThrowRuntimeException</td>
 <td>Checks for throwing an instance of java.lang.RuntimeException.</td></tr>
-<tr class="a"><a name="ThrowThrowable"></a>
+<tr class="b"><a name="ThrowThrowable"></a>
 <td>ThrowThrowable</td>
 <td>Checks for throwing an instance of java.lang.Throwable.</td></tr>
-<tr class="b"><a name="UnnecessaryGroovyImport"></a>
+<tr class="a"><a name="UnnecessaryGroovyImport"></a>
 <td>UnnecessaryGroovyImport</td>
 <td>A Groovy file does not need to include an import for classes from java.lang, java.util, java.io, java.net, groovy.lang and groovy.util, as well as the classes java.math.BigDecimal and java.math.BigInteger.</td></tr>
-<tr class="a"><a name="UnusedImport"></a>
+<tr class="b"><a name="UnusedImport"></a>
 <td>UnusedImport</td>
 <td>Imports for a class that is never referenced within the source file is unnecessary.</td></tr></table></div>
                   </div>
