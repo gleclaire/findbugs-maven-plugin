@@ -26,3 +26,8 @@ mvn -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspe
 
 Run selected tests in debugger
 mvn -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000 -Xnoagent -Djava.compiler=NONE" -Prun-its -Dinvoker.test=build-*,basic-1,check clean install
+
+
+Run gui with a specific version 
+
+mvn org.codehaus.mojo:findbugs-maven-plugin:3.0.2-SNAPSHOT:gui 
