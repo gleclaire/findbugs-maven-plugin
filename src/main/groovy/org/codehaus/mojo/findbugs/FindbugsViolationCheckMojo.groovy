@@ -473,7 +473,7 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
 		Locale locale = Locale.getDefault()
 		List sourceFiles
 
-		log.debug("Excecuting findbugs:check")
+		log.debug("Executing findbugs:check")
 
 		if ( this.classFilesDirectory.exists() && this.classFilesDirectory.isDirectory() ) {
 			sourceFiles = FileUtils.getFiles(classFilesDirectory, FindBugsInfo.JAVA_REGEX_PATTERN, null)
@@ -483,7 +483,7 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
 
 			// this goes
 
-			log.debug("Here goes...............Excecuting findbugs:check")
+			log.debug("Here goes...............Executing findbugs:check")
 
 			if (!findbugsXmlOutputDirectory.exists()) {
 				if ( !findbugsXmlOutputDirectory.mkdirs() ) {
