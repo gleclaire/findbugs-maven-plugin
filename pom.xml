@@ -113,7 +113,7 @@
   </distributionManagement>
 
   <properties>
-    <gmavenVersion>1.4</gmavenVersion>
+    <gmavenVersion>1.5</gmavenVersion>
     <gmavenProviderVersion>1.8</gmavenProviderVersion>
     <doxiaVersion>1.4</doxiaVersion>
     <sitePluginVersion>3.4</sitePluginVersion>
@@ -154,7 +154,7 @@
     <dependency>
       <groupId>org.codehaus.gmavenplus</groupId>
       <artifactId>gmavenplus-plugin</artifactId>
-      <version>1.3</version>
+      <version>${gmavenVersion}</version>
     </dependency>
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
@@ -341,7 +341,7 @@
       <plugin>
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
-        <version>1.5</version>
+        <version>${gmavenVersion}</version>
         <configuration>
           <groovydocOutputDirectory>${project.reporting.outputDirectory}/apidocs</groovydocOutputDirectory>
         </configuration>
