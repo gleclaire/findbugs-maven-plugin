@@ -115,6 +115,7 @@
   <properties>
     <gmavenVersion>1.5</gmavenVersion>
     <groovyVersion>2.4.3</groovyVersion>
+    <antVersion>1.9.4</antVersion>
     <doxiaVersion>1.4</doxiaVersion>
     <sitePluginVersion>3.4</sitePluginVersion>
     <project.build.java.target>1.7</project.build.java.target>
@@ -155,10 +156,11 @@
 
     <!-- gmaven -->
     <dependency>
-      <groupId>org.codehaus.gmavenplus</groupId>
-      <artifactId>gmavenplus-plugin</artifactId>
-      <version>${gmavenVersion}</version>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>${antVersion}</version>
     </dependency>
+
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
