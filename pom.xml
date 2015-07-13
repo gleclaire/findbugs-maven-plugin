@@ -114,7 +114,7 @@
 
   <properties>
     <gmavenVersion>1.5</gmavenVersion>
-    <gmavenProviderVersion>1.8</gmavenProviderVersion>
+    <groovyVersion>2.4.3</groovyVersion>
     <doxiaVersion>1.4</doxiaVersion>
     <sitePluginVersion>3.4</sitePluginVersion>
     <project.build.java.target>1.7</project.build.java.target>
@@ -124,6 +124,9 @@
     <findbugsVersion>3.0.1</findbugsVersion>
     <jxrPluginVersion>2.5</jxrPluginVersion>
     <fb-contribVersion>4.8.2</fb-contribVersion>
+    <junitVersion>4.8.1</junitVersion>
+    <mavenSurefireVersion>2.6</mavenSurefireVersion>
+    <InfoReportsVersion>2.8</InfoReportsVersion>
     <findbugsTestDebug>false</findbugsTestDebug>
     <integrationTestSrc>${project.build.directory}/it-src-findbugs</integrationTestSrc>
     <localTestSrc>${user.dir}/FindBugs/findbugsTestCases/src</localTestSrc>
@@ -159,7 +162,7 @@
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
-      <version>2.4.3</version>
+      <version>${groovyVersion}</version>
     </dependency>
 
     <dependency>
@@ -440,7 +443,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.8</version>
+        <version>${InfoReportsVersion}</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -472,7 +475,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.8</version>
+        <version>${InfoReportsVersion}</version>
         <reportSets>
           <reportSet>
             <reports>
