@@ -1007,13 +1007,14 @@ class FindBugsMojo extends AbstractMavenReport {
 
         def findbugsArgs = getFindbugsArgs(tempFile)
 
-        ant.java(classname: "edu.umd.cs.findbugs.FindBugs2", inputstring: getFindbugsAuxClasspath(), fork: "${fork}", failonerror: "true", clonevm: "false", timeout: "${timeout}", maxmemory: "${maxHeap}m") {
 
             def effectiveEncoding = System.getProperty("file.encoding", "UTF-8")
 
             if (sourceEncoding) {
                 effectiveEncoding = sourceEncoding
             }
+
+        ant.java(classname: "edu.umd.cs.findbugs.FindBugs2", inputstring: getFindbugsAuxClasspath(), fork: "${fork}", failonerror: "true", clonevm: "false", timeout: "${timeout}", maxmemory: "${maxHeap}m") {
 
             log.debug("File Encoding is " + effectiveEncoding)
 
@@ -1102,9 +1103,10 @@ class FindBugsMojo extends AbstractMavenReport {
                 outputFile.getParentFile().mkdirs()
                 outputFile.createNewFile()
 
-                outputFile.write "\n"
+                def writer = outputFile.newWriter(effectiveEncoding)
+                writer.write "\n"
 
-                outputFile << xmlBuilder.bind { mkp.yield path }
+                writer << xmlBuilder.bind { mkp.yield path }
             } else {
                 log.info("No bugs found")
             }
