@@ -1,5 +1,6 @@
-# **Note:**  CodeHaus is being taken off-line so check back for any changes affecting this plugin.
+# **Note:**  CodeHaus has been taken off-line.
 
+Snapshots of the plugin are now located in the Sonatype Repository at https://oss.sonatype.org/content/repositories/snapshots/org/codehaus/mojo/findbugs-maven-plugin/
 
 findbugs-maven-plugin
 =====================
