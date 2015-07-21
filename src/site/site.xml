@@ -15,9 +15,11 @@
   <bannerLeft>
     <name>FindBugs Maven Plugin</name>
   </bannerLeft>
+<!--
   <bannerRight>
     <name></name>
   </bannerRight>
+-->
 
   <skin>
     <groupId>org.apache.maven.skins</groupId>
@@ -45,13 +47,14 @@
     </fluidoSkin>
   </custom>
 
-  <publishDate format="yyyy-MM-dd" position="left"/>
-  <version position="left"/>
+  <publishDate format="yyyy-MM-dd" position="right"/>
+  <version position="right"/>
 
   <body>
     <links>
       <item name="FindBugs" href="http://findbugs.sourceforge.net/"/>
     </links>
+
     <breadcrumbs>
       <item name="FindBugs Maven Plugin" href="index.html"/>
     </breadcrumbs>
