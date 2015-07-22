@@ -47,7 +47,7 @@ Manual.</a>.
  * @version $Id: FindbugsViolationCheckMojo.groovy gleclaire $
  */
 
-@Mojo( name = "check", defaultPhase = LifecyclePhase.VERIFY, requiresDependencyResolution = ResolutionScope.COMPILE, requiresProject = true, threadSafe = true )
+@Mojo( name = "check", defaultPhase = LifecyclePhase.VERIFY, requiresDependencyResolution = ResolutionScope.TEST, requiresProject = true, threadSafe = true )
 @Execute( goal = "findbugs")
 class FindbugsViolationCheckMojo extends AbstractMojo {
 

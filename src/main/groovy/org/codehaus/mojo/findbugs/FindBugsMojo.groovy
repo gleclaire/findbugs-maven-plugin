@@ -55,7 +55,7 @@ import org.sonatype.plexus.build.incremental.BuildContext
  * @version $Id: FindBugsMojo.groovy 16932 2012-06-21 01:13:14Z gleclaire $
  */
 
-@Mojo(name = "findbugs", defaultPhase = LifecyclePhase.COMPILE, requiresDependencyResolution = ResolutionScope.COMPILE, requiresProject = true, threadSafe = true)
+@Mojo(name = "findbugs", requiresDependencyResolution = ResolutionScope.TEST, requiresProject = true, threadSafe = true)
 class FindBugsMojo extends AbstractMavenReport {
 
     /**

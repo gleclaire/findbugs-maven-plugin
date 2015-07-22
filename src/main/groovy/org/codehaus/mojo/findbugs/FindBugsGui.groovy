@@ -39,7 +39,7 @@ import org.apache.maven.plugins.annotations.ResolutionScope
  * @version $Id: FindBugsGui.groovy gleclaire $
  */
 
-@Mojo( name = "gui", requiresDependencyResolution = ResolutionScope.COMPILE, requiresProject = true )
+@Mojo( name = "gui", requiresDependencyResolution = ResolutionScope.TEST, requiresProject = true )
 class FindBugsGui extends AbstractMojo {
 
 
