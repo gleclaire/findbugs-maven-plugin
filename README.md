@@ -2,6 +2,13 @@
 
 Snapshots of the plugin are now located in the Sonatype Repository at https://oss.sonatype.org/content/repositories/snapshots/org/codehaus/mojo/findbugs-maven-plugin/
 
+Building findbugs-maven-plugin Requirements
+=====================
+
+Java 7 is required.  This will allow analysis of bytecode up to Java 8
+
+
+
 findbugs-maven-plugin
 =====================
 
