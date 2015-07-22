@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gleclaire/findbugs-maven-plugin.svg?branch=master)](https://travis-ci.org/gleclaire/findbugs-maven-plugin)
+
 # **Note:**  CodeHaus has been taken off-line.
 
 Snapshots of the plugin are now located in the Sonatype Repository at https://oss.sonatype.org/content/repositories/snapshots/org/codehaus/mojo/findbugs-maven-plugin/
