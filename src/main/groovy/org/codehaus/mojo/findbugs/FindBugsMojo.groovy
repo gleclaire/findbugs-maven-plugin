@@ -496,6 +496,15 @@ class FindBugsMojo extends AbstractMavenReport {
      */
     @Parameter(property = "findbugs.skipEmptyReport", defaultValue = "false")
     boolean skipEmptyReport
+    
+    /**
+     * Set the path of the user preferences file to use.
+     * Will try to read the path as a resource before treating it as a local path.
+     *
+     * @since 3.0.2
+     */
+    @Parameter(property = "findbugs.userPrefs")
+    String userPrefs
 
 
     int bugCount
@@ -811,6 +820,18 @@ class FindBugsMojo extends AbstractMavenReport {
     private ArrayList<String> getFindbugsArgs(File tempFile) {
         def args = new ArrayList<String>()
 
+        /**
+         * This will read in a configuration file to set up Findbugs.
+         *
+         * The parameters in the POM file will override anything in the config file
+         */
+        if(userPrefs) {
+            log.debug(" Adding User Preferences File -> ${userPrefs}" )
+
+            args << "-userPrefs"
+            args << getResourceFile(userPrefs.trim())
+        }
+
         args << "-xml:withMessages"
 
         args << "-auxclasspathFromInput"
@@ -820,6 +841,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
         args << getEffortParameter()
         args << getThresholdParameter()
+        
 
         if (debug) {
             log.debug("progress on")
@@ -1350,6 +1372,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
         return outputResourceFile
     }
+    
 
 }
 
