@@ -28,8 +28,6 @@ FindBugs Maven Plugin
  
  This introduction is an excerpt from the Facts Sheet at {{{http://findbugs.sourceforge.net/factSheet.html}FindBugs home page}}.
 
- See a {{{examples/findbugs.html}sample report}}.
-
  To see more documentation about FindBugs' options, please see the {{{http://findbugs.sourceforge.net/manual/index.html}FindBugs Manual}}.
 
 *Please Note
