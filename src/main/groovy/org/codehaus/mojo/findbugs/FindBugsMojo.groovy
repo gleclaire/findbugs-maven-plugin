@@ -258,6 +258,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * resolved, the contents of the configuration is copied into the
      * <code>${project.build.directory}</code>
      * directory before being passed to Findbugs as a filter file.
+     * It supports multiple files separated by a comma
      * </p>
      *
      * @since 1.0-beta-1
@@ -279,6 +280,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * resolved, the contents of the configuration is copied into the
      * <code>${project.build.directory}</code>
      * directory before being passed to Findbugs as a filter file.
+     * It supports multiple files separated by a comma
      * </p>
      *
      * @since 1.0-beta-1
@@ -882,15 +884,24 @@ class FindBugsMojo extends AbstractMavenReport {
         if (includeFilterFile) {
             log.debug("  Adding Include Filter File ")
 
-            args << "-include"
-            args << getResourceFile(includeFilterFile.trim())
+            String[] includefilters = includeFilterFile.split(FindBugsInfo.COMMA)
+
+            includefilters.each { includefilter ->
+                args << "-include"
+                args << getResourceFile(includefilter.trim())
+            }
+
         }
 
         if (excludeFilterFile) {
             log.debug("  Adding Exclude Filter File ")
+            String[] excludefilters = excludeFilterFile.split(FindBugsInfo.COMMA)
 
-            args << "-exclude"
-            args << getResourceFile(excludeFilterFile.trim())
+            excludeFilterFile.each { excludeFilter ->
+                args << "-exclude"
+                args << getResourceFile(excludeFilter.trim())
+            }
+
         }
 
         if (excludeBugsFile) {
