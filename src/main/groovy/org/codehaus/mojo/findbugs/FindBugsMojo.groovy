@@ -897,7 +897,7 @@ class FindBugsMojo extends AbstractMavenReport {
             log.debug("  Adding Exclude Filter File ")
             String[] excludefilters = excludeFilterFile.split(FindBugsInfo.COMMA)
 
-            excludeFilterFile.each { excludeFilter ->
+            excludefilters.each { excludeFilter ->
                 args << "-exclude"
                 args << getResourceFile(excludeFilter.trim())
             }
