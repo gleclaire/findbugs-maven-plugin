@@ -50,7 +50,6 @@ allNodes = path.depthFirst().collect{ it }
 def xdocErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
 println "BugInstance size is ${xdocErrors}"
 
-assert findbugsErrors == xdocErrors
 
 println '**********************************'
 println "Checking Findbugs Native XML file"
@@ -62,5 +61,7 @@ allNodes = path.depthFirst().collect{ it }
 def findbugsXmlErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
 println "BugInstance size is ${findbugsXmlErrors}"
 
+assert xdocErrors == findbugsXmlErrors
 assert findbugsErrors == findbugsXmlErrors
+
 

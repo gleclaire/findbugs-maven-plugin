@@ -22,6 +22,15 @@ File findbugXml = new File(basedir, 'target/findbugsXml.xml')
 assert findbugXml.exists()
 
 
+println '**********************************'
+println "Checking Findbugs Native XML file"
+println '**********************************'
+
+path = new XmlSlurper().parse(findbugXml)
+
+allNodes = path.depthFirst().collect{ it }
+def findbugsXmlErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
+println "BugInstance size is ${findbugsXmlErrors}"
 
 println '***************************'
 println "Checking xDoc file"
@@ -32,16 +41,6 @@ def path = new XmlSlurper().parse(findbugXdoc)
 def allNodes = path.depthFirst().collect{ it }
 def xdocErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
 println "BugInstance size is ${xdocErrors}"
-
-println '**********************************'
-println "Checking Findbugs Native XML file"
-println '**********************************'
-
-path = new XmlSlurper().parse(findbugXml)
-
-allNodes = path.depthFirst().collect{ it }
-def findbugsXmlErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
-println "BugInstance size is ${findbugsXmlErrors}"
 
 assert xdocErrors == findbugsXmlErrors
 

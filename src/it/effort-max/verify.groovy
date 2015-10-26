@@ -33,27 +33,6 @@ xmlSlurper.setFeature("http://xml.org/sax/features/namespaces", false)
 
 def path = xmlSlurper.parse( findbugsHtml )
 
-println '***************************'
-println "Checking HTML file"
-println '***************************'
-
-assert findbugsHtml.text.contains( "<i>" + effortLevel + "</i>" )
-
-def findbugsErrors = path.body.div.findAll {it.@id == 'bodyColumn'}.div[1].table.tr[1].td[1].toInteger()
-println "Error Count is ${findbugsErrors}"
-
-println '***************************'
-println "Checking xDoc file"
-println '***************************'
-
-path = new XmlSlurper().parse(findbugXdoc)
-
-allNodes = path.depthFirst().collect{ it }
-def xdocErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
-println "BugInstance size is ${xdocErrors}"
-
-assert  path.findAll {it.name() == 'BugCollection'}.@effort.text() == effortLevel
-assert findbugsErrors == xdocErrors
 
 println '**********************************'
 println "Checking Findbugs Native XML file"
@@ -65,5 +44,29 @@ allNodes = path.depthFirst().collect{ it }
 def findbugsXmlErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
 println "BugInstance size is ${findbugsXmlErrors}"
 
+
+println '***************************'
+println "Checking xDoc file"
+println '***************************'
+
+path = new XmlSlurper().parse(findbugXdoc)
+
+allNodes = path.depthFirst().collect{ it }
+def xdocErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
+println "BugInstance size is ${xdocErrors}"
+
+assert findbugsHtml.text.contains( "<i>" + effortLevel + "</i>" )
+assert  path.findAll {it.name() == 'BugCollection'}.@effort.text() == effortLevel
+
+println '***************************'
+println "Checking HTML file"
+println '***************************'
+
+
+def findbugsErrors = path.body.div.findAll {it.@id == 'bodyColumn'}.div[1].table.tr[1].td[1].toInteger()
+println "Error Count is ${findbugsErrors}"
+
+assert xdocErrors == findbugsXmlErrors
 assert findbugsErrors == findbugsXmlErrors
+
 
