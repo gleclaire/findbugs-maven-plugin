@@ -31,14 +31,12 @@ def xmlSlurper = new XmlSlurper()
 xmlSlurper.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
 xmlSlurper.setFeature("http://xml.org/sax/features/namespaces", false)
 
-def path = xmlSlurper.parse( findbugsHtml )
-
 
 println '**********************************'
 println "Checking Findbugs Native XML file"
 println '**********************************'
 
-path = new XmlSlurper().parse(findbugXml)
+def path = new XmlSlurper().parse(findbugXml)
 
 allNodes = path.depthFirst().collect{ it }
 def findbugsXmlErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
@@ -62,7 +60,7 @@ println '***************************'
 println "Checking HTML file"
 println '***************************'
 
-
+path = xmlSlurper.parse( findbugsHtml )
 def findbugsErrors = path.body.div.findAll {it.@id == 'bodyColumn'}.div[1].table.tr[1].td[1].toInteger()
 println "Error Count is ${findbugsErrors}"
 
