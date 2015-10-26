@@ -14,37 +14,20 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.codehaus.mojo.findbugs-maven-plugin.it</groupId>
-    <artifactId>exclude-multi</artifactId>
+    <artifactId>common</artifactId>
     <version>testing</version>
-    <relativePath>../pom.xml</relativePath>
+    <relativePath>../common.xml</relativePath>
   </parent>
-  <artifactId>module1</artifactId>
-  <name>module1</name>
-  <packaging>jar</packaging>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <configuration>
-          <xmlOutput>true</xmlOutput>
-          <failOnError>false</failOnError>
-          <debug>@findbugsTestDebug@</debug>
-          <excludeBugsFile>${basedir}/src/main/excludeBugs.xml</excludeBugsFile>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+  <artifactId>exclude-modules</artifactId>
+  <name>exclude-modules</name>
+  <packaging>pom</packaging>
+  <modules>
+    <module>module1</module>
+    <module>module2</module>
+  </modules>
 </project>

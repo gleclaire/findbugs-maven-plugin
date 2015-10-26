@@ -19,12 +19,12 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.codehaus.mojo.findbugs-maven-plugin.it</groupId>
-    <artifactId>exclude-multi</artifactId>
+    <artifactId>exclude-modules</artifactId>
     <version>testing</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <artifactId>module2</artifactId>
-  <name>module2</name>
+  <artifactId>module1</artifactId>
+  <name>module1</name>
   <packaging>jar</packaging>
   <build>
     <plugins>
