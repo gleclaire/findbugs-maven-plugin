@@ -166,7 +166,7 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      */
     @Parameter(property = "plugin.artifacts", required = true, readonly = true)
-    ArrayList pluginArtifacts
+    List pluginArtifacts
 
     /**
      * List of Remote Repositories used by the resolver

@@ -70,7 +70,7 @@ class FindBugsGui extends AbstractMojo {
      *
      */
     @Parameter( property="plugin.artifacts", required = true, readonly = true )
-    ArrayList pluginArtifacts
+    List pluginArtifacts
 
     /**
      * Effort of the bug finders. Valid values are Min, Default and Max.

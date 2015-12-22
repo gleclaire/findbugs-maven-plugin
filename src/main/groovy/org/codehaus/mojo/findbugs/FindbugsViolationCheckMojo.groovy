@@ -164,7 +164,7 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
      *
      */
     @Parameter( property="plugin.artifacts", required = true, readonly = true )
-    ArrayList pluginArtifacts
+    List pluginArtifacts
 
     /**
      * The local repository, needed to download the coreplugin jar.
