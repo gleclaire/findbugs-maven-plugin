@@ -19,9 +19,14 @@ package org.codehaus.mojo.findbugs
  * under the License.
  */
 
+import org.apache.maven.artifact.factory.ArtifactFactory;
+import org.apache.maven.artifact.repository.ArtifactRepository
+import org.apache.maven.artifact.resolver.ArtifactResolver
+
 import org.apache.maven.project.MavenProject
 import org.apache.maven.plugin.AbstractMojo
 
+import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Mojo
 import org.apache.maven.plugins.annotations.Parameter
 import org.apache.maven.plugins.annotations.ResolutionScope
@@ -38,7 +43,7 @@ import org.apache.maven.plugins.annotations.ResolutionScope
  */
 
 @Mojo( name = "gui", requiresDependencyResolution = ResolutionScope.TEST, requiresProject = true )
-class FindBugsGui extends AbstractMojo {
+class FindBugsGui extends AbstractMojo implements FindBugsPluginsTrait {
 
     /**
      * locale to use for Resource bundle.
@@ -78,6 +83,45 @@ class FindBugsGui extends AbstractMojo {
      */
     @Parameter( property="findbugs.pluginList" )
     String pluginList
+
+    /**
+     * <p>
+     * Collection of PluginArtifact to work on. (PluginArtifact contains groupId, artifactId, version, type.)
+     * See <a href="./usage.html#Using Detectors from a Repository">Usage</a> for details.
+     * </p>
+     */
+    @Parameter
+    PluginArtifact[] plugins
+
+    /**
+     * Artifact resolver, needed to download the coreplugin jar.
+     *
+     * @required
+     * @readonly
+     */
+    @Component(role = org.apache.maven.artifact.resolver.ArtifactResolver.class)
+    ArtifactResolver artifactResolver
+
+    /**
+     * Used to look up Artifacts in the remote repository.
+     *
+     */
+    @Parameter(property = "component.org.apache.maven.artifact.factory.ArtifactFactory", required = true, readonly = true)
+    ArtifactFactory factory
+
+    /**
+     * List of Remote Repositories used by the resolver
+     *
+     */
+    @Parameter(property = "project.remoteArtifactRepositories", required = true, readonly = true)
+    List remoteRepositories
+
+    /**
+     * The local repository, needed to download the coreplugin jar.
+     *
+     */
+    @Parameter(property = "localRepository", required = true, readonly = true)
+    ArtifactRepository localRepository
 
     /**
      * Maven Project
@@ -141,6 +185,21 @@ class FindBugsGui extends AbstractMojo {
             log.info("File Encoding is " + effectiveEncoding)
 
             sysproperty(key: "file.encoding" , value: effectiveEncoding)
+
+            // findbugs assumes that multiple arguments (because of options) means text mode, so need to request gui explicitly
+            jvmarg(value: "-Dfindbugs.launchUI=gui2")
+
+            // options must be added before the findbugsXml path
+            def findbugsArgs = new ArrayList<String>()
+            if (pluginList || plugins) {
+                findbugsArgs << "-pluginList"
+                findbugsArgs << getFindbugsPlugins()
+            }
+            findbugsArgs.each { findbugsArg ->
+                log.debug("Findbugs arg is ${findbugsArg}")
+                arg(value: findbugsArg)
+            }
+
             def findbugsXmlName = findbugsXmlOutputDirectory.toString() + "/findbugsXml.xml"
             def findbugsXml = new File(findbugsXmlName)
 
@@ -162,4 +221,5 @@ class FindBugsGui extends AbstractMojo {
             }
         }
     }
+
 }
