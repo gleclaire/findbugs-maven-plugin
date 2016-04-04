@@ -20,6 +20,10 @@ package org.codehaus.mojo.findbugs
  */
 
 import org.apache.maven.artifact.Artifact
+import org.apache.maven.artifact.factory.ArtifactFactory;
+import org.apache.maven.artifact.repository.ArtifactRepository
+import org.apache.maven.artifact.resolver.ArtifactResolver
+
 import org.apache.maven.plugin.MojoExecutionException
 
 
@@ -29,15 +33,23 @@ import org.apache.maven.plugin.MojoExecutionException
 
 trait FindBugsPluginsTrait {
 
+    // the trait needs certain objects to work, this need is expressed as abstract getters
+    // classes implement them with implicitly generated property getters
+    abstract ArtifactResolver getArtifactResolver()
+    abstract ArtifactFactory getFactory()
+    abstract List getRemoteRepositories()
+    abstract ArtifactRepository getLocalRepository()
+
     // properties in traits should be supported but don't compile currently:
     // https://issues.apache.org/jira/browse/GROOVY-7536
     // when fixed, should move pluginList and plugins properties here
+    abstract String getPluginList()
+    abstract PluginArtifact[] getPlugins()
 
     /**
      * Adds the specified plugins to findbugs. The coreplugin is always added first.
      *
      */
-    // the method uses fields from implementing classes directly, is that wrong? maybe should receive them as parameters
     String getFindbugsPlugins() {
         ResourceHelper resourceHelper = new ResourceHelper(log)
 
