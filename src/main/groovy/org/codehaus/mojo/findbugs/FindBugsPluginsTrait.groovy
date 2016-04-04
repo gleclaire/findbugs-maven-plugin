@@ -39,6 +39,7 @@ trait FindBugsPluginsTrait {
     abstract ArtifactFactory getFactory()
     abstract List getRemoteRepositories()
     abstract ArtifactRepository getLocalRepository()
+    abstract File getFindbugsXmlOutputDirectory()
 
     // properties in traits should be supported but don't compile currently:
     // https://issues.apache.org/jira/browse/GROOVY-7536
@@ -51,7 +52,7 @@ trait FindBugsPluginsTrait {
      *
      */
     String getFindbugsPlugins() {
-        ResourceHelper resourceHelper = new ResourceHelper(log)
+        ResourceHelper resourceHelper = new ResourceHelper(log, findbugsXmlOutputDirectory)
 
         URL[] pluginURL
 
@@ -71,7 +72,7 @@ trait FindBugsPluginsTrait {
                 try {
                     log.debug("  Processing Plugin: " + pluginFileName.toString())
 
-                    urlPlugins += resourceHelper.getResourceFile(pluginFileName.toString(), findbugsXmlOutputDirectory).absolutePath + ((pluginJar == pluginJars[pluginJars.size() - 1]) ? "" : File.pathSeparator)
+                    urlPlugins += resourceHelper.getResourceFile(pluginFileName.toString()).absolutePath + ((pluginJar == pluginJars[pluginJars.size() - 1]) ? "" : File.pathSeparator)
                 } catch (MalformedURLException exception) {
                     throw new MojoExecutionException("The addin plugin has an invalid URL")
                 }
@@ -96,7 +97,7 @@ trait FindBugsPluginsTrait {
 
                 artifactResolver.resolve(pomArtifact, this.remoteRepositories, this.localRepository)
 
-                urlPlugins += resourceHelper.getResourceFile(pomArtifact.file.absolutePath, findbugsXmlOutputDirectory).absolutePath + ((plugin == plugins[plugins.size() - 1]) ? "" : File.pathSeparator)
+                urlPlugins += resourceHelper.getResourceFile(pomArtifact.file.absolutePath).absolutePath + ((plugin == plugins[plugins.size() - 1]) ? "" : File.pathSeparator)
             }
         }
 

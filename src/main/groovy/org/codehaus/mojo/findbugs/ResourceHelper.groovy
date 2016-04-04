@@ -28,10 +28,12 @@ import org.codehaus.plexus.resource.loader.FileResourceLoader
 final class ResourceHelper {
 
     Log log
+    File outputDirectory
 
-    ResourceHelper(Log log) {
+    ResourceHelper(Log log, File outputDirectory) {
         assert log
         this.log = log
+        this.outputDirectory = outputDirectory
     }
 
     /**
@@ -39,11 +41,10 @@ final class ResourceHelper {
      *
      * @param resource
      *            The file for the resource manager to locate
-     * @param outputDirectory
      * @return The File of the resource
      *
      */
-    File getResourceFile(String resource, File outputDirectory) {
+    File getResourceFile(String resource) {
 
         assert resource
 
@@ -66,7 +67,7 @@ final class ResourceHelper {
         log.debug("location is " + location)
         log.debug("artifact is " + artifact)
 
-        File resourceFile = getResourceAsFile(resource, artifact, outputDirectory)
+        File resourceFile = getResourceAsFile(resource, artifact)
 
         log.debug("location of resourceFile file is " + resourceFile.absolutePath)
 
@@ -74,7 +75,7 @@ final class ResourceHelper {
 
     }
 
-    private File getResourceAsFile(String name, String outputPath, File outputDirectory) {
+    private File getResourceAsFile(String name, String outputPath) {
         // Optimization for File to File fetches
         File f = FileResourceLoader.getResourceAsFile(name, outputPath, outputDirectory)
 

@@ -801,7 +801,7 @@ class FindBugsMojo extends AbstractMavenReport implements FindBugsPluginsTrait {
      *
      */
     private ArrayList<String> getFindbugsArgs(File tempFile) {
-        ResourceHelper resourceHelper = new ResourceHelper(log)
+        ResourceHelper resourceHelper = new ResourceHelper(log, findbugsXmlOutputDirectory)
         def args = new ArrayList<String>()
 
         if(userPrefs) {
