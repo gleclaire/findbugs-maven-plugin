@@ -41,8 +41,8 @@ println '***************************'
 
 def path = new XmlSlurper().parse(findbugXdoc)
 
-def allNodes = path.depthFirst().collect{ it }
-def xdocErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
+xNodes = path.depthFirst().collect{ it }
+def xdocErrors = xNodes.findAll {it.name() == 'BugInstance'}.size()
 println "BugInstance size is ${xdocErrors}"
 
 assert xdocErrors == findbugsXmlErrors

@@ -61,7 +61,7 @@ path = xmlSlurper.parse( findbugsHtml )
 def findbugsErrors = path.body.div.findAll {it.@id == 'bodyColumn'}.div[1].table.tr[1].td[1].toInteger()
 println "Error Count is ${findbugsErrors}"
 
-assert findbugsXmlErrors == findbugsXmlErrors
+assert xdocErrors == findbugsXmlErrors
 
 assert findbugsErrors == findbugsXmlErrors
 
