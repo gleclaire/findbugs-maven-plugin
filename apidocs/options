@@ -18,7 +18,7 @@
 -doctitle
 'FindBugs Maven Plugin 3.0.5-SNAPSHOT API'
 -link
-'http://junit.sourceforge.net/javadoc'
+'http://java.sun.com/javase/6/docs/api'
 -taglet
 'org.apache.maven.tools.plugin.javadoc.MojoRequiresDependencyResolutionTypeTaglet'
 -taglet
