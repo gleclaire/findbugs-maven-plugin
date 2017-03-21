@@ -6,6 +6,7 @@
 .settings/*
 
 target/*
-findbugs-maven-plugin.ipr
-findbugs-maven-plugin.iws
+*.ipr
+*.iws
+*.iml
 *.asc
