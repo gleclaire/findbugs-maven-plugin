@@ -127,7 +127,7 @@
     <fb-contribVersion>4.8.2</fb-contribVersion>
     <junitVersion>4.12</junitVersion>
     <mavenSurefireVersion>2.20</mavenSurefireVersion>
-    <InfoReportsVersion>2.8</InfoReportsVersion>
+    <InfoReportsVersion>2.9</InfoReportsVersion>
     <findbugsTestDebug>false</findbugsTestDebug>
     <integrationTestSrc>${project.build.directory}/it-src-findbugs</integrationTestSrc>
     <localTestSrc>${user.dir}/FindBugs/findbugsTestCases/src</localTestSrc>
