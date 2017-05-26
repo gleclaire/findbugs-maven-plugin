@@ -114,7 +114,7 @@
 
   <properties>
     <gmavenVersion>1.5</gmavenVersion>
-    <groovyVersion>2.4.7</groovyVersion>
+    <groovyVersion>2.4.12</groovyVersion>
     <antVersion>1.9.4</antVersion>
     <doxiaVersion>1.4</doxiaVersion>
     <sitePluginVersion>3.4</sitePluginVersion>
