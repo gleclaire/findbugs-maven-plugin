@@ -125,7 +125,7 @@
     <findbugsVersion>3.0.1</findbugsVersion>
     <jxrPluginVersion>2.5</jxrPluginVersion>
     <fb-contribVersion>4.8.2</fb-contribVersion>
-    <junitVersion>4.8.1</junitVersion>
+    <junitVersion>4.12</junitVersion>
     <mavenSurefireVersion>2.6</mavenSurefireVersion>
     <InfoReportsVersion>2.8</InfoReportsVersion>
     <findbugsTestDebug>false</findbugsTestDebug>
