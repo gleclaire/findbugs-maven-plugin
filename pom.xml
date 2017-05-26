@@ -116,7 +116,7 @@
     <gmavenVersion>1.5</gmavenVersion>
     <groovyVersion>2.4.12</groovyVersion>
     <antVersion>1.9.9</antVersion>
-    <doxiaVersion>1.4</doxiaVersion>
+    <doxiaVersion>1.7</doxiaVersion>
     <sitePluginVersion>3.4</sitePluginVersion>
     <project.build.java.target>1.7</project.build.java.target>
     <projectVersion>${project.version}</projectVersion>
