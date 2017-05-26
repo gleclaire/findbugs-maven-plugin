@@ -121,7 +121,7 @@
     <project.build.java.target>1.7</project.build.java.target>
     <projectVersion>${project.version}</projectVersion>
     <compilerPluginVersion>3.6.1</compilerPluginVersion>
-    <pluginPluginVersion>3.4</pluginPluginVersion>
+    <pluginPluginVersion>3.5</pluginPluginVersion>
     <findbugsVersion>3.0.1</findbugsVersion>
     <jxrPluginVersion>2.5</jxrPluginVersion>
     <fb-contribVersion>4.8.2</fb-contribVersion>
