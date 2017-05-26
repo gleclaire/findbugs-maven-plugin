@@ -120,7 +120,7 @@
     <sitePluginVersion>3.6</sitePluginVersion>
     <project.build.java.target>1.7</project.build.java.target>
     <projectVersion>${project.version}</projectVersion>
-    <compilerPluginVersion>2.3.2</compilerPluginVersion>
+    <compilerPluginVersion>3.6.1</compilerPluginVersion>
     <pluginPluginVersion>3.4</pluginPluginVersion>
     <findbugsVersion>3.0.1</findbugsVersion>
     <jxrPluginVersion>2.5</jxrPluginVersion>
@@ -353,7 +353,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
+        <version>${compilerPluginVersion}</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.gmavenplus</groupId>
