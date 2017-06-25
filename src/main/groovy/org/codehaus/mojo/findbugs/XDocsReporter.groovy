@@ -179,7 +179,7 @@ class XDocsReporter {
 					log.debug("classStatsValue is ${classStatsValue}")
 					log.debug("classStatsBugCount is ${classStatsBugCount}")
 
-					if ( classStatsBugCount.toInteger() > 0 ) {
+					if ( Integer.parseInt(classStatsBugCount) > 0 ) {
 						bugClasses << classStatsValue
 					}
 				}
