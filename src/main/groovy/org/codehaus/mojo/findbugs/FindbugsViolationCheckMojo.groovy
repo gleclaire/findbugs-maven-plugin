@@ -55,7 +55,6 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
      * Location where generated html will be created.
      *
      */
-
     @Parameter( defaultValue = '${project.reporting.outputDirectory}', required = true )
     File outputDirectory
 
@@ -100,17 +99,12 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
 
     /**
      * Doxia Site Renderer.
-     *
-     * @component
-     *
      */
     @Component( role = Renderer.class)
     Renderer siteRenderer
 
     /**
      * Directory containing the class files for FindBugs to analyze.
-     *
-     * @required
      */
     @Parameter( defaultValue = '${project.build.outputDirectory}', required = true )
     File classFilesDirectory
@@ -221,12 +215,8 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
 
     /**
      * Artifact resolver, needed to download the coreplugin jar.
-     *
-     * @component role="org.apache.maven.artifact.resolver.ArtifactResolver"
-     * @required
-     * @readonly
      */
-    @Component( role = org.apache.maven.artifact.resolver.ArtifactResolver.class )
+    @Component( role = ArtifactResolver.class )
     ArtifactResolver artifactResolver
 
     /**
@@ -398,9 +388,6 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
     boolean skip
 
     /**
-     * @component
-     * @required
-     * @readonly
      * @since 2.0
      */
     @Component( role = ResourceManager.class)
@@ -410,11 +397,8 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
      * SiteTool.
      *
      * @since 2.1-SNAPSHOT
-     * @component role="org.apache.maven.doxia.tools.SiteTool"
-     * @required
-     * @readonly
      */
-    @Component( role = org.apache.maven.doxia.tools.SiteTool.class)
+    @Component( role = SiteTool.class)
     SiteTool siteTool
 
     /**

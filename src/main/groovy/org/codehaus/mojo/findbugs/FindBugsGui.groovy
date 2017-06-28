@@ -52,8 +52,6 @@ class FindBugsGui extends AbstractMojo {
 
     /**
      * Directory containing the class files for FindBugs to analyze.
-     *
-     * @required
      */
     @Parameter( defaultValue = '${project.build.outputDirectory}', required = true )
     File classFilesDirectory
