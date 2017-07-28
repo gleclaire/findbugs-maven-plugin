@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+def effortLevel = 'min'
 
 
 //  check module 1
@@ -24,34 +25,32 @@ println '***************************'
 
 def module = "module-1"
 
-assert new File(basedir, "modules/${module}/target/site/findbugs.html").exists()
+File findbugsHtml =  new File(basedir, "modules/${module}/target/site/findbugs.html")
+assert findbugsHtml.exists()
 
-assert new File(basedir, "modules/${module}/target/findbugs.xml").exists()
+File findbugXdoc = new File(basedir, "modules/${module}/target/findbugs.xml")
+assert findbugXdoc.exists()
 
-assert new File(basedir, "modules/${module}/target/findbugsXml.xml").exists()
+File findbugXml = new File(basedir, "modules/${module}/target/findbugsXml.xml")
+assert findbugXml.exists()
 
-
-
-def xmlSlurper = new XmlSlurper()
-xmlSlurper.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
-xmlSlurper.setFeature("http://xml.org/sax/features/namespaces", false)
-
-def path = xmlSlurper.parse( new File(basedir, "modules/${module}/target/site/findbugs.html" ) )
 
 println '***************************'
 println "Checking HTML file"
 println '***************************'
 
-//def bugNodes = path.body.div.findAll {it.@id == 'bodyColumn'}.div[1].table.tr[1].td[1]  //.div.table.tr.td
-//println "bugNodes value is ${bugNodes.toInteger()}"
-def findbugsErrors = path.body.div.findAll {it.@id == 'bodyColumn'}.div[1].table.tr[1].td[1].toInteger()
+assert findbugsHtml.text.contains( "<i>" + effortLevel + "</i>" )
+
+def path = new XmlSlurper(true, true, true).parse( findbugsHtml )
+//*[@id="contentBox"]/div[2]/table/tbody/tr[2]/td[2]
+def findbugsErrors = path.body.'**'.find {div -> div.@id == 'contentBox'}.div[1].table.tr[1].td[1].toInteger()
 println "Error Count is ${findbugsErrors}"
 
 println '***************************'
 println "Checking xDoc file"
 println '***************************'
 
-path = new XmlSlurper().parse(new File(basedir, "modules/${module}/target/findbugs.xml"))
+path = new XmlSlurper().parse(findbugXdoc)
 
 allNodes = path.depthFirst().collect{ it }
 def xdocErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
@@ -68,7 +67,7 @@ println '**********************************'
 println "Checking Findbugs Native XML file"
 println '**********************************'
 
-path = new XmlSlurper().parse(new File(basedir, "modules/${module}/target/findbugsXml.xml"))
+path = new XmlSlurper().parse(findbugXml)
 
 allNodes = path.depthFirst().collect{ it }
 def findbugsXmlErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
@@ -83,8 +82,6 @@ assert findbugsErrors == findbugsXmlErrors
 
 
 
-
-
 //  check module 2
 
 println '***************************'
@@ -93,33 +90,32 @@ println '***************************'
 
 module = "module-2"
 
-assert new File(basedir, "modules/${module}/target/site/findbugs.html").exists()
+findbugsHtml =  new File(basedir, "modules/${module}/target/site/findbugs.html")
+assert findbugsHtml.exists()
 
-assert new File(basedir, "modules/${module}/target/findbugs.xml").exists()
+findbugXdoc = new File(basedir, "modules/${module}/target/findbugs.xml")
+assert findbugXdoc.exists()
 
-assert new File(basedir, "modules/${module}/target/findbugsXml.xml").exists()
+findbugXml = new File(basedir, "modules/${module}/target/findbugsXml.xml")
+assert findbugXml.exists()
 
-
-xmlSlurper = new XmlSlurper()
-xmlSlurper.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
-xmlSlurper.setFeature("http://xml.org/sax/features/namespaces", false)
-
-path = xmlSlurper.parse( new File(basedir, "modules/${module}/target/site/findbugs.html" ) )
 
 println '***************************'
 println "Checking HTML file"
 println '***************************'
 
-//def bugNodes = path.body.div.findAll {it.@id == 'bodyColumn'}.div[1].table.tr[1].td[1]  //.div.table.tr.td
-//println "bugNodes value is ${bugNodes.toInteger()}"
-findbugsErrors = path.body.div.findAll {it.@id == 'bodyColumn'}.div[1].table.tr[1].td[1].toInteger()
+assert findbugsHtml.text.contains( "<i>" + effortLevel + "</i>" )
+
+path = new XmlSlurper(true, true, true).parse( findbugsHtml )
+//*[@id="contentBox"]/div[2]/table/tbody/tr[2]/td[2]
+findbugsErrors = path.body.'**'.find {div -> div.@id == 'contentBox'}.div[1].table.tr[1].td[1].toInteger()
 println "Error Count is ${findbugsErrors}"
 
 println '***************************'
 println "Checking xDoc file"
 println '***************************'
 
-path = new XmlSlurper().parse(new File(basedir, "modules/${module}/target/findbugs.xml"))
+path = new XmlSlurper().parse(findbugXdoc)
 
 allNodes = path.depthFirst().collect{ it }
 xdocErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
@@ -136,7 +132,7 @@ println '**********************************'
 println "Checking Findbugs Native XML file"
 println '**********************************'
 
-path = new XmlSlurper().parse(new File(basedir, "modules/${module}/target/findbugsXml.xml"))
+path = new XmlSlurper().parse(findbugXml)
 
 allNodes = path.depthFirst().collect{ it }
 findbugsXmlErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
