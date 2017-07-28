@@ -954,14 +954,6 @@ class FindBugsMojo extends AbstractMavenReport {
 
         def auxClasspath = ""
 
-        pluginArtifacts.each() { pluginArtifact ->
-            log.debug("  Adding to AuxClasspath ->" + pluginArtifact.file.toString())
-
-            auxClasspath += pluginArtifact.file.toString() + ((pluginArtifact == pluginArtifacts[pluginArtifacts.size() - 1]) ? "" : File.pathSeparator)
-        }
-
-        log.debug("  auxClasspathElements -> ${auxClasspathElements}")
-
         if (auxClasspathElements) {
 
             log.debug("  AuxClasspath Elements ->" + auxClasspathElements)
