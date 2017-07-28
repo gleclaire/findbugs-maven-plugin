@@ -695,7 +695,7 @@ class FindBugsMojo extends AbstractMavenReport {
     public void execute() {
         log.debug("****** FindBugsMojo execute *******")
 
-        Locale locale = new Locale("pt", "BR")
+        Locale locale = Locale.getDefault()
         if (!skip) {
             executeCheck(locale)
             if (canGenerateReport()) {
