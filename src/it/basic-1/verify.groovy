@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+def effortLevel = 'min'
 
 
 File findbugsHtml =  new File(basedir, 'target/site/findbugs.html')
@@ -26,15 +27,23 @@ File findbugXml = new File(basedir, 'target/findbugsXml.xml')
 assert findbugXml.exists()
 
 
-def xmlSlurper = new XmlSlurper()
-xmlSlurper.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
-xmlSlurper.setFeature("http://xml.org/sax/features/namespaces", false)
+println '***************************'
+println "Checking HTML file"
+println '***************************'
+
+assert findbugsHtml.text.contains( "<i>" + effortLevel + "</i>" )
+
+def path = new XmlSlurper(true, true, true).parse( findbugsHtml )
+//*[@id="contentBox"]/div[2]/table/tbody/tr[2]/td[2]
+def findbugsErrors = path.body.'**'.find {div -> div.@id == 'contentBox'}.div[1].table.tr[1].td[1].toInteger()
+println "Error Count is ${findbugsErrors}"
+
 
 println '**********************************'
 println "Checking Findbugs Native XML file"
 println '**********************************'
 
-def path = new XmlSlurper().parse(findbugXml)
+path = new XmlSlurper().parse(findbugXml)
 
 allNodes = path.depthFirst().collect{ it }
 def findbugsXmlErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
@@ -51,15 +60,6 @@ allNodes = path.depthFirst().collect{ it }
 def xdocErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
 println "BugInstance size is ${xdocErrors}"
 
-
-println '***************************'
-println "Checking HTML file"
-println '***************************'
-
-path = xmlSlurper.parse( findbugsHtml )
-
-def findbugsErrors = path.body.div.findAll {it.@id == 'bodyColumn'}.div[1].table.tr[1].td[1].toInteger()
-println "Error Count is ${findbugsErrors}"
 
 assert xdocErrors == findbugsXmlErrors
 
