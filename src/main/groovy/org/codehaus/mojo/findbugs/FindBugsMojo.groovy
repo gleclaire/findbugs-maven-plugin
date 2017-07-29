@@ -232,7 +232,7 @@ class FindBugsMojo extends AbstractMavenReport {
      * Used to look up Artifacts in the remote repository.
      *
      */
-    @Parameter(property = "component.org.apache.maven.artifact.factory.ArtifactFactory", required = true, readonly = true)
+    @Component(role = ArtifactFactory.class)
     ArtifactFactory factory
 
     /**
