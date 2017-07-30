@@ -697,7 +697,7 @@ class FindbugsReportGenerator implements FindBugsInfo {
 			def classStatsValue = classStats.'@class'.text()
 			def classStatsBugCount = classStats.'@bugs'.text()
 
-			if ( classStatsBugCount.toInteger() > 0 ) {
+			if ( Integer.parseInt(classStatsBugCount) > 0 ) {
 				sink.tableRow()
 
 				// class name
