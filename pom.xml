@@ -179,7 +179,7 @@
     <dependency>
       <groupId>org.apache.maven.reporting</groupId>
       <artifactId>maven-reporting-impl</artifactId>
-      <version>2.4</version>
+      <version>3.0.0</version>
       <exclusions>
         <exclusion>
           <groupId>org.codehaus.plexus</groupId>
@@ -209,15 +209,14 @@
 
     <dependency>
       <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-descriptor</artifactId>
-      <version>2.2.1</version>
+      <artifactId>maven-compat</artifactId>
+      <version>3.5.0</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-artifact</artifactId>
-      <version>2.2.1</version>
+      <version>3.5.0</version>
     </dependency>
 
     <!-- doxia -->
