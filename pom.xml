@@ -16,7 +16,7 @@
 
   <name>FindBugs Maven Plugin</name>
   <description>This Plug-In generates reports based on the FindBugs Library</description>
-  <url>http://gleclaire.github.io/findbugs-maven-plugin/</url>
+  <url>https://gleclaire.github.io/findbugs-maven-plugin/</url>
   <inceptionYear>2005</inceptionYear>
   <licenses>
     <license>
