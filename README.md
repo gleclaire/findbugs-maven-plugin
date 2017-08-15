@@ -18,7 +18,7 @@ Maven Mojo Plug-In to generate reports based on the FindBugs Analyzer
 
 Run all tests
 ```
-mvn -Prun-its clean install
+mvn -DtestSrc=remote -Prun-its clean install
 ```
 Skip tests
 ```
@@ -26,7 +26,7 @@ mvn -DskipTests=true clean install
 ```
 Run tests on findbugs test source code that is local instead of from FindBugs github repository
 ```
-mvn -DlocalTestSrc=/opt/findBugs -Prun-its clean install
+mvn -DtestSrc=local -DlocalTestSrc=/opt/findBugs -Prun-its clean install
 ```
 
 Run selected tests
