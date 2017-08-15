@@ -135,7 +135,6 @@
     <localTestSrc>${user.dir}/FindBugs</localTestSrc>
     <remoteTestSrc>scm:git:https://github.com/findbugsproject/findbugs/</remoteTestSrc>
     <includesTestSrcPattern>**findbugsTestCases/src/java/A*.java, **findbugsTestCases/src/java/Use*.java, **findbugsTestCases/src/java/annotations/*.java</includesTestSrcPattern>
-    <testSrc>remote</testSrc>
 
     <pmd.skip>true</pmd.skip>
     <cpd.skip>true</cpd.skip>
@@ -587,12 +586,8 @@
     <profile>
       <id>find-it-src-checkout</id>
       <activation>
-        <!-- <file> -->
-        <!-- <missing>${integrationTestSrc}/A.java</missing> -->
-        <!-- </file> -->
         <property>
-          <name>testSrc</name>
-          <value>remote</value>
+          <name>!localTestSrc</name>
         </property>
       </activation>
       <build>
@@ -635,12 +630,8 @@
     <profile>
       <id>find-it-src-local</id>
       <activation>
-        <!-- <file> -->
-        <!-- <missing>${integrationTestSrc}/A.java</missing> -->
-        <!-- </file> -->
         <property>
-          <name>testSrc</name>
-          <value>local</value>
+          <name>localTestSrc</name>
         </property>
       </activation>
       <build>
