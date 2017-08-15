@@ -134,7 +134,7 @@
     <integrationTestSrc>${project.build.directory}/it-src-findbugs</integrationTestSrc>
     <localTestSrc>${user.dir}/FindBugs</localTestSrc>
     <remoteTestSrc>scm:git:https://github.com/findbugsproject/findbugs/</remoteTestSrc>
-    <includesTestSrcPattern>**findbugsTestCases/src/java/A*.java, **findbugsTestCases/src/java/Use*.java, **findbugsTestCases/src/java/annotations*.java</includesTestSrcPattern>
+    <includesTestSrcPattern>**findbugsTestCases/src/java/A*.java, **findbugsTestCases/src/java/Use*.java, **findbugsTestCases/src/java/annotations/*.java</includesTestSrcPattern>
     <testSrc>remote</testSrc>
 
     <pmd.skip>true</pmd.skip>
