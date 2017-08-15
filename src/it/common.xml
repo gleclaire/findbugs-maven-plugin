@@ -53,7 +53,7 @@
   </dependencies>
 
   <build>
-    <sourceDirectory>@project.build.directory@/it-src-findbugs/java</sourceDirectory>
+    <sourceDirectory>@project.build.directory@/it-src-findbugs/findbugsTestCases/src/java</sourceDirectory>
     <testSourceDirectory>@basedir@/src/it-src/test/java</testSourceDirectory>
     <pluginManagement>
       <plugins>
