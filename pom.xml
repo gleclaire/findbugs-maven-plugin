@@ -114,21 +114,40 @@
   </distributionManagement>
 
   <properties>
-    <gmavenVersion>1.5</gmavenVersion>
-    <groovyVersion>2.4.12</groovyVersion>
-    <antVersion>1.9.9</antVersion>
-    <doxiaVersion>1.7</doxiaVersion>
-    <sitePluginVersion>3.6</sitePluginVersion>
     <project.build.java.target>1.7</project.build.java.target>
     <projectVersion>${project.version}</projectVersion>
-    <compilerPluginVersion>3.6.1</compilerPluginVersion>
-    <pluginPluginVersion>3.5</pluginPluginVersion>
+
     <findbugsVersion>3.0.1</findbugsVersion>
-    <jxrPluginVersion>2.5</jxrPluginVersion>
-    <fb-contribVersion>4.8.2</fb-contribVersion>
     <junitVersion>4.12</junitVersion>
-    <mavenSurefireVersion>2.20</mavenSurefireVersion>
-    <InfoReportsVersion>2.9</InfoReportsVersion>
+
+    <antVersion>1.9.9</antVersion>
+    <groovyVersion>2.4.12</groovyVersion>
+
+    <doxiaToolsVersion>1.4</doxiaToolsVersion>
+    <doxiaVersion>1.7</doxiaVersion>
+
+    <mavenReportingApiVersion>3.0</mavenReportingApiVersion>
+    <mavenReportingVersion>3.0.0</mavenReportingVersion>
+    <mavenVersion>3.5.0</mavenVersion>
+
+    <plexusBuildVersion>0.0.7</plexusBuildVersion>
+    <plexusContainerVersion>1.7.1</plexusContainerVersion>
+    <plexusResourcesVersion>1.1.0</plexusResourcesVersion>
+    <plexusUtilsVersion>3.1.0</plexusUtilsVersion>
+
+    <antrunPluginVersion>1.8</antrunPluginVersion>
+    <l10nPluginVersion>1.8</l10nPluginVersion>
+    <codenarcPluginVersion>0.22-1</codenarcPluginVersion>
+    <gmavenPluginVersion>1.5</gmavenPluginVersion>
+    <infoReportsPluginVersion>2.9</infoReportsPluginVersion>
+    <invokerPluginVersion>3.0.0</invokerPluginVersion>
+    <javadocPluginVersion>2.10.4</javadocPluginVersion>
+    <pluginPluginVersion>3.5</pluginPluginVersion>
+    <scmPluginVersion>1.9.5</scmPluginVersion>
+    <sitePluginVersion>3.6</sitePluginVersion>
+    <versionsPluginVersion>2.4</versionsPluginVersion>
+
+    <wagonGitsiteExtensionVersion>0.3.1</wagonGitsiteExtensionVersion>
 
     <findbugsTestDebug>false</findbugsTestDebug>
     <integrationTestSrc>${project.build.directory}/it-src-findbugs</integrationTestSrc>
@@ -141,6 +160,14 @@
     <cpd.skip>true</cpd.skip>
     <checkstyle.skip>true</checkstyle.skip>
     <skipSurefireReport>true</skipSurefireReport>
+
+    <!-- Used by Integration tests -->
+    <compilerPluginVersion>3.6.1</compilerPluginVersion>
+    <fb-contribVersion>4.8.2</fb-contribVersion>
+    <jxrPluginVersion>2.5</jxrPluginVersion>
+    <mavenSurefireVersion>2.20</mavenSurefireVersion>
+
+
   </properties>
 
   <dependencies>
@@ -179,7 +206,7 @@
     <dependency>
       <groupId>org.apache.maven.reporting</groupId>
       <artifactId>maven-reporting-impl</artifactId>
-      <version>3.0.0</version>
+      <version>${mavenReportingVersion}</version>
       <exclusions>
         <exclusion>
           <groupId>org.codehaus.plexus</groupId>
@@ -191,7 +218,7 @@
     <dependency>
       <groupId>org.apache.maven.reporting</groupId>
       <artifactId>maven-reporting-api</artifactId>
-      <version>3.0</version>
+      <version>${mavenReportingApiVersion}</version>
     </dependency>
 
     <dependency>
@@ -204,19 +231,19 @@
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-      <version>3.5.0</version>
+      <version>${mavenVersion}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-compat</artifactId>
-      <version>3.5.0</version>
+      <version>${mavenVersion}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-artifact</artifactId>
-      <version>3.5.0</version>
+      <version>${mavenVersion}</version>
     </dependency>
 
     <!-- doxia -->
@@ -253,7 +280,7 @@
     <dependency>
       <groupId>org.apache.maven.shared</groupId>
       <artifactId>maven-doxia-tools</artifactId>
-      <version>1.4</version>
+      <version>${doxiaToolsVersion}</version>
       <exclusions>
         <exclusion>
           <groupId>org.codehaus.plexus</groupId>
@@ -266,12 +293,12 @@
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-container-default</artifactId>
-      <version>1.7.1</version>
+      <version>${plexusContainerVersion}</version>
     </dependency>
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-resources</artifactId>
-      <version>1.1.0</version>
+      <version>${plexusResourcesVersion}</version>
       <exclusions>
         <exclusion>
           <groupId>org.codehaus.plexus</groupId>
@@ -282,12 +309,12 @@
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
-      <version>3.0.24</version>
+      <version>${plexusUtilsVersion}</version>
     </dependency>
     <dependency>
       <groupId>org.sonatype.plexus</groupId>
       <artifactId>plexus-build-api</artifactId>
-      <version>0.0.7</version>
+      <version>${plexusBuildVersion}</version>
     </dependency>
   </dependencies>
 
@@ -298,18 +325,18 @@
       <extension>
         <groupId>org.apache.maven.scm</groupId>
         <artifactId>maven-scm-provider-gitexe</artifactId>
-        <version>1.9.5</version>
+        <version>${scmPluginVersion}</version>
       </extension>
       <extension>
         <groupId>org.apache.maven.scm</groupId>
         <artifactId>maven-scm-manager-plexus</artifactId>
-        <version>1.9.5</version>
+        <version>${scmPluginVersion}</version>
       </extension>
       <extension>
         <!-- note you can download this from http://github.com/khuxtable/wagon-gitsite -->
         <groupId>org.kathrynhuxtable.maven.wagon</groupId>
         <artifactId>wagon-gitsite</artifactId>
-        <version>0.3.1</version>
+        <version>${wagonGitsiteExtensionVersion}</version>
       </extension>
     </extensions>
 
@@ -350,14 +377,9 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${compilerPluginVersion}</version>
-      </plugin>
-      <plugin>
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
-        <version>${gmavenVersion}</version>
+        <version>${gmavenPluginVersion}</version>
         <configuration>
           <groovydocOutputDirectory>${project.reporting.outputDirectory}/apidocs</groovydocOutputDirectory>
         </configuration>
@@ -419,7 +441,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.3</version>
         <configuration>
           <pushChanges>false</pushChanges>
           <localCheckout>true</localCheckout>
@@ -441,7 +462,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.10.4</version>
+        <version>${javadocPluginVersion}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -456,12 +477,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>${InfoReportsVersion}</version>
+        <version>${infoReportsPluginVersion}</version>
       </plugin>
       <plugin>
         <groupId>com.googlecode.l10n-maven-plugin</groupId>
         <artifactId>l10n-maven-plugin</artifactId>
-        <version>1.8</version>
+        <version>${l10nPluginVersion}</version>
         <configuration>
           <locales>
             <locale>es</locale>
@@ -474,7 +495,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>codenarc-maven-plugin</artifactId>
-        <version>0.22-1</version>
+        <version>${codenarcPluginVersion}</version>
         <configuration>
           <maxPriority1Violations>0</maxPriority1Violations>
           <maxPriority2Violations>0</maxPriority2Violations>
@@ -488,7 +509,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>${InfoReportsVersion}</version>
+        <version>${infoReportsPluginVersion}</version>
         <reportSets>
           <reportSet>
             <reports>
@@ -512,7 +533,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
-        <version>2.4</version>
+        <version>${versionsPluginVersion}</version>
         <reportSets>
           <reportSet>
             <reports>
@@ -536,7 +557,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-invoker-plugin</artifactId>
-            <version>3.0.0</version>
+            <version>${invokerPluginVersion}</version>
             <executions>
               <execution>
                 <id>prepare-integration-test</id>
@@ -597,7 +618,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-scm-plugin</artifactId>
-            <version>1.9.5</version>
+            <version>${scmPluginVersion}</version>
             <executions>
               <execution>
                 <id>prepare-integration-test-remote-findbugs-src</id>
@@ -621,7 +642,7 @@
               <dependency>
                 <groupId>org.apache.maven.scm</groupId>
                 <artifactId>maven-scm-provider-jgit</artifactId>
-                <version>1.9.5</version>
+                <version>${scmPluginVersion}</version>
               </dependency>
             </dependencies>
           </plugin>
@@ -642,7 +663,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.8</version>
+            <version>${antrunPluginVersion}</version>
             <executions>
               <execution>
                 <id>prepare-integration-test-local-findbugs-src</id>
