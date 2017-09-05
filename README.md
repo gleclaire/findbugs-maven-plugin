@@ -4,7 +4,9 @@
 
 # **Note:**  CodeHaus has been taken off-line.
 
-Snapshots of the plugin are now located in the Sonatype Repository at https://oss.sonatype.org/content/repositories/snapshots/org/codehaus/mojo/findbugs-maven-plugin/
+## Latest Snapshot ##
+
+Please download latest snapshots from [here](https://oss.sonatype.org/content/repositories/snapshots/org/codehaus/mojo/findbugs-maven-plugin/)
 
 Building findbugs-maven-plugin Requirements
 =====================
