@@ -34,7 +34,7 @@ mvn -DtestSrc=local -DlocalTestSrc=/opt/findBugs -Prun-its clean install
 
 Run selected tests
 ```
-mvn -Prun-its -Dinvoker.test=build-*,basic-1,check clean install
+mvn -DtestSrc=remote -Prun-its -Dinvoker.test=build-*,basic-1,check-nofail clean install
 ```
 
 Run tests in debugger
