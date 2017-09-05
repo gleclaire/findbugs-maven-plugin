@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/gleclaire/findbugs-maven-plugin.svg?branch=master)](https://travis-ci.org/gleclaire/findbugs-maven-plugin)
+[![Maven central](https://maven-badges.herokuapp.com/maven-central/org.codehaus.mojo/findbugs-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.codehaus.mojo/findbugs-maven-plugin)
+[![Apache 2](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 # **Note:**  CodeHaus has been taken off-line.
 
@@ -46,5 +48,5 @@ mvn -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspe
 
 Run gui with a specific version 
 ```
-mvn org.codehaus.mojo:findbugs-maven-plugin:3.0.2-SNAPSHOT:gui 
+mvn org.codehaus.mojo:findbugs-maven-plugin:3.0.6-SNAPSHOT:gui 
 ```
