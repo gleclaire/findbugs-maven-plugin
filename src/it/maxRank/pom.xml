@@ -39,13 +39,6 @@
           <threshold>High</threshold>
           <maxRank>4</maxRank>
         </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>

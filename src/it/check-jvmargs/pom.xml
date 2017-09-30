@@ -40,13 +40,6 @@
           <threshold>High</threshold>
           <jvmArgs>-Dfindbugs.dumpProperties=true -Dfindbugs.progress=true -Dfindbugs.verbose=true -Dfindbugs.debug=true</jvmArgs>
         </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>

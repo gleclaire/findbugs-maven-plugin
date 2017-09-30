@@ -37,13 +37,6 @@
           <debug>@findbugsTestDebug@</debug>
           <failOnError>false</failOnError>
         </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
     <extensions>

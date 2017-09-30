@@ -35,17 +35,8 @@
               <artifactId>fb-contrib</artifactId>
               <version>@fb-contribVersion@</version>
             </plugin>
-            <!-- <plugin> <groupId>com.timgroup</groupId> <artifactId>findbugs4jmock</artifactId> 
-              <version>0.2</version> </plugin> -->
           </plugins>
         </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>

@@ -47,11 +47,11 @@
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>findbugs-maven-plugin</artifactId>
               <version>@pom.version@</version>
-    	      <configuration>
-	            <findbugsXmlOutput>true</findbugsXmlOutput>
-	            <xmlOutput>true</xmlOutput>
-	            <includeFilterFile>whizbang/lib-filter.xml</includeFilterFile>
-	          </configuration>
+              <configuration>
+                <findbugsXmlOutput>true</findbugsXmlOutput>
+                <xmlOutput>true</xmlOutput>
+                <includeFilterFile>whizbang/lib-filter.xml</includeFilterFile>
+              </configuration>
             </plugin>
           </reportPlugins>
         </configuration>
