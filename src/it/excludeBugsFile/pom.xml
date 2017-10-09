@@ -38,13 +38,6 @@
           <debug>@findbugsTestDebug@</debug>
           <excludeBugsFile>${basedir}/excludeBugs1.xml,${basedir}/excludeBugs2.xml</excludeBugsFile>
         </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>

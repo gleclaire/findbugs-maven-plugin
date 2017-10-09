@@ -29,18 +29,18 @@
   <reporting>
     <excludeDefaults>true</excludeDefaults>
     <plugins>
-	  <plugin>
-	    <groupId>org.apache.maven.plugins</groupId>
-	    <artifactId>maven-site-plugin</artifactId>
-	    <version>@sitePluginVersion@</version>
-	    <configuration>
-	      <locales>pt</locales>
-	    </configuration>
-	  </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>@sitePluginVersion@</version>
+        <configuration>
+          <locales>pt</locales>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
-	    <version>@jxrPluginVersion@</version>
+        <version>@jxrPluginVersion@</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>

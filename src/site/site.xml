@@ -3,23 +3,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.7.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd"
     name="FindBugs Maven Plugin">
 
-
-<!--
-  <bannerLeft>
-    <name>FindBugs Logo</name>
-    <src>/images/logos/FindBugsLogo_sm.png</src>
-    <alt>FindBugs logo</alt>
-    <href>/index.html</href>
-  </bannerLeft>
--->
   <bannerLeft>
     <name>FindBugs Maven Plugin</name>
   </bannerLeft>
-<!--
-  <bannerRight>
-    <name></name>
-  </bannerRight>
--->
 
   <skin>
     <groupId>org.apache.maven.skins</groupId>
@@ -37,9 +23,6 @@
         <ribbonOrientation>right</ribbonOrientation>
         <ribbonColor>red</ribbonColor>
       </gitHub>
-      <!--<googleSearch />-->
-      <!--<facebookLike />-->
-      <!--<googlePlusOne />-->
       <ohloh>
         <projectId>findbugs-maven-plugin</projectId>
         <widget>thin-badge</widget>
