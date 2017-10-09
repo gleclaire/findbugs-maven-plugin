@@ -189,7 +189,7 @@ class XDocsReporter {
 					file(classname: bugClass) {
 						findbugsResults.BugInstance.each() {bugInstance ->
 
-							if ( bugInstance.Class.@classname.text() == bugClass ) {
+							if ( bugInstance.Class.find{ it.@primary == "true" }.@classname.text() == bugClass ) {
 
 								def type = bugInstance.@type.text()
 								def category = bugInstance.@category.text()
