@@ -142,7 +142,7 @@
     <gmavenPluginVersion>1.5</gmavenPluginVersion>
     <infoReportsPluginVersion>2.9</infoReportsPluginVersion>
     <invokerPluginVersion>3.0.0</invokerPluginVersion>
-    <javadocPluginVersion>2.10.4</javadocPluginVersion>
+    <javadocPluginVersion>3.0.0-M1</javadocPluginVersion>
     <pluginPluginVersion>3.5</pluginPluginVersion>
     <scmPluginVersion>1.9.5</scmPluginVersion>
     <sitePluginVersion>3.6</sitePluginVersion>
@@ -163,11 +163,10 @@
     <skipSurefireReport>true</skipSurefireReport>
 
     <!-- Used by Integration tests -->
-    <compilerPluginVersion>3.6.1</compilerPluginVersion>
-    <fb-contribVersion>4.8.2</fb-contribVersion>
+    <compilerPluginVersion>3.7.0</compilerPluginVersion>
+    <fb-contribVersion>7.0.5</fb-contribVersion>
     <jxrPluginVersion>2.5</jxrPluginVersion>
-    <mavenSurefireVersion>2.20</mavenSurefireVersion>
-
+    <mavenSurefireVersion>2.20.1</mavenSurefireVersion>
 
   </properties>
 
@@ -574,7 +573,7 @@
                   <goal>run</goal>
                 </goals>
                 <configuration>
-                  <projectsDirectory>${basedir}/src/it-tools</projectsDirectory>
+                  <projectsDirectory>${project.basedir}/src/it-tools</projectsDirectory>
                   <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
                   <showVersion>true</showVersion>
                   <pomIncludes>

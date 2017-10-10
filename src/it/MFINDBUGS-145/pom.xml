@@ -18,6 +18,15 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- Parent is disabled on purpose
+  <parent>
+    <groupId>org.codehaus.mojo.findbugs-maven-plugin.it</groupId>
+    <artifactId>common</artifactId>
+    <version>testing</version>
+    <relativePath>../common.xml</relativePath>
+  </parent>
+  -->
+
   <groupId>org.codehaus.mojo.findbugs-maven-plugin.it</groupId>
   <artifactId>MFINDBUGS-145</artifactId>
   <version>1.0-SNAPSHOT</version>
@@ -47,7 +56,6 @@
             <plugin>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>findbugs-maven-plugin</artifactId>
-              <version>@pom.version@</version>
             </plugin>
           </reportPlugins>
         </configuration>
@@ -63,7 +71,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
-        <version>2.3</version>
+        <version>@jxrPluginVersion@</version>
       </plugin>
     </plugins>
   </reporting>
