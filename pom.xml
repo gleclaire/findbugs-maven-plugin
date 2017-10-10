@@ -166,8 +166,7 @@
     <compilerPluginVersion>3.6.1</compilerPluginVersion>
     <fb-contribVersion>7.0.5</fb-contribVersion>
     <jxrPluginVersion>2.5</jxrPluginVersion>
-    <mavenSurefireVersion>2.20</mavenSurefireVersion>
-
+    <mavenSurefireVersion>2.20.1</mavenSurefireVersion>
 
   </properties>
 
