@@ -33,7 +33,6 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
-        <version>@pom.version@</version>
         <configuration>
           <userPrefs>${project.basedir}/edu.umd.cs.findbugs.core.prefs</userPrefs>
           <findbugsXmlOutput>true</findbugsXmlOutput>

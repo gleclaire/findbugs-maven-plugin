@@ -36,7 +36,6 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
-        <version>@pom.version@</version>
         <configuration>
           <xmlOutput>true</xmlOutput>
           <includeTests>true</includeTests>
