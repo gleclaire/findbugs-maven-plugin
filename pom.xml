@@ -164,7 +164,7 @@
 
     <!-- Used by Integration tests -->
     <compilerPluginVersion>3.6.1</compilerPluginVersion>
-    <fb-contribVersion>4.8.2</fb-contribVersion>
+    <fb-contribVersion>7.0.5</fb-contribVersion>
     <jxrPluginVersion>2.5</jxrPluginVersion>
     <mavenSurefireVersion>2.20</mavenSurefireVersion>
 
