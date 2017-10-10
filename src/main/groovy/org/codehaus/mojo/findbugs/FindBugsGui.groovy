@@ -26,7 +26,6 @@ import org.apache.maven.plugins.annotations.Mojo
 import org.apache.maven.plugins.annotations.Parameter
 import org.apache.maven.plugins.annotations.ResolutionScope
 
-
 /**
  * Launch the Findbugs GUI.
  * It will use all the parameters in the POM fle.
@@ -36,17 +35,13 @@ import org.apache.maven.plugins.annotations.ResolutionScope
  * @description Launch the Findbugs GUI using the parameters in the POM fle.
  *
  * @author <a href="mailto:gleclaire@codehaus.org">Garvin LeClaire</a>
- * @version $Id: FindBugsGui.groovy gleclaire $
  */
 
 @Mojo( name = "gui", requiresDependencyResolution = ResolutionScope.TEST, requiresProject = true )
 class FindBugsGui extends AbstractMojo {
 
-
     /**
      * locale to use for Resource bundle.
-     *
-     *
      */
     static Locale locale = Locale.ENGLISH
 
@@ -76,7 +71,6 @@ class FindBugsGui extends AbstractMojo {
      */
     @Parameter( defaultValue = "Default", property="findbugs.effort" )
     String effort
-
 
     /**
      * The plugin list to include in the report. This is a FindBugsInfo.COMMA-delimited list.
@@ -134,12 +128,8 @@ class FindBugsGui extends AbstractMojo {
             log.debug("  Plugin Artifacts to be added ->" + pluginArtifacts.toString())
         }
 
-
-
-
         ant.project.setProperty('basedir', findbugsXmlOutputDirectory.getAbsolutePath())
         ant.project.setProperty('verbose', "true")
-
 
         ant.java(classname: "edu.umd.cs.findbugs.LaunchAppropriateUI", fork: "true", failonerror: "true", clonevm: "true", maxmemory: "${maxHeap}m")
         {
@@ -158,7 +148,6 @@ class FindBugsGui extends AbstractMojo {
                 log.debug("  Found an FindBugs XML at ->" + findbugsXml.toString())
                 arg(value: findbugsXml)
             }
-
 
             classpath()
             {

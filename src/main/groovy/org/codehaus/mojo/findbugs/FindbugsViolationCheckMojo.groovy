@@ -38,13 +38,11 @@ import org.codehaus.plexus.util.FileUtils
 /**
  * Fail the build if there were any FindBugs violations in the source code.
  * An XML report is put out by default in the target directory with the errors.
- * To see more documentation about FindBugs' options, please see the <a href="http://findbugs.sourceforge.net/manual/index.html" class="externalLink">FindBugs
-Manual.</a>.
+ * To see more documentation about FindBugs' options, please see the <a href="http://findbugs.sourceforge.net/manual/index.html" class="externalLink">FindBugs Manual.</a>.
  *
  * @since 2.0
  *
  * @author <a href="mailto:gleclaire@codehaus.org">Garvin LeClaire</a>
- * @version $Id: FindbugsViolationCheckMojo.groovy gleclaire $
  */
 
 @Mojo( name = "check", defaultPhase = LifecyclePhase.VERIFY, requiresDependencyResolution = ResolutionScope.TEST, requiresProject = true, threadSafe = true )
@@ -447,11 +445,9 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
     @Parameter( property="findbugs.jvmArgs" )
     String jvmArgs
 
-
 	int bugCount
 
 	int errorCount
-
 
 	void execute() {
 		Locale locale = Locale.getDefault()
@@ -504,7 +500,6 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
                     def bug = bugs[i]
                     log.info( bug.LongMessage.text() + FindBugsInfo.BLANK + bug.SourceLine.'@classname' + FindBugsInfo.BLANK + bug.SourceLine.Message.text() + FindBugsInfo.BLANK + bug.'@type')
                 }
-
 
                 log.info('\n\n\nTo see bug detail using the Findbugs GUI, use the following command "mvn findbugs:gui"\n\n\n')
 

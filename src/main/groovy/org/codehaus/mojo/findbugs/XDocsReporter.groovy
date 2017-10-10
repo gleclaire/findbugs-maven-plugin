@@ -28,8 +28,8 @@ import groovy.xml.StreamingMarkupBuilder
  * The reporter controls the generation of the FindBugs report.
  *
  * @author <a href="mailto:gleclaire@codehaus.org">Garvin LeClaire</a>
- * @version $Id: XDocsReporter.groovy 15967 2012-02-15 16:18:40Z gleclaire $
  */
+
 class XDocsReporter {
 
 	/**
@@ -82,8 +82,6 @@ class XDocsReporter {
 
 	String outputEncoding
 
-
-
 	/**
 	 * Default constructor.
 	 *
@@ -109,7 +107,6 @@ class XDocsReporter {
 		this.testSourceRoots = []
 		this.bugClasses = []
 	}
-
 
 	/**
 	 * Returns the threshold string value for the integer input.
@@ -164,7 +161,6 @@ class XDocsReporter {
 		def xdoc = {
 			mkp.xmlDeclaration()
 			log.debug("generateReport findbugsResults is ${findbugsResults}")
-
 
 			BugCollection(version: getFindBugsVersion(), threshold: FindBugsInfo.findbugsThresholds.get(threshold), effort: FindBugsInfo.findbugsEfforts.get(effort)) {
 
@@ -236,9 +232,6 @@ class XDocsReporter {
 				}
 			}
 		}
-
-		//     printErrors()
-		//   printSource()
 
 		outputWriter << xmlBuilder.bind(xdoc)
 		outputWriter.flush()

@@ -45,14 +45,12 @@ import org.codehaus.plexus.util.FileUtils
 
 import org.sonatype.plexus.build.incremental.BuildContext
 
-
 /**
  * Generates a FindBugs Report when the site plugin is run.
  * The HTML report is generated for site commands only.
  *
  *
  * @author <a href="mailto:gleclaire@codehaus.org">Garvin LeClaire</a>
- * @version $Id: FindBugsMojo.groovy 16932 2012-06-21 01:13:14Z gleclaire $
  */
 
 @Mojo(name = "findbugs", requiresDependencyResolution = ResolutionScope.TEST, requiresProject = true, threadSafe = true)
@@ -499,7 +497,6 @@ class FindBugsMojo extends AbstractMavenReport {
     @Parameter(property = "findbugs.userPrefs")
     String userPrefs
 
-
     int bugCount
     int errorCount
 
@@ -655,7 +652,6 @@ class FindBugsMojo extends AbstractMavenReport {
                         generator.setIncludeTests(this.includeTests)
                     }
 
-
                     generator.setLog(log)
 
                     generator.threshold = threshold
@@ -663,7 +659,6 @@ class FindBugsMojo extends AbstractMavenReport {
                     generator.effort = effort
 
                     generator.setFindbugsResults(new XmlSlurper().parse(outputFindbugsFile))
-
 
                     generator.setOutputDirectory(new File(outputDirectory.getAbsolutePath()))
 
@@ -709,7 +704,6 @@ class FindBugsMojo extends AbstractMavenReport {
         if (outputFindbugsFile != null && outputFindbugsFile.exists()) {
 
             log.debug("xmlOutput is ${xmlOutput}")
-
 
             if (xmlOutput) {
                 log.debug("  Using the xdoc format")
@@ -777,7 +771,6 @@ class FindBugsMojo extends AbstractMavenReport {
             return isEnabled
         }
 
-
         List reportPlugins = getProject().getReportPlugins()
 
         reportPlugins.each() { reportPlugin ->
@@ -791,7 +784,6 @@ class FindBugsMojo extends AbstractMavenReport {
         log.debug("jxr report links are ${isEnabled ? "enabled" : "disabled"}")
         return isEnabled
     }
-
 
     ResourceBundle getBundle(locale) {
 
@@ -866,7 +858,6 @@ class FindBugsMojo extends AbstractMavenReport {
             args << "-onlyAnalyze"
             args << onlyAnalyze
         }
-
 
         if (includeFilterFile) {
             log.debug("  Adding Include Filter File ")
@@ -945,7 +936,6 @@ class FindBugsMojo extends AbstractMavenReport {
 
             log.debug("  AuxClasspath Elements ->" + auxClasspathElements)
 
-
             def auxClasspathList = auxClasspathElements.findAll { project.build.outputDirectory != it.toString() }
 
             if (auxClasspathList.size() > 0) {
@@ -1018,7 +1008,6 @@ class FindBugsMojo extends AbstractMavenReport {
 
         def findbugsArgs = getFindbugsArgs(tempFile)
 
-
             def effectiveEncoding = System.getProperty("file.encoding", "UTF-8")
 
             if (sourceEncoding) {
@@ -1055,15 +1044,12 @@ class FindBugsMojo extends AbstractMavenReport {
                 }
             }
 
-
             findbugsArgs.each { findbugsArg ->
                 log.debug("Findbugs arg is ${findbugsArg}")
                 arg(value: findbugsArg)
             }
 
         }
-
-
 
         if (log.isDebugEnabled()) {
             duration = (System.nanoTime() - startTime) / 1000000000.00
@@ -1084,8 +1070,6 @@ class FindBugsMojo extends AbstractMavenReport {
 
                 errorCount = allNodes.findAll { it.name() == 'Error' }.size()
                 log.debug("Error size is ${errorCount}")
-
-
 
                 def xmlProject = path.Project
 
@@ -1349,9 +1333,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
             def os = new FileOutputStream(outputResourceFile)
 
-
             os << is
-
 
         } catch (IOException e) {
             throw new FileResourceCreationException("Cannot create file-based resource.", e)
@@ -1361,7 +1343,6 @@ class FindBugsMojo extends AbstractMavenReport {
 
         return outputResourceFile
     }
-    
 
 }
 

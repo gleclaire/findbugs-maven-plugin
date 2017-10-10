@@ -30,10 +30,9 @@ import org.codehaus.plexus.util.PathTool
  * FindBugs if a bug is found.
  *
  * @author <a href="mailto:gleclaire@codehaus.org">Garvin LeClaire</a>
- * @version $Id: FindbugsReportGenerator.groovy Z gleclaire $
  */
-class FindbugsReportGenerator implements FindBugsInfo {
 
+class FindbugsReportGenerator implements FindBugsInfo {
 
 	/**
 	 * The key to get the value if the line number is not available.
@@ -161,7 +160,6 @@ class FindbugsReportGenerator implements FindBugsInfo {
 	 */
 	static final String COLUMN_MISSINGCLASSES_KEY = "report.findbugs.column.missingclasses"
 
-
 	/**
 	 * The sink to write the report to.
 	 *
@@ -179,7 +177,6 @@ class FindbugsReportGenerator implements FindBugsInfo {
 	 *
 	 */
 	Log log
-
 
 	/**
 	 * The threshold of bugs severity.
@@ -245,7 +242,6 @@ class FindbugsReportGenerator implements FindBugsInfo {
 	 * Location where generated html will be created.
 	 *
 	 */
-
 	File outputDirectory
 
 	/**
@@ -284,13 +280,9 @@ class FindbugsReportGenerator implements FindBugsInfo {
 	 */
 	SiteTool siteTool
 
-
-
 	File basedir
 
 	GPathResult findbugsResults
-
-
 
 	List bugClasses
 
@@ -308,7 +300,6 @@ class FindbugsReportGenerator implements FindBugsInfo {
 	 */
 	FindbugsReportGenerator(Sink sink, ResourceBundle bundle, File basedir, SiteTool siteTool) {
 
-
 		assert sink
 		assert bundle
 		assert basedir
@@ -318,7 +309,6 @@ class FindbugsReportGenerator implements FindBugsInfo {
 		this.bundle = bundle
 		this.basedir = basedir
 		this.siteTool = siteTool
-
 
 		this.bugClasses = []
 
@@ -489,7 +479,6 @@ class FindbugsReportGenerator implements FindBugsInfo {
 		String hyperlink
 		String prefix
 
-
 		log.debug("Inside assembleJxrHyperlink")
 		log.debug("line is " + line.text())
 		log.debug("outputDirectory is " + outputDirectory.getAbsolutePath())
@@ -504,7 +493,6 @@ class FindbugsReportGenerator implements FindBugsInfo {
 				return
 			}
 		}
-
 
 		if ( includeTests && !prefix ) {
 			testSourceRoots.each {testSourceRoot ->
@@ -718,8 +706,6 @@ class FindbugsReportGenerator implements FindBugsInfo {
 				bugClasses << classStatsValue
 			}
 		}
-
-
 
 		sink.table_()
 

@@ -19,7 +19,6 @@ package org.codehaus.mojo.findbugs
  * under the License.
  */
 
-
 /**
  * Generates a FindBugs Report when the site plugin is run.
  * The HTML report is generated for site commands only.
@@ -28,10 +27,7 @@ package org.codehaus.mojo.findbugs
  *
  *
  * @author <a href="mailto:gleclaire@codehaus.org">Garvin LeClaire</a>
- * @version $Id: FindBugsInfo.groovy  $
  */
-
-
 
 interface FindBugsInfo {
 
