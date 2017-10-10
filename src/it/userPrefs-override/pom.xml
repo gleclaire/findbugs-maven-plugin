@@ -34,7 +34,7 @@
         <artifactId>findbugs-maven-plugin</artifactId>
         <version>@pom.version@</version>
         <configuration>
-          <userPrefs>${basedir}/edu.umd.cs.findbugs.core.prefs</userPrefs>
+          <userPrefs>${project.basedir}/edu.umd.cs.findbugs.core.prefs</userPrefs>
           <findbugsXmlOutput>true</findbugsXmlOutput>
           <xmlOutput>true</xmlOutput>
           <effort>Max</effort>

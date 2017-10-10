@@ -36,7 +36,7 @@
           <xmlOutput>true</xmlOutput>
           <failOnError>false</failOnError>
           <debug>@findbugsTestDebug@</debug>
-          <excludeBugsFile>${basedir}/excludeBugs1.xml,${basedir}/excludeBugs2.xml</excludeBugsFile>
+          <excludeBugsFile>${project.basedir}/excludeBugs1.xml,${project.basedir}/excludeBugs2.xml</excludeBugsFile>
         </configuration>
       </plugin>
     </plugins>
