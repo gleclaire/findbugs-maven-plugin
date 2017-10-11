@@ -47,8 +47,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
           <debug>false</debug>
-          <source>5</source>
-          <target>5</target>
+          <source>1.6</source>
+          <target>1.6</target>
           <excludes>
             <exclude>fakeAnnotations/**</exclude>
             <exclude>jsr305/**</exclude>
@@ -85,4 +85,3 @@
   </build>
 
 </project>
-
