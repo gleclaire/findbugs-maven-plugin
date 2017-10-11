@@ -595,9 +595,17 @@
                 </configuration>
               </execution>
               <execution>
-                <id>integration-test</id>
+                <id>integration-test-setup</id>
                 <goals>
                   <goal>install</goal>
+                </goals>
+                <configuration>
+                  <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+                </configuration>
+              </execution>
+              <execution>
+                <id>integration-test-run</id>
+                <goals>
                   <goal>run</goal>
                 </goals>
                 <configuration>
