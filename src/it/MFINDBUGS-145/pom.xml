@@ -29,7 +29,7 @@
 
   <groupId>findbugs-maven-plugin.it</groupId>
   <artifactId>MFINDBUGS-145</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>testing</version>
   <packaging>jar</packaging>
 
   <name>MFINDBUGS-145</name>
