@@ -471,7 +471,6 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
 				}
 			}
 
-
 			File outputFile = new File("${findbugsXmlOutputDirectory}/findbugsXml.xml")
 
 			if (outputFile.exists()) {
@@ -502,7 +501,6 @@ class FindbugsViolationCheckMojo extends AbstractMojo {
                 }
 
                 log.info('\n\n\nTo see bug detail using the Findbugs GUI, use the following command "mvn findbugs:gui"\n\n\n')
-
 
                 if ( (bugCount || errorCount) && failOnError ) {
                     throw new MojoExecutionException("failed with ${bugCount} bugs and ${errorCount} errors ")

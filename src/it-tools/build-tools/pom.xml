@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    Copyright (C) 2006-2007 the original author or authors.
+    Copyright (C) 2006-2017 the original author or authors.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -47,8 +47,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
           <debug>false</debug>
-          <source>5</source>
-          <target>5</target>
+          <source>1.6</source>
+          <target>1.6</target>
           <excludes>
             <exclude>fakeAnnotations/**</exclude>
             <exclude>jsr305/**</exclude>
@@ -85,4 +85,3 @@
   </build>
 
 </project>
-

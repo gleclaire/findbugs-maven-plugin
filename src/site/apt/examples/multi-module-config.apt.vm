@@ -27,7 +27,7 @@
 
 Multimodule Configuration
 
-  <<Note:>> This implemented in version 2.0 fo the Findbugs plugin.
+  <<Note:>> This implemented in version 2.0 of the Findbugs plugin.
 
   <<Credit:>> This is a shameless plagiarization of the Checkstyle
   plugin for consistency and due to my laziness.

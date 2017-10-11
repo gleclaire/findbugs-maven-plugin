@@ -630,7 +630,6 @@ class FindBugsMojo extends AbstractMavenReport {
                 }
             }
 
-
             if (outputFindbugsFile != null && outputFindbugsFile.exists()) {
 
                 if (skipEmptyReport && bugCount == 0) {
@@ -663,7 +662,6 @@ class FindBugsMojo extends AbstractMavenReport {
                     generator.setOutputDirectory(new File(outputDirectory.getAbsolutePath()))
 
                     generator.generateReport()
-
 
                     log.debug("xmlOutput is ${xmlOutput}")
 
@@ -821,7 +819,6 @@ class FindBugsMojo extends AbstractMavenReport {
 
         args << getEffortParameter()
         args << getThresholdParameter()
-        
 
         if (debug) {
             log.debug("progress on")
