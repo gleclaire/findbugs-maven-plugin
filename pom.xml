@@ -581,6 +581,7 @@
                   <goal>run</goal>
                 </goals>
                 <configuration>
+                  <parallelThreads>1</parallelThreads>
                   <projectsDirectory>${project.basedir}/src/it-tools</projectsDirectory>
                   <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
                   <showVersion>true</showVersion>
