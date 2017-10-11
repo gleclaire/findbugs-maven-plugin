@@ -20,14 +20,14 @@
 
   <!-- Parent is disabled on purpose
   <parent>
-    <groupId>org.codehaus.mojo.findbugs-maven-plugin.it</groupId>
+    <groupId>findbugs-maven-plugin.it</groupId>
     <artifactId>common</artifactId>
     <version>testing</version>
     <relativePath>../common.xml</relativePath>
   </parent>
   -->
 
-  <groupId>org.codehaus.mojo.findbugs-maven-plugin.it</groupId>
+  <groupId>findbugs-maven-plugin.it</groupId>
   <artifactId>MFINDBUGS-145</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
