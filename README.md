@@ -1,3 +1,5 @@
+# Findbugs Maven Plugin
+
 [![Build Status](https://travis-ci.org/gleclaire/findbugs-maven-plugin.svg?branch=master)](https://travis-ci.org/gleclaire/findbugs-maven-plugin)
 [![Maven central](https://maven-badges.herokuapp.com/maven-central/org.codehaus.mojo/findbugs-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.codehaus.mojo/findbugs-maven-plugin)
 [![Apache 2](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
@@ -12,8 +14,6 @@ Building findbugs-maven-plugin Requirements
 
 Java 7 is required.  This will allow analysis of bytecode up to Java 8
 
-
-
 findbugs-maven-plugin
 =====================
 
@@ -21,7 +21,7 @@ Maven Mojo Plug-In to generate reports based on the FindBugs Analyzer
 
 Run all tests
 ```
-mvn -DtestSrc=remote -Prun-its clean install
+mvn -DtestSrc=remote -Prun-its clean install -D"invoker.parallelThreads=4"
 ```
 Skip tests
 ```
@@ -29,12 +29,12 @@ mvn -DskipTests=true clean install
 ```
 Run tests on findbugs test source code that is local instead of from FindBugs github repository
 ```
-mvn -DtestSrc=local -DlocalTestSrc=/opt/findBugs -Prun-its clean install
+mvn -DtestSrc=local -DlocalTestSrc=/opt/findBugs -Prun-its clean install -D"invoker.parallelThreads=4"
 ```
 
 Run selected tests
 ```
-mvn -DtestSrc=remote -Prun-its -Dinvoker.test=build-*,basic-1,check-nofail clean install
+mvn -DtestSrc=remote -Prun-its -Dinvoker.test=build-*,basic-1,check-nofail clean install -D"invoker.parallelThreads=4"
 ```
 
 Run tests in debugger
