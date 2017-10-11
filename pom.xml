@@ -167,7 +167,9 @@
     <fb-contribVersion>7.0.5</fb-contribVersion>
     <jxrPluginVersion>2.5</jxrPluginVersion>
     <mavenSurefireVersion>2.20.1</mavenSurefireVersion>
-
+    <javaeeApiVersion>6.0</javaeeApiVersion>
+    <servletApiVersion>3.0.1</servletApiVersion>
+    
   </properties>
 
   <dependencies>
