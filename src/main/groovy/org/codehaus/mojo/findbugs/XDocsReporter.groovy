@@ -152,7 +152,6 @@ class XDocsReporter {
 		return edu.umd.cs.findbugs.Version.RELEASE
 	}
 
-
 	public void generateReport() {
 
 		def xmlBuilder = new StreamingMarkupBuilder()
