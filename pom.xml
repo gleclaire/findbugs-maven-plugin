@@ -176,6 +176,12 @@
       <groupId>com.google.code.findbugs</groupId>
       <artifactId>findbugs</artifactId>
       <version>${findbugsVersion}</version>
+      <exclusions>
+          <exclusion>
+              <groupId>xml-apis</groupId>
+              <artifactId>xml-apis</artifactId>
+          </exclusion>
+      </exclusions>
     </dependency>
 
     <!-- gmaven -->
