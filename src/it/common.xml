@@ -54,7 +54,7 @@
 
   <build>
     <sourceDirectory>@project.build.directory@/it-src-findbugs/findbugsTestCases/src/java</sourceDirectory>
-    <testSourceDirectory>@basedir@/src/it-src/test/java</testSourceDirectory>
+    <testSourceDirectory>@project.basedir@/src/it-src/test/java</testSourceDirectory>
     <pluginManagement>
       <plugins>
         <plugin>
