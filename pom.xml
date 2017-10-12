@@ -165,6 +165,7 @@
     <!-- Used by Integration tests -->
     <compilerPluginVersion>3.7.0</compilerPluginVersion>
     <fb-contribVersion>7.0.5</fb-contribVersion>
+    <findsecbugsVersion>1.7.1</findsecbugsVersion>
     <jxrPluginVersion>2.5</jxrPluginVersion>
     <mavenSurefireVersion>2.20.1</mavenSurefireVersion>
     <javaeeApiVersion>6.0</javaeeApiVersion>
