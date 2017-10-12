@@ -36,7 +36,10 @@
         <configuration>
           <findbugsXmlOutput>true</findbugsXmlOutput>
           <xmlOutput>true</xmlOutput>
-          <pluginList>http://repo1.maven.org/maven2/com/mebigfatguy/fb-contrib/fb-contrib/@fb-contribVersion@/fb-contrib-@fb-contribVersion@.jar</pluginList>
+          <pluginList>
+            http://repo1.maven.org/maven2/com/mebigfatguy/fb-contrib/fb-contrib/@fb-contribVersion@/fb-contrib-@fb-contribVersion@.jar,
+            http://repo1.maven.org/maven2/com/h3xstream/findsecbugs/findsecbugs-plugin/@findsecbugsVersion@/findsecbugs-plugin-@findsecbugsVersion@.jar
+          </pluginList>
         </configuration>
       </plugin>
     </plugins>
