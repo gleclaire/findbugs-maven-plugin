@@ -47,6 +47,7 @@
         <artifactId>maven-site-plugin</artifactId>
         <version>@sitePluginVersion@</version>
         <configuration>
+          <!-- MFINDBUGS-145 indicates this setup although this is obsolete and should not be used -->
           <reportPlugins>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
