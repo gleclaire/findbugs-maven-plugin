@@ -35,6 +35,11 @@
               <artifactId>fb-contrib</artifactId>
               <version>@fb-contribVersion@</version>
             </plugin>
+            <plugin>
+              <groupId>com.h3xstream.findsecbugs</groupId>
+              <artifactId>findsecbugs-plugin</artifactId>
+              <version>@findsecbugsVersion@</version>
+            </plugin>
           </plugins>
         </configuration>
       </plugin>
