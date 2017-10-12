@@ -169,7 +169,7 @@
     <mavenSurefireVersion>2.20.1</mavenSurefireVersion>
     <javaeeApiVersion>6.0</javaeeApiVersion>
     <servletApiVersion>3.0.1</servletApiVersion>
-    
+
   </properties>
 
   <dependencies>
