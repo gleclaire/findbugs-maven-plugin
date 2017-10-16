@@ -576,6 +576,7 @@
             <version>${invokerPluginVersion}</version>
             <executions>
               <execution>
+                <!--Package test include and exclude files and file local repo -->
                 <id>prepare-integration-test</id>
                 <phase>pre-integration-test</phase>
                 <goals>
@@ -596,15 +597,6 @@
                     <goal>install</goal>
                   </goals>
                   <settingsFile>src/it/settings.xml</settingsFile>
-                </configuration>
-              </execution>
-              <execution>
-                <id>integration-test-setup</id>
-                <goals>
-                  <goal>install</goal>
-                </goals>
-                <configuration>
-                  <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
                 </configuration>
               </execution>
               <execution>
