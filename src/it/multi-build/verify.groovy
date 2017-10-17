@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-def effortLevel = 'min'
+
 
 
 //  check module 1
@@ -38,8 +38,6 @@ assert findbugXml.exists()
 println '***************************'
 println "Checking HTML file"
 println '***************************'
-
-assert findbugsHtml.text.contains( "<i>" + effortLevel + "</i>" )
 
 def path = new XmlSlurper(true, true, true).parse( findbugsHtml )
 //*[@id="contentBox"]/div[2]/table/tbody/tr[2]/td[2]
@@ -103,8 +101,6 @@ assert findbugXml.exists()
 println '***************************'
 println "Checking HTML file"
 println '***************************'
-
-assert findbugsHtml.text.contains( "<i>" + effortLevel + "</i>" )
 
 path = new XmlSlurper(true, true, true).parse( findbugsHtml )
 //*[@id="contentBox"]/div[2]/table/tbody/tr[2]/td[2]

@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-def effortLevel = 'min'
-
 File findbugsHtml =  new File(basedir, 'target/site/findbugs.html')
 assert findbugsHtml.exists()
 
@@ -29,8 +27,6 @@ assert findbugXml.exists()
 println '***************************'
 println "Checking HTML file"
 println '***************************'
-
-assert findbugsHtml.text.contains( "<i>" + effortLevel + "</i>" )
 
 def path = new XmlSlurper(true, true, true).parse( findbugsHtml )
 //*[@id="contentBox"]/div[2]/table/tbody/tr[2]/td[2]

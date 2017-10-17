@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-def effortLevel = 'min'
+def effortLevel = 'default'
 
 
 File findbugsHtml =  new File(basedir, 'target/site/findbugs.html')

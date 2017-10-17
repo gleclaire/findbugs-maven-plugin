@@ -31,6 +31,7 @@ println '***************************'
 println "Checking HTML file"
 println '***************************'
 
+assert findbugsHtml.text.contains( "<i>" + effortLevel + "</i>" )
 def path = new XmlSlurper(true, true, true).parse( findbugsHtml )
 //*[@id="contentBox"]/div[2]/table/tbody/tr[2]/td[2]
 def findbugsErrors = path.body.'**'.find {div -> div.@id == 'contentBox'}.div[1].table.tr[1].td[1].toInteger()
