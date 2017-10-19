@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-def effortLevel = 'min'
+def effortLevel = 'default'
 
 
 //  check module 1

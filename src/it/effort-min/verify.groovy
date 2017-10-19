@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2006-2017 the original author or authors.
+ * Copyright (C) 2006-2007 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@
 
 def effortLevel = 'min'
 
-
 File findbugsHtml =  new File(basedir, 'target/site/findbugs.html')
+
 assert findbugsHtml.exists()
 
 File findbugXdoc = new File(basedir, 'target/findbugs.xml')
@@ -27,30 +27,20 @@ File findbugXml = new File(basedir, 'target/findbugsXml.xml')
 assert findbugXml.exists()
 
 
+def xmlSlurper = new XmlSlurper()
+xmlSlurper.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
+xmlSlurper.setFeature("http://xml.org/sax/features/namespaces", false)
+
+def path = xmlSlurper.parse( findbugsHtml )
+
 println '***************************'
 println "Checking HTML file"
 println '***************************'
 
 assert findbugsHtml.text.contains( "<i>" + effortLevel + "</i>" )
-def xhtmlParser = new XmlSlurper();
-xhtmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
-xhtmlParser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
-def path = xhtmlParser.parse( findbugsHtml )
-//*[@id="contentBox"]/div[2]/table/tbody/tr[2]/td[2]
-def findbugsErrors = path.body.'**'.find {div -> div.@id == 'contentBox'}.div[1].table.tr[1].td[1].toInteger()
+
+def findbugsErrors = path.body.div.findAll {it.@id == 'bodyColumn'}.div[1].table.tr[1].td[1].toInteger()
 println "Error Count is ${findbugsErrors}"
-
-
-println '**********************************'
-println "Checking Findbugs Native XML file"
-println '**********************************'
-
-path = new XmlSlurper().parse(findbugXml)
-
-allNodes = path.depthFirst().collect{ it }
-def findbugsXmlErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
-println "BugInstance size is ${findbugsXmlErrors}"
-
 
 println '***************************'
 println "Checking xDoc file"
@@ -64,7 +54,16 @@ println "BugInstance size is ${xdocErrors}"
 
 assert  path.findAll {it.name() == 'BugCollection'}.@effort.text() == effortLevel
 
-assert xdocErrors == findbugsXmlErrors
+println '**********************************'
+println "Checking Findbugs Native XML file"
+println '**********************************'
 
+path = new XmlSlurper().parse(findbugXml)
+
+allNodes = path.depthFirst().collect{ it }
+def findbugsXmlErrors = allNodes.findAll {it.name() == 'BugInstance'}.size()
+println "BugInstance size is ${findbugsXmlErrors}"
+
+assert xdocErrors == findbugsXmlErrors
 assert findbugsErrors == findbugsXmlErrors
 
