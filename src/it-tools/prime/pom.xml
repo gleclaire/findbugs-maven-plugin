@@ -55,11 +55,6 @@
       <version>@sitePluginVersion@</version>
     </dependency>
     <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>findbugs-maven-plugin</artifactId>
-      <version>@pom.version@</version>
-    </dependency>
-    <dependency>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-site-plugin</artifactId>
       <version>@sitePluginVersion@</version>

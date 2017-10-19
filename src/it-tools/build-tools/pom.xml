@@ -24,22 +24,6 @@
   <name>build-tools</name>
   <packaging>jar</packaging>
   <version>testing</version>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>javax</groupId>
-        <artifactId>javaee-api</artifactId>
-        <version>@javaeeApiVersion@</version>
-        <scope>compile</scope>
-      </dependency>
-      <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>@servletApiVersion@</version>
-        <scope>compile</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
   <build>
     <plugins>
@@ -69,20 +53,6 @@
         </configuration>
       </plugin>
     </plugins>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>findbugs-maven-plugin</artifactId>
-          <version>@pom.version@</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>@sitePluginVersion@</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
   </build>
 
 </project>
