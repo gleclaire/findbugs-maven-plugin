@@ -1145,32 +1145,6 @@ class FindBugsMojo extends AbstractMavenReport implements FindBugsPluginsTrait {
 
     }
 
-    /**
-     * Returns the effort parameter to use.
-     *
-     * @return A valid effort parameter.
-     *
-     */
-    protected String getEffortParameter() {
-        log.debug("effort is ${effort}")
-
-        String effortParameter
-
-        switch (effort) {
-            case "Max":
-                effortParameter = "max"; break
-
-            case "Min":
-                effortParameter = "min"; break
-
-            default:
-                effortParameter = "default"; break
-        }
-
-        log.debug("effortParameter is ${effortParameter}")
-
-        return "-effort:" + effortParameter
-    }
 
     /**
      * @see org.apache.maven.reporting.AbstractMavenReport#setReportOutputDirectory(java.io.File)
