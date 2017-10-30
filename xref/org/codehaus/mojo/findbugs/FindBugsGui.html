@@ -17,7 +17,7 @@
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  @org.apache.maven.plugins.annotations.Mojo(name=<span class="jxr_string">"gui"</span>, requiresDependencyResolution=org.apache.maven.plugins.annotations.ResolutionScope.TEST, requiresProject=<strong class="jxr_keyword">true</strong>) <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> FindBugsGui
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>    <strong class="jxr_keyword">extends</strong> org.apache.maven.plugin.AbstractMojo  <strong class="jxr_keyword">implements</strong>
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>      groovy.lang.GroovyObject {
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>      org.codehaus.mojo.findbugs.FindBugsPluginsTrait,    groovy.lang.GroovyObject {
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  ;
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">public</strong>  groovy.lang.MetaClass getMetaClass() { <strong class="jxr_keyword">return</strong> (groovy.lang.MetaClass)<strong class="jxr_keyword">null</strong>;}
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setMetaClass(groovy.lang.MetaClass mc) { }
@@ -36,18 +36,32 @@
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setEffort(java.lang.String value) { }
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">public</strong>  java.lang.String getPluginList() { <strong class="jxr_keyword">return</strong> (java.lang.String)<strong class="jxr_keyword">null</strong>;}
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setPluginList(java.lang.String value) { }
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">public</strong>  org.apache.maven.project.MavenProject getProject() { <strong class="jxr_keyword">return</strong> (org.apache.maven.project.MavenProject)<strong class="jxr_keyword">null</strong>;}
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setProject(org.apache.maven.project.MavenProject value) { }
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">public</strong>  java.util.ResourceBundle getBundle() { <strong class="jxr_keyword">return</strong> (java.util.ResourceBundle)<strong class="jxr_keyword">null</strong>;}
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setBundle(java.util.ResourceBundle value) { }
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">public</strong>  java.io.File getFindbugsXmlOutputDirectory() { <strong class="jxr_keyword">return</strong> (java.io.File)<strong class="jxr_keyword">null</strong>;}
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setFindbugsXmlOutputDirectory(java.io.File value) { }
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">public</strong>  java.lang.String getEncoding() { <strong class="jxr_keyword">return</strong> (java.lang.String)<strong class="jxr_keyword">null</strong>;}
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setEncoding(java.lang.String value) { }
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">int</strong> getMaxHeap() { <strong class="jxr_keyword">return</strong> (<strong class="jxr_keyword">int</strong>)0;}
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setMaxHeap(<strong class="jxr_keyword">int</strong> value) { }
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> execute() { }
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  }
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">public</strong>  org.codehaus.mojo.findbugs.PluginArtifact[] getPlugins() { <strong class="jxr_keyword">return</strong> (org.codehaus.mojo.findbugs.PluginArtifact[])<strong class="jxr_keyword">null</strong>;}
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setPlugins(org.codehaus.mojo.findbugs.PluginArtifact... value) { }
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">public</strong>  org.apache.maven.artifact.resolver.ArtifactResolver getArtifactResolver() { <strong class="jxr_keyword">return</strong> (org.apache.maven.artifact.resolver.ArtifactResolver)<strong class="jxr_keyword">null</strong>;}
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setArtifactResolver(org.apache.maven.artifact.resolver.ArtifactResolver value) { }
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">public</strong>  org.apache.maven.artifact.factory.ArtifactFactory getFactory() { <strong class="jxr_keyword">return</strong> (org.apache.maven.artifact.factory.ArtifactFactory)<strong class="jxr_keyword">null</strong>;}
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setFactory(org.apache.maven.artifact.factory.ArtifactFactory value) { }
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">public</strong>  java.util.List getRemoteRepositories() { <strong class="jxr_keyword">return</strong> (java.util.List)<strong class="jxr_keyword">null</strong>;}
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setRemoteRepositories(java.util.List value) { }
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">public</strong>  org.apache.maven.artifact.repository.ArtifactRepository getLocalRepository() { <strong class="jxr_keyword">return</strong> (org.apache.maven.artifact.repository.ArtifactRepository)<strong class="jxr_keyword">null</strong>;}
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setLocalRepository(org.apache.maven.artifact.repository.ArtifactRepository value) { }
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">public</strong>  org.apache.maven.project.MavenProject getProject() { <strong class="jxr_keyword">return</strong> (org.apache.maven.project.MavenProject)<strong class="jxr_keyword">null</strong>;}
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setProject(org.apache.maven.project.MavenProject value) { }
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">public</strong>  java.util.ResourceBundle getBundle() { <strong class="jxr_keyword">return</strong> (java.util.ResourceBundle)<strong class="jxr_keyword">null</strong>;}
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setBundle(java.util.ResourceBundle value) { }
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <strong class="jxr_keyword">public</strong>  java.io.File getFindbugsXmlOutputDirectory() { <strong class="jxr_keyword">return</strong> (java.io.File)<strong class="jxr_keyword">null</strong>;}
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setFindbugsXmlOutputDirectory(java.io.File value) { }
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <strong class="jxr_keyword">public</strong>  java.lang.String getEncoding() { <strong class="jxr_keyword">return</strong> (java.lang.String)<strong class="jxr_keyword">null</strong>;}
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setEncoding(java.lang.String value) { }
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">int</strong> getMaxHeap() { <strong class="jxr_keyword">return</strong> (<strong class="jxr_keyword">int</strong>)0;}
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setMaxHeap(<strong class="jxr_keyword">int</strong> value) { }
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <strong class="jxr_keyword">public</strong>  org.codehaus.plexus.resource.ResourceManager getResourceManager() { <strong class="jxr_keyword">return</strong> (org.codehaus.plexus.resource.ResourceManager)<strong class="jxr_keyword">null</strong>;}
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> setResourceManager(org.codehaus.plexus.resource.ResourceManager value) { }
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <strong class="jxr_keyword">public</strong>  <strong class="jxr_keyword">void</strong> execute() { }
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <strong class="jxr_keyword">public</strong>  java.lang.String getFindbugsPlugins() { <strong class="jxr_keyword">return</strong> (java.lang.String)<strong class="jxr_keyword">null</strong>;}
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <strong class="jxr_keyword">public</strong>  java.lang.String getEffortParameter() { <strong class="jxr_keyword">return</strong> (java.lang.String)<strong class="jxr_keyword">null</strong>;}
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2005&#x2013;2017 <a href="http://www.mojohaus.org">MojoHaus</a>. All rights reserved.</div>
