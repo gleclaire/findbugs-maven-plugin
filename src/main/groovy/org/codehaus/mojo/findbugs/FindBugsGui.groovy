@@ -19,17 +19,19 @@ package org.codehaus.mojo.findbugs
  * under the License.
  */
 
-import org.apache.maven.artifact.factory.ArtifactFactory;
+import org.apache.maven.artifact.factory.ArtifactFactory
 import org.apache.maven.artifact.repository.ArtifactRepository
 import org.apache.maven.artifact.resolver.ArtifactResolver
 
 import org.apache.maven.project.MavenProject
 import org.apache.maven.plugin.AbstractMojo
 
-import org.apache.maven.plugins.annotations.Component;
+import org.apache.maven.plugins.annotations.Component
 import org.apache.maven.plugins.annotations.Mojo
 import org.apache.maven.plugins.annotations.Parameter
 import org.apache.maven.plugins.annotations.ResolutionScope
+
+import org.codehaus.plexus.resource.ResourceManager
 
 /**
  * Launch the Findbugs GUI.
@@ -161,6 +163,12 @@ class FindBugsGui extends AbstractMojo implements FindBugsPluginsTrait {
      */
     @Parameter( property="findbugs.maxHeap", defaultValue = "512" )
     int maxHeap
+
+	/**
+	 * @since 2.0
+	 */
+	@Component(role = ResourceManager.class)
+	ResourceManager resourceManager
 
     void execute() {
 

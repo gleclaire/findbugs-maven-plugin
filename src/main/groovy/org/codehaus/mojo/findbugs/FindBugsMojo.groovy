@@ -41,7 +41,6 @@ import org.codehaus.plexus.resource.loader.FileResourceCreationException
 import org.codehaus.plexus.resource.loader.FileResourceLoader
 
 import groovy.xml.StreamingMarkupBuilder
-import org.codehaus.plexus.util.FileUtils
 
 import org.sonatype.plexus.build.incremental.BuildContext
 
@@ -801,7 +800,7 @@ class FindBugsMojo extends AbstractMavenReport implements FindBugsPluginsTrait {
      *
      */
     private ArrayList<String> getFindbugsArgs(File tempFile) {
-        ResourceHelper resourceHelper = new ResourceHelper(log, findbugsXmlOutputDirectory)
+        ResourceHelper resourceHelper = new ResourceHelper(log, findbugsXmlOutputDirectory, resourceManager)
         def args = new ArrayList<String>()
 
         if(userPrefs) {

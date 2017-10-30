@@ -20,20 +20,23 @@ package org.codehaus.mojo.findbugs
  */
 
 import org.apache.maven.plugin.logging.Log
-
 import org.codehaus.plexus.resource.loader.FileResourceCreationException
 import org.codehaus.plexus.resource.loader.FileResourceLoader
+import org.codehaus.plexus.resource.ResourceManager
+import org.codehaus.plexus.util.FileUtils
 
 
 final class ResourceHelper {
 
     Log log
     File outputDirectory
+	ResourceManager resourceManager
 
-    ResourceHelper(Log log, File outputDirectory) {
+    ResourceHelper(Log log, File outputDirectory, ResourceManager resourceManager) {
         assert log
         this.log = log
         this.outputDirectory = outputDirectory
+		this.resourceManager = resourceManager
     }
 
     /**

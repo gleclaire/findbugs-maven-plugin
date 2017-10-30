@@ -20,11 +20,14 @@ package org.codehaus.mojo.findbugs
  */
 
 import org.apache.maven.artifact.Artifact
-import org.apache.maven.artifact.factory.ArtifactFactory;
+import org.apache.maven.artifact.factory.ArtifactFactory
 import org.apache.maven.artifact.repository.ArtifactRepository
 import org.apache.maven.artifact.resolver.ArtifactResolver
 
+import org.apache.maven.plugin.logging.Log
 import org.apache.maven.plugin.MojoExecutionException
+
+import org.codehaus.plexus.resource.ResourceManager
 
 
 /**
@@ -40,6 +43,8 @@ trait FindBugsPluginsTrait {
     abstract List getRemoteRepositories()
     abstract ArtifactRepository getLocalRepository()
     abstract File getFindbugsXmlOutputDirectory()
+	abstract Log getLog()
+	abstract ResourceManager getResourceManager()
 
     // properties in traits should be supported but don't compile currently:
     // https://issues.apache.org/jira/browse/GROOVY-7536
@@ -52,7 +57,7 @@ trait FindBugsPluginsTrait {
      *
      */
     String getFindbugsPlugins() {
-        ResourceHelper resourceHelper = new ResourceHelper(log, findbugsXmlOutputDirectory)
+        ResourceHelper resourceHelper = new ResourceHelper(log, findbugsXmlOutputDirectory, resourceManager)
 
         URL[] pluginURL
 
