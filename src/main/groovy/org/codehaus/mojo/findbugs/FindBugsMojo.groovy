@@ -41,7 +41,6 @@ import org.codehaus.plexus.resource.loader.FileResourceCreationException
 import org.codehaus.plexus.resource.loader.FileResourceLoader
 
 import groovy.xml.StreamingMarkupBuilder
-import org.codehaus.plexus.util.FileUtils
 
 import org.sonatype.plexus.build.incremental.BuildContext
 
@@ -54,7 +53,7 @@ import org.sonatype.plexus.build.incremental.BuildContext
  */
 
 @Mojo(name = "findbugs", requiresDependencyResolution = ResolutionScope.TEST, requiresProject = true, threadSafe = true)
-class FindBugsMojo extends AbstractMavenReport {
+class FindBugsMojo extends AbstractMavenReport implements FindBugsPluginsTrait {
 
     /**
      * Location where generated html will be created.
@@ -801,13 +800,14 @@ class FindBugsMojo extends AbstractMavenReport {
      *
      */
     private ArrayList<String> getFindbugsArgs(File tempFile) {
+        ResourceHelper resourceHelper = new ResourceHelper(log, findbugsXmlOutputDirectory, resourceManager)
         def args = new ArrayList<String>()
 
         if(userPrefs) {
             log.debug(" Adding User Preferences File -> ${userPrefs}" )
 
             args << "-userPrefs"
-            args << getResourceFile(userPrefs.trim())
+            args << resourceHelper.getResourceFile(userPrefs.trim())
         }
 
         args << "-xml:withMessages"
@@ -863,7 +863,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
             includefilters.each { includefilter ->
                 args << "-include"
-                args << getResourceFile(includefilter.trim())
+                args << resourceHelper.getResourceFile(includefilter.trim())
             }
 
         }
@@ -874,7 +874,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
             excludefilters.each { excludeFilter ->
                 args << "-exclude"
-                args << getResourceFile(excludeFilter.trim())
+                args << resourceHelper.getResourceFile(excludeFilter.trim())
             }
 
         }
@@ -885,7 +885,7 @@ class FindBugsMojo extends AbstractMavenReport {
 
             excludeFiles.each() { excludeFile ->
                 args << "-excludeBugs"
-                args << getResourceFile(excludeFile.trim())
+                args << resourceHelper.getResourceFile(excludeFile.trim())
             }
         }
 
@@ -1173,103 +1173,6 @@ class FindBugsMojo extends AbstractMavenReport {
     }
 
     /**
-     * Get the File reference for a File passed in as a string reference.
-     *
-     * @param resource
-     *            The file for the resource manager to locate
-     * @return The File of the resource
-     *
-     */
-    protected File getResourceFile(String resource) {
-
-        assert resource
-
-        String location = null
-        String artifact = resource
-
-        if (resource.indexOf(FindBugsInfo.FORWARD_SLASH) != -1) {
-            artifact = resource.substring(resource.lastIndexOf(FindBugsInfo.FORWARD_SLASH) + 1)
-        }
-
-        if (resource.indexOf(FindBugsInfo.FORWARD_SLASH) != -1) {
-            location = resource.substring(0, resource.lastIndexOf(FindBugsInfo.FORWARD_SLASH))
-        }
-
-        // replace all occurrences of the following characters:  ? : & =
-        location = location?.replaceAll("[\\?\\:\\&\\=\\%]", "_")
-        artifact = artifact?.replaceAll("[\\?\\:\\&\\=\\%]", "_")
-
-        log.debug("resource is " + resource)
-        log.debug("location is " + location)
-        log.debug("artifact is " + artifact)
-
-        File resourceFile = getResourceAsFile(resource, artifact, findbugsXmlOutputDirectory)
-
-        log.debug("location of resourceFile file is " + resourceFile.absolutePath)
-
-        return resourceFile
-
-    }
-
-    /**
-     * Adds the specified plugins to findbugs. The coreplugin is always added first.
-     *
-     */
-    protected String getFindbugsPlugins() {
-        URL[] pluginURL
-
-        def urlPlugins = ""
-
-        if (pluginList) {
-            log.debug("  Adding Plugins ")
-            String[] pluginJars = pluginList.split(FindBugsInfo.COMMA)
-
-            pluginJars.each() { pluginJar ->
-                def pluginFileName = pluginJar.trim()
-
-                if (!pluginFileName.endsWith(".jar")) {
-                    throw new IllegalArgumentException("Plugin File is not a Jar file: " + pluginFileName)
-                }
-
-                try {
-                    log.debug("  Processing Plugin: " + pluginFileName.toString())
-
-                    urlPlugins += getResourceFile(pluginFileName.toString()).absolutePath + ((pluginJar == pluginJars[pluginJars.size() - 1]) ? "" : File.pathSeparator)
-                } catch (MalformedURLException exception) {
-                    throw new MojoExecutionException("The addin plugin has an invalid URL")
-                }
-            }
-        }
-
-        if (plugins) {
-            log.debug("  Adding Plugins from a repository")
-
-            if (urlPlugins.size() > 0) {
-                urlPlugins += File.pathSeparator
-            }
-
-            Artifact pomArtifact
-
-            plugins.each() { plugin ->
-
-                log.debug("  Processing Plugin: " + plugin.toString())
-                log.debug("groupId is ${plugin['groupId']} ****** artifactId is ${plugin['artifactId']} ****** version is ${plugin['version']} ****** type is ${plugin['type']}")
-                pomArtifact = this.factory.createArtifact(plugin['groupId'], plugin['artifactId'], plugin['version'], "", plugin['type'])
-                log.debug("pomArtifact is ${pomArtifact} ****** groupId is ${plugin['groupId']} ****** artifactId is ${plugin['artifactId']} ****** version is ${plugin['version']} ****** type is ${plugin['type']}")
-
-                artifactResolver.resolve(pomArtifact, this.remoteRepositories, this.localRepository)
-
-                urlPlugins += getResourceFile(pomArtifact.file.absolutePath).absolutePath + ((plugin == plugins[plugins.size() - 1]) ? "" : File.pathSeparator)
-            }
-        }
-
-
-        log.debug("  Plugin list is: ${urlPlugins}")
-
-        return urlPlugins
-    }
-
-    /**
      * @see org.apache.maven.reporting.AbstractMavenReport#setReportOutputDirectory(java.io.File)
      */
     public void setReportOutputDirectory(File reportOutputDirectory) {
@@ -1297,48 +1200,6 @@ class FindBugsMojo extends AbstractMavenReport {
         }
 
         return sourceFiles
-    }
-
-    File getResourceAsFile(String name, String outputPath, File outputDirectory) {
-        // Optimization for File to File fetches
-        File f = FileResourceLoader.getResourceAsFile(name, outputPath, outputDirectory)
-
-        if (f != null) {
-            return f
-        }
-
-        // End optimization
-
-        InputStream is = new BufferedInputStream(resourceManager.getResourceAsInputStream(name))
-
-        File outputResourceFile
-
-        if (outputPath == null) {
-            outputResourceFile = FileUtils.createTempFile("plexus-resources", "tmp", null)
-        } else {
-            if (outputDirectory != null) {
-                outputResourceFile = new File(outputDirectory, outputPath)
-            } else {
-                outputResourceFile = new File(outputPath)
-            }
-        }
-
-        try {
-            if (!outputResourceFile.getParentFile().exists()) {
-                outputResourceFile.getParentFile().mkdirs()
-            }
-
-            def os = new FileOutputStream(outputResourceFile)
-
-            os << is
-
-        } catch (IOException e) {
-            throw new FileResourceCreationException("Cannot create file-based resource.", e)
-        } finally {
-            is.close()
-        }
-
-        return outputResourceFile
     }
 
 }
