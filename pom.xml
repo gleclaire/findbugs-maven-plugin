@@ -365,6 +365,15 @@
             <skipDeploy>false</skipDeploy>
           </configuration>
         </plugin>
+
+        <!--  Disable cobertura from parent -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -432,28 +441,6 @@
           <skipTests>true</skipTests>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>cobertura-maven-plugin</artifactId>
-        <configuration>
-          <instrumentation>
-            <ignores>
-              <ignore>org.codehaus.mojo.findbugs.*</ignore>
-            </ignores>
-            <excludes>
-              <exclude>org/codehaus/mojo/findbugs/**/*.class</exclude>
-            </excludes>
-          </instrumentation>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>clean</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
@@ -559,6 +546,14 @@
             </reports>
           </reportSet>
         </reportSets>
+      </plugin>
+      <!--  Disable cobertura from parent -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
       </plugin>
     </plugins>
   </reporting>
