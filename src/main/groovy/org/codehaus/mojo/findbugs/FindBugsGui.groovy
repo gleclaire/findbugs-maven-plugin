@@ -201,7 +201,6 @@ class FindBugsGui extends AbstractMojo implements FindBugsPluginsTrait {
             def findbugsArgs = new ArrayList<String>()
 
             findbugsArgs << getEffortParameter()
-            findbugsArgs << getThresholdParameter()
 
             if (pluginList || plugins) {
                 findbugsArgs << "-pluginList"
