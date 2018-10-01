@@ -8,7 +8,7 @@
 
 FindBugs Maven Plugin
 
-*Status: Since Findbugs is no longer maintained, please use Spotbugs which has a Maven plugin. It is located  This introduction is an excerpt from the Facts Sheet at {{{https://spotbugs.github.io/}here}}.
+*Status: Since Findbugs is no longer maintained, please use Spotbugs which has a Maven plugin. It is located at {{{https://spotbugs.github.io/}here}}.
 
 
 *Please Note - This version is using Findbugs ${findbugsVersion}.
