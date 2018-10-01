@@ -8,6 +8,9 @@
 
 FindBugs Maven Plugin
 
+*Status: Since Findbugs is no longer maintained, please use Spotbugs which has a Maven plugin. It is located  This introduction is an excerpt from the Facts Sheet at {{{https://spotbugs.github.io/}here}}.
+
+
 *Please Note - This version is using Findbugs ${findbugsVersion}.
   
  FindBugs looks for bugs in Java programs. It is based on the concept of bug patterns. A bug pattern is a code idiom that is often an error. Bug patterns arise for a variety of reasons:
