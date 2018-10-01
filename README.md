@@ -1,8 +1,13 @@
 # Findbugs Maven Plugin
 
+
 [![Build Status](https://travis-ci.org/gleclaire/findbugs-maven-plugin.svg?branch=master)](https://travis-ci.org/gleclaire/findbugs-maven-plugin)
 [![Maven central](https://maven-badges.herokuapp.com/maven-central/org.codehaus.mojo/findbugs-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.codehaus.mojo/findbugs-maven-plugin)
 [![Apache 2](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+
+## Status ##
+
+**Note: ** Since Findbugs is no longer maintained, please use Spotbugs which has a Maven plugin. It is located [here](https://spotbugs.github.io/)
 
 ## Latest Snapshot ##
 
